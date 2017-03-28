@@ -23,7 +23,7 @@
     - variable assignment
         - multiple assignments on a single line (tuple expansion)
     - help
-        - in py interp
+        - in Python interpreter: `help(something)`
         - online
     - basic Python data types
         - `int, float, str, bool`

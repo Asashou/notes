@@ -14,11 +14,13 @@
                 - placeholders: `%s, %d, %f, %g`
             - `split, format, replace, strip, upper, lower`
     - are there other string methods, how to discover them without doing a web search?
+        - use `dir(something)`
         - intro IPython instead of plain Py interpreter
             - ? help
             - command completion
-            - attribute exploration via dot notation
-            - referring to previous inputs and outputs
+            - attribute exploration via dot notation, followed by ?
+            - referring to previous outputs and inputs with `_` and `_i`
+            - view all local variables with `whos`
     - comments, docstrings
         - single and multiline
         - what makes a good comment?
