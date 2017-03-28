@@ -2,23 +2,25 @@
     - motivation:
         - example: load data, analyze, plot, save
     - command line basics, assume git bash or mingw installed on windows
-        - cd, ls, mv, cp, rm, touch, cat
-        - man and --help for help
+        - `cd, ls, mv, cp, rm, touch, cat`
+        - `man` and `--help` for help
+        - up/down arrow keys to access recently used commands
         - save text output of a command to file using redirection:
             - `ls > file_list.txt`
             - `cat > shopping_list.txt`
-                - Ctrl+D to finish entering
+                - Ctrl+D on a blank line to finish writing to file
             - redirection overwrites any existing file!
-            - view a file using cat filename.txt
+            - view a file using `cat filename`
     - py interpreter
         - interpreted vs compiled languages?
         - calculator, math operators
+        - up/down arrow keys to access recently used commands
         - `print('hello world')`
             - intro to functions: take input, generate output
         - `input()`
     - make hello world script, run from command line
     - variable assignment
-        - tuple expansion
+        - multiple assignments on a single line (tuple expansion)
     - help
         - in py interp
         - online
@@ -28,7 +30,7 @@
             - literals: `1, 1.0, '1', True`
         - `None`
         - division always gives float, unless `//` (div)
-            - find remainder using %
+            - find remainder using mod operator %
         - using `type()`
     - control flow:
         - `if` statements

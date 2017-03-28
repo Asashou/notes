@@ -14,23 +14,45 @@
     - collections
         - sequences
             - tuples
-                - tuple expansion
+                - declare with `t = (value, value...)` or `t = value, value...`
+                    - often the parentheses are optional
+                - tuple expansion allows for multiple assignment:
+                    - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
+                - methods: `.count()`, `.index()`
             - lists
+                - init with `[]` or `list()`
+                - extra methods: `.append(value)`, `.clear()`,
+                - delete entries with `del`
+                - convert to a list with `list()`
+                - `del` an entry
             - indexing
-                - -ve indices
+                - 0-based
+                - negative indices denote distance from end
             - slicing
-                - :
+                - `a[starti:stopi]`
+                - fencepost analogy, slicing from one fencepost to another, not from one slot
+                to another
             - iterating over sequences
-                - for loops
+                - for loops: `for val in sequence:`
                     - `enumerate()`
-                - list comprehension
-            - `min(), max(), mean(), sort(), sorted(), tuple(), list()`
-        - dicts - "mappings"
+                        - `for index, val in enumerate(sequence):`
+                - list comprehension, good for doing repetitive things in a single line
+                    - `doubledlist = [ 2*val for val in sequence ]
+            - functions: `min(), max(), mean(), sorted(), tuple(), list()`
+        - dictionaries, aka "mappings"
+            - init with `{}` or `dict()`
+            - add new key:value pairs with `d[key] = value`
+                - what happens if key already exists?
             - various methods
             - iterating over dicts:
                 - dict comprehension
                 - dict vs. ordered dict
+        - combining tuples, lists, dicts, any combination is possible, can be deeply nested
+            - common ones:
+                - list of tuples
+                - dict of lists
         - memory, value vs reference, mutability
+            - `a = [1,2,3]; b = a` vs `a = [1,2,3]; b = a.copy()`
     - file operations
         - `with open(filename) as f`
             - file modes: `r`, `rb`, `w`, `wb`
