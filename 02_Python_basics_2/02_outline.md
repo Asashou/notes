@@ -8,11 +8,14 @@
             - downside: maybe don't work as well for other types of languages or text files
     - strings
         - string formatting, operations and functions
-            - % string replacement operator
-                - what else does % do? how does python know whether to use it as a string
+            - combine strings with `+`
+            - duplicate strings with `*`
+            - whitespace characters: ` `, `\n` and `\t`
+            - `%` string replacement operator
+                - what else does `%` do? how does python know whether to use it as a string
                 replacement operator or as mod operator?
-                - placeholders: `%s, %d, %f, %g`
-            - `split, format, replace, strip, upper, lower`
+                - format strings act as placeholders: `%s, %d, %f, %g`
+            - `.split(), .format(), .replace(), .strip(), .upper(), .lower()`
     - are there other string methods, how to discover them without doing a web search?
         - use `dir(something)`
         - intro IPython instead of plain Py interpreter
@@ -21,20 +24,37 @@
             - attribute exploration via dot notation, followed by ?
             - referring to previous outputs and inputs with `_` and `_i`
             - view all local variables with `whos`
+            - paste multiline code from editor directly into IPython
     - comments, docstrings
-        - single and multiline
-        - what makes a good comment?
+        - single line: `#`
+        - multiline: `"""..."""` or  `'''...'''`
+        - why comment? what makes a good comment?
+            - another form of commenting: choose descriptive variable names, use them
+            consistently
     - built-ins/keywords
+        - listed in `help(), keywords`
+        - can't be used as variable names
     - importing
         - math package to introduce functions
     - calling functions
+        - what is a function?
+        - what are function arguments?
         - `help(function)` or `function?` to get call signature
-        - fixed or variable number of arguments
-        - positional arguments (indicated by / in help docstring)
-        - keyword arguments
+        - functions can have a fixed or variable number of arguments, some of which are optional
+        - positional arguments: `function(a, b) != function(b, a)`
+        - keyword arguments `a=value1, b=value2` can be specified in any order
         - use `datetime.datetime()` to demonstrate?
+    - defining your own functions:
+        - `def functionname(arguments):`
+        - documentation string
+        - `return` a value, or multiple values separated by comma
+        - defining positional and keyword arguments
+        - "functional programming"
     - errors and debugging
+        - typical errors: `SyntaxError, NameError, TypeError, ValueError, RuntimeError,
+        AttributeError`
         - `import pdb; pdb.set_trace()`
             - debugger commands: l, w, s, n
-        - `try, except`
-        - `assert`
+        - `try, except` blocks to catch specific types of errors and deal with them
+        - `assert` allows you to check assumptions that might not always hold
+        - `raise` your own errors to stop execution and inform the user of something

@@ -33,8 +33,10 @@
         - division always gives float, unless `//` (div)
             - find remainder using mod operator %
         - using `type()`
-    - control flow:
+    - flow control:
         - `if` statements
+            - `elif`, `else`
+            - boolean logic with `and`, `or`, `not`
         - `for` loops
             - tabs vs spaces, check your editor
             - `range()`

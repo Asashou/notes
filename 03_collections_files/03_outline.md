@@ -4,6 +4,7 @@
             - more IPython magicks
             - saving your IPy history
             - ipython_config.py file
+            - ipython cheat sheet?
         - demo Jupyter notebook
         - installing packages/modules, just mention for familiarity's sake:
             - binaries, especially in windows
@@ -19,6 +20,7 @@
                 - tuple expansion allows for multiple assignment:
                     - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
                 - methods: `.count()`, `.index()`
+                - tuples can be used to `return` multiple values from a function
             - lists
                 - init with `[]` or `list()`
                 - extra methods: `.append(value)`, `.clear()`,
