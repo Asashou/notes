@@ -15,6 +15,7 @@ tools
             - use
     - open up one of the files in editor, add some text, save close, now list its contents at
     command line using cat
+        - now append some more text to it using cat, careful not to overwrite it!
     - cd between various dirs, list contents of current dir, list contents of all subdirs,
     show how tedious it is to have to cd between different dirs just to list them
     - using `ls --help`, figure out how to list dir contents without cd'ing to that path,

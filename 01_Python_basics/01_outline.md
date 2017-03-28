@@ -9,6 +9,7 @@
             - `ls > file_list.txt`
             - `cat > shopping_list.txt`
                 - Ctrl+D on a blank line to finish writing to file
+            - append to a file with `cat >>`, e.g. `cat >> shopping_list.txt`
             - redirection overwrites any existing file!
             - view a file using `cat filename`
     - py interpreter
