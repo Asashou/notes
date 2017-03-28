@@ -1,8 +1,8 @@
 - Python basics
     - motivation:
         - example: load data, analyze, plot, save
-    - command line basics, assume git bash or mingw installed on windows
-        - `cd, ls, mv, cp, rm, touch, cat`
+    - command line basics, assume git bash installed on windows
+        - `cd, ls, mv, cp, rm, mkdir, touch, cat`
         - `man` and `--help` for help
         - up/down arrow keys to access recently used commands
         - save text output of a command to file using redirection:
@@ -20,6 +20,7 @@
             - intro to functions: take input, generate output
         - `input()`
     - make hello world script, run from command line
+        - `python scriptname.py`
     - variable assignment
         - multiple assignments on a single line (tuple expansion)
     - help
