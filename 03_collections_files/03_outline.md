@@ -37,7 +37,7 @@
                     - `enumerate()`
                         - `for index, val in enumerate(sequence):`
                 - list comprehension, good for doing repetitive things in a single line
-                    - `doubledlist = [ 2*val for val in sequence ]
+                    - `doubledlist = [ 2*val for val in sequence ]`
             - functions: `min(), max(), mean(), sorted(), tuple(), list()`
         - dictionaries, aka "mappings"
             - init with `{}` or `dict()`
