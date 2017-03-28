@@ -1,0 +1,37 @@
+- Python basics 2
+    - aside on editors with syntax highlighting and line numbering
+        - linux: geany, gedit, mousepad
+        - windows: geany, notepad++, ultraedit, textpad
+        - mac: geany, notepad++, atom, sublime, xcode
+        - command line editor: nano, even cat
+        - xplatform Python IDEs: pycharm, spyder
+            - downside: maybe don't work as well for other types of languages or text files
+    - strings
+        - string formatting, operations and functions
+            - % string replacement operator
+                - what else does % do? how does python know whether to use it as a string replacement operator or as mod operator?
+                - placeholders: `%s, %d, %f, %g`
+            - `split, format, replace, strip, upper, lower`
+    - are there other string methods, how to discover them without doing a web search?
+        - intro IPython instead of plain Py interpreter
+            - ? help
+            - command completion
+            - attribute exploration via dot notation
+            - referring to previous inputs and outputs
+    - comments, docstrings
+        - single and multiline
+        - what makes a good comment?
+    - built-ins/keywords
+    - importing
+        - math package to introduce functions
+    - calling functions
+        - `help(function)` or `function?` to get call signature
+        - fixed or variable number of arguments
+        - positional arguments (indicated by / in help docstring)
+        - keyword arguments
+        - use `datetime.datetime()` to demonstrate?
+    - errors and debugging
+        - `import pdb; pdb.set_trace()`
+            - debugger commands: l, w, s, n
+        - `try, except`
+        - `assert`
