@@ -1,0 +1,46 @@
+- collections, files
+    - aside: Ipython/Jupyter, installing packages
+        - IPython
+            - more IPython magicks
+            - saving your IPy history
+            - ipython_config.py file
+        - demo Jupyter notebook
+        - installing packages/modules, just mention for familiarity's sake:
+            - binaries, especially in windows
+            - ubuntu/deb repos
+            - from source code
+            - pip
+                - pip install --user
+    - collections
+        - sequences
+            - tuples
+                - tuple expansion
+            - lists
+            - indexing
+                - -ve indices
+            - slicing
+                - :
+            - iterating over sequences
+                - for loops
+                    - `enumerate()`
+                - list comprehension
+            - `min(), max(), mean(), sort(), sorted(), tuple(), list()`
+        - dicts - "mappings"
+            - various methods
+            - iterating over dicts:
+                - dict comprehension
+                - dict vs. ordered dict
+        - memory, value vs reference, mutability
+    - file operations
+        - `with open(filename) as f`
+            - file modes: `r`, `rb`, `w`, `wb`
+            - text mode vs binary mode
+            - open vs. closed files
+                - what happens when you try and do something with f outside the with block?
+        - `f.read()`, `f.readline()`
+        - `f.write()`, newline character `\n`
+        - `f.seek()`
+        - `os.path.join()`, `split()`, `splitext()`
+        - JSON format for data storage/exchange
+            - human readable, easy for computers to parse, supported by lots of different programming languages
+            - `json.dump(something)`, `load(f)`
