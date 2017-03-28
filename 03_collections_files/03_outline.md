@@ -42,5 +42,6 @@
         - `f.seek()`
         - `os.path.join()`, `split()`, `splitext()`
         - JSON format for data storage/exchange
-            - human readable, easy for computers to parse, supported by lots of different programming languages
+            - human readable, easy for computers to parse, supported by lots of different
+            programming languages
             - `json.dump(something)`, `load(f)`

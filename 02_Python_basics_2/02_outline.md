@@ -9,7 +9,8 @@
     - strings
         - string formatting, operations and functions
             - % string replacement operator
-                - what else does % do? how does python know whether to use it as a string replacement operator or as mod operator?
+                - what else does % do? how does python know whether to use it as a string
+                replacement operator or as mod operator?
                 - placeholders: `%s, %d, %f, %g`
             - `split, format, replace, strip, upper, lower`
     - are there other string methods, how to discover them without doing a web search?
