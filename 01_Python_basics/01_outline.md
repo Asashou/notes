@@ -1,49 +1,50 @@
-- Python basics
-    - motivation:
-        - example: load data, analyze, plot, save
-    - command line basics, assume git bash installed on windows
-        - `cd, ls, mv, cp, rm, mkdir, touch, cat`
-        - `man` and `--help` for help
-        - up/down arrow keys to access recently used commands
-        - save text output of a command to file using redirection:
-            - `ls > file_list.txt`
-            - `cat > shopping_list.txt`
-                - Ctrl+D on a blank line to finish writing to file
-            - append to a file with `cat >>`, e.g. `cat >> shopping_list.txt`
-            - redirection overwrites any existing file!
-            - view a file using `cat filename`
-    - py interpreter
-        - interpreted vs compiled languages?
-        - calculator, math operators
-        - up/down arrow keys to access recently used commands
-        - `print('hello world')`
-            - intro to functions: take input, generate output
-        - `input()`
-    - make hello world script, run from command line
-        - `python scriptname.py`
-    - variable assignment
-        - multiple assignments on a single line (tuple expansion)
-    - help
-        - in Python interpreter: `help(something)`
-        - online
-    - basic Python data types
-        - `int, float, str, bool`
-            - types also are functions that convert input to that type
-            - literals: `1, 1.0, '1', True`
-        - `None`
-        - division always gives float, unless `//` (div)
-            - find remainder using mod operator %
-        - using `type()`
-    - flow control:
-        - `if` statements
-            - `elif`, `else`
-            - boolean logic with `and`, `or`, `not`
-        - `for` loops
-            - tabs vs spaces, check your editor
-            - `range()`
-            - `break`, `continue`
-        - `while` loops
-    - a few tips from coding style guide
-        - PEP 8: https://www.python.org/dev/peps/pep-0008/
-        - why does coding style matter - easier to read, understand, debug
-            - like trying to read a book without paragraphs
+### Python basics
+
+- motivation:
+    - example: load data, analyze, plot, save
+- command line basics, assume git bash installed on windows
+    - `cd, ls, mv, cp, rm, mkdir, touch, cat`
+    - `man` and `--help` for help
+    - up/down arrow keys to access recently used commands
+    - save text output of a command to file using redirection:
+        - `ls > file_list.txt`
+        - `cat > shopping_list.txt`
+            - Ctrl+D on a blank line to finish writing to file
+        - append to a file with `cat >>`, e.g. `cat >> shopping_list.txt`
+        - redirection overwrites any existing file!
+        - view a file using `cat filename`
+- py interpreter
+    - interpreted vs compiled languages?
+    - calculator, math operators
+    - up/down arrow keys to access recently used commands
+    - `print('hello world')`
+        - intro to functions: take input, generate output
+    - `input()`
+- make hello world script, run from command line
+    - `python scriptname.py`
+- variable assignment
+    - multiple assignments on a single line (tuple expansion)
+- help
+    - in Python interpreter: `help(something)`
+    - online
+- basic Python data types
+    - `int, float, str, bool`
+        - types also are functions that convert input to that type
+        - literals: `1, 1.0, '1', True`
+    - `None`
+    - division always gives float, unless `//` (div)
+        - find remainder using mod operator %
+    - using `type()`
+- flow control:
+    - `if` statements
+        - `elif`, `else`
+        - boolean logic with `and`, `or`, `not`
+    - `for` loops
+        - tabs vs spaces, check your editor
+        - `range()`
+        - `break`, `continue`
+    - `while` loops
+- a few tips from coding style guide
+    - PEP 8: <https://www.python.org/dev/peps/pep-0008>
+    - why does coding style matter - easier to read, understand, debug
+        - like trying to read a book without paragraphs

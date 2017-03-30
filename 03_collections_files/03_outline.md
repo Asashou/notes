@@ -1,71 +1,72 @@
-- collections, files
-    - aside: Ipython/Jupyter, installing packages
-        - IPython
-            - more IPython magicks
-            - saving your IPy history
-            - ipython_config.py file
-            - ipython cheat sheet?
-        - demo Jupyter notebook
-        - installing packages/modules, just mention for familiarity's sake:
-            - binaries, especially in windows
-            - ubuntu/deb repos
-            - from source code
-            - pip
-                - pip install --user
-    - collections
-        - sequences
-            - tuples
-                - declare with `t = (value, value...)` or `t = value, value...`
-                    - often the parentheses are optional
-                - tuple expansion allows for multiple assignment:
-                    - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
-                - methods: `.count()`, `.index()`
-                - tuples can be used to `return` multiple values from a function
-            - lists
-                - init with `[]` or `list()`
-                - extra methods: `.append(value)`, `.clear()`,
-                - delete entries with `del`
-                - convert to a list with `list()`
-                - `del` an entry
-            - indexing
-                - 0-based
-                - negative indices denote distance from end
-            - slicing
-                - `a[starti:stopi]`
-                - fencepost analogy, slicing from one fencepost to another, not from one slot
-                to another
-            - iterating over sequences
-                - for loops: `for val in sequence:`
-                    - `enumerate()`
-                        - `for index, val in enumerate(sequence):`
-                - list comprehension, good for doing repetitive things in a single line
-                    - `doubledlist = [ 2*val for val in sequence ]`
-            - functions: `min(), max(), mean(), sorted(), tuple(), list()`
-        - dictionaries, aka "mappings"
-            - init with `{}` or `dict()`
-            - add new key:value pairs with `d[key] = value`
-                - what happens if key already exists?
-            - various methods
-            - iterating over dicts:
-                - dict comprehension
-                - dict vs. ordered dict
-        - combining tuples, lists, dicts, any combination is possible, can be deeply nested
-            - common ones:
-                - list of tuples
-                - dict of lists
-        - memory, value vs reference, mutability
-            - `a = [1,2,3]; b = a` vs `a = [1,2,3]; b = a.copy()`
-    - file operations
-        - `with open(filename) as f`
-            - file modes: `r`, `rb`, `w`, `wb`
-            - text mode vs binary mode
-            - open vs. closed files
-                - what happens when you try and do something with f outside the with block?
-        - `f.read()`, `f.readline()`
-        - `f.write()`, newline character `\n`
-        - `f.seek()`
-        - `os.path.join()`, `split()`, `splitext()`
-        - JSON format for data storage/exchange
-            - human readable, easy for computers to parse, supported by lots of different
-            programming languages
-            - `json.dump(something)`, `load(f)`
+### collections, files
+
+- aside: Ipython/Jupyter, installing packages
+    - IPython
+        - more IPython magicks
+        - saving your IPy history
+        - ipython_config.py file
+        - ipython cheat sheet?
+    - demo Jupyter notebook
+    - installing packages/modules, just mention for familiarity's sake:
+        - binaries, especially in windows
+        - ubuntu/deb repos
+        - from source code
+        - pip
+            - pip install --user
+- collections
+    - sequences
+        - tuples
+            - declare with `t = (value, value...)` or `t = value, value...`
+                - often the parentheses are optional
+            - tuple expansion allows for multiple assignment:
+                - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
+            - methods: `.count()`, `.index()`
+            - tuples can be used to `return` multiple values from a function
+        - lists
+            - init with `[]` or `list()`
+            - extra methods: `.append(value)`, `.clear()`,
+            - delete entries with `del`
+            - convert to a list with `list()`
+            - `del` an entry
+        - indexing
+            - 0-based
+            - negative indices denote distance from end
+        - slicing
+            - `a[starti:stopi]`
+            - fencepost analogy, slicing from one fencepost to another, not from one slot to
+            another
+        - iterating over sequences
+            - for loops: `for val in sequence:`
+                - `enumerate()`
+                    - `for index, val in enumerate(sequence):`
+            - list comprehension, good for doing repetitive things in a single line
+                - `doubledlist = [ 2*val for val in sequence ]`
+        - functions: `min(), max(), mean(), sorted(), tuple(), list()`
+    - dictionaries, aka "mappings"
+        - init with `{}` or `dict()`
+        - add new key:value pairs with `d[key] = value`
+            - what happens if key already exists?
+        - various methods
+        - iterating over dicts:
+            - dict comprehension
+            - dict vs. ordered dict
+    - combining tuples, lists, dicts, any combination is possible, can be deeply nested
+        - common ones:
+            - list of tuples
+            - dict of lists
+    - memory, value vs reference, mutability
+        - `a = [1,2,3]; b = a` vs `a = [1,2,3]; b = a.copy()`
+- file operations
+    - `with open(filename) as f`
+        - file modes: `r`, `rb`, `w`, `wb`
+        - text mode vs binary mode
+        - open vs. closed files
+            - what happens when you try and do something with f outside the with block?
+    - `f.read()`, `f.readline()`
+    - `f.write()`, newline character `\n`
+    - `f.seek()`
+    - `os.path.join()`, `split()`, `splitext()`
+    - JSON format for data storage/exchange
+        - human readable, easy for computers to parse, supported by lots of different
+        programming languages
+        - `json.dump(something)`, `load(f)`
