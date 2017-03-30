@@ -10,7 +10,7 @@
         - string formatting, operations and functions
             - combine strings with `+`
             - duplicate strings with `*`
-            - whitespace characters: ` `, `\n` and `\t`
+            - whitespace characters: `\n` and `\t`
             - `%` string replacement operator
                 - what else does `%` do? how does python know whether to use it as a string
                 replacement operator or as mod operator?
@@ -31,6 +31,7 @@
         - why comment? what makes a good comment?
             - another form of commenting: choose descriptive variable names, use them
             consistently
+            - what happens if you change code without updating comment? confusion!
     - built-ins/keywords
         - listed in `help(), keywords`
         - can't be used as variable names
@@ -54,7 +55,7 @@
         - typical errors: `SyntaxError, NameError, TypeError, ValueError, RuntimeError,
         AttributeError`
         - `import pdb; pdb.set_trace()`
-            - debugger commands: l, w, s, n
+            - debugger commands: `l, w, s, n`
         - `try, except` blocks to catch specific types of errors and deal with them
         - `assert` allows you to check assumptions that might not always hold
         - `raise` your own errors to stop execution and inform the user of something
