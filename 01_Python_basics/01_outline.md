@@ -4,6 +4,7 @@
     - example: load data, analyze, plot, save
 - command line basics, assume git bash installed on windows
     - `cd, ls, mv, cp, rm, mkdir, touch, cat`
+    - specifying paths: `/`, `.`, `..`, `~`, `-`
     - `man` and `--help` for help
     - up/down arrow keys to access recently used commands
     - save text output of a command to file using redirection:
@@ -19,6 +20,8 @@
     - up/down arrow keys to access recently used commands
     - `print('hello world')`
         - intro to functions: take input, generate output
+            - graphical/math representation: single input, single output; horizontal U is
+            technically not a function
     - `input()`
 - make hello world script, run from command line
     - `python scriptname.py`
@@ -46,5 +49,5 @@
     - `while` loops
 - a few tips from coding style guide
     - PEP 8: <https://www.python.org/dev/peps/pep-0008>
-    - why does coding style matter - easier to read, understand, debug
+    - why does coding style matter? easier to read, understand, debug
         - like trying to read a book without paragraphs

@@ -1,6 +1,7 @@
 ### Python basics 2
 
-- aside on editors with syntax highlighting and line numbering
+- aside on plain text editors
+    - key features: fixed-width font, syntax highlighting, line numbering
     - linux: geany, gedit, mousepad
     - windows: geany, notepad++, ultraedit, textpad
     - mac: geany, notepad++, atom, sublime, xcode
