@@ -1,0 +1,46 @@
+## numpy 1D arrays
+
+- like lists, somewhat less flexible, but often faster and always more memory efficient
+- ideal for large datasets
+- typical usage: `import numpy as np`
+- initializing
+    - `a = np.arange()`
+    - `a = np.zeros()`
+    - `a = np.random()`
+    - `a = np.tile()`
+    - `a.fill()`
+- indexing in 1D, 0-based as for lists
+    - manual assignment of first entry
+        - `a[0] = 7`
+    - negative indices count from the end
+        - `a[-1] = 7` assigns to last entry
+        - `a[-2] = 7` assigns to 2nd last entry
+- slicing in 1D
+    - retrieve a slice: the first 10 entries
+        - `b = a[0:10]`
+    - assign to a slice: the first 10 entries
+        - `a[0:10] = 7`
+    - boolean indexing, fancy indexing, compare to lists
+- array operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparisons (`==`, `>`, `<`, `!=`)
+    - arrays and scalars, arrays and arrays
+    - broadcasting
+- array properties
+    - `.shape`
+- array methods
+    - `.max()`, `.min()`, `.ptp()`, `.sum()`, `.mean()`, `.std()`
+    - `.sort()`
+    - `.tolist()`, `.tostring()`
+    - many have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc.
+    - gotcha: in-place vs copy
+- array layout in memory, C-order vs F-order
+    - use `timeit` to show difference in mean along columns vs rows of square array
+- numpy data types (dtype)
+    - integer, float, boolean
+    - num bytes per entry, signed, unsigned, precision, overflow, underflow
+    - used across programming languages, correspond to underlying C data types
+        - take care converting between dtypes
+        - dramatic example: Ariane 5 1996 failure
+    - floats are always signed, and made of base + exponent
+- record arrays?
+    - a numpy array with a custom dtype made of basic dtypes
+- object arrays?

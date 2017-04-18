@@ -1,0 +1,31 @@
+## numpy ND arrays, numpy functions
+
+- multidimensional indexing, slicing, axis arg
+    - rows vs. columns vs. hypercolumns
+    - `-1`, `:`, `...`, `::2`, `::-1`
+    - `a.reshape()`, or assign to `a.shape`
+    - ndimage?
+        - loading different image types
+        - imshow
+        - increase contrast of an image
+            - np.percentile
+            - denoising/smoothing
+                - convolution, say box filter
+        - array/image rotation, flipping (lots of different ways, indexing, np.flip, skimage, multiply by transformation matrix), rescaling:
+        - thresholding, masking an image
+    - mpl.imshow, for images and matrices
+    - mpl.cmaps
+- `a.reshape`, `a.ravel`
+- `a.transpose()`, `a.T`,
+- `save(), load(), savetxt(), loadtxt()`
+    - binary vs text files
+    - hex editor?
+- `np.diff()`
+- `np.searchsorted()` & `a.searchsorted()`
+- `np.sort` & `a.sort()`, `np.argsort()` & `a.argsort()`
+- `np.corrcoeff()`, `np.cov()`
+- when to use numpy or not
+    - compare to for loops, list comprehensions
+    - use timeit to compare builtin min/max vs numpy min/max
+    - what's happening under the hood?
+        - multiple python ops vs single python op w/ multiple C ops
