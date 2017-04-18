@@ -20,7 +20,7 @@
         - `.split(), .format(), .replace(), .strip(), .upper(), .lower()`
 - are there other string methods, how to discover them without doing a web search?
     - use `dir(something)`
-    - intro IPython instead of plain Py interpreter
+    - intro IPython as replacement for plain Python interpreter
         - ? help
         - command completion
         - attribute exploration via dot notation, followed by ?
@@ -52,6 +52,7 @@
     - `return` a value, or multiple values separated by comma
     - defining positional and keyword arguments
     - "functional programming"
+    - variable scope/namespaces
 - errors and debugging
     - typical errors: `SyntaxError, NameError, TypeError, ValueError, RuntimeError,
     AttributeError`
