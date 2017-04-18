@@ -2,7 +2,8 @@
 
 - motivation:
     - example: load data, analyze, plot, save
-- command line basics, assume git bash installed on windows
+- bash command line basics, assume git bash installed on windows
+    - bash = "Bourne-Again SHell"
     - `cd, ls, mv, cp, rm, mkdir, touch, cat`
     - specifying paths: `/`, `.`, `..`, `~`, `-`
     - `man` and `--help` for help
