@@ -21,7 +21,7 @@
 - are there other string methods, how to discover them without doing a web search?
     - use `dir(something)`
 - IPython as replacement for plain Python interpreter
-    - ? help
+    - `something?` for help, `something??` for help plus source code, if available
     - command completion
     - attribute exploration via dot notation, followed by ?
     - referring to previous outputs and inputs with `_` and `_i`

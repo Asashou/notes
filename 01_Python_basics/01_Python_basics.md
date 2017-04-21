@@ -17,6 +17,7 @@
         - redirection overwrites any existing file!
 - python interpreter
     - interpreted vs compiled languages
+    - type `python` at the command line, type `exit()` or hit `Ctrl+D` to exit
     - calculator, math operators
     - up/down arrow keys to access recently used commands
     - `print('hello world!')`
@@ -35,7 +36,7 @@
     - `int, float, str, bool`
         - types also are functions that convert input to that type
         - literals: `1, 1.0, '1', True`
-    - `None`
+    - special value: `None`
     - division always gives float, unless `//` (div)
         - find remainder using mod operator `%`
     - using `type()`
@@ -54,16 +55,23 @@
     - `for` loops
         - `for i in range(10):`
         - `range(n)` generates values 0 to n-1
-        - `range(3, n)` generates values 3 to n-1
+            - "give me the first 10 integers"
+            - better interpretation: "give me the integer values between fenceposts 0 to n"
+            - Like C, Python is "0-based", vs. Matlab is "1-based"
+            - this convention is useful later for something called "slicing"
+        - `range(1, n)` generates values 1 to n-1
+        - `range(3, n, 2)` generates values 3 to n-1 in steps of 2
         - `break`, `continue`
     - `while` loops
         - `while a > 1:`
         - same as `for` loops, except you manually increment your variable as you like
-    - use of indentation to define blocks
-        - tabs vs spaces, check your editor
+    - indentation is used to define blocks
+        - indent with tabs or spaces, but spaces are better
+        - 4 spaces per indentation level, check editor settings
+    - paste multiline code from editor directly into python interpreter
 
 - coding style: why does it matter? easier to read, understand, debug
-    - try reading a book without paragraphs!
+    - try reading a book without paragraphs...
     - a few tips from coding style guide
         - PEP 8: <https://www.python.org/dev/peps/pep-0008>
-        - assignment always leaves a space on either side of `=`
+        - variable assignment: always leave a space on either side of `=`
