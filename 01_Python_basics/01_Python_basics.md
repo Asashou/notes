@@ -8,47 +8,62 @@
     - specifying paths: `/`, `.`, `..`, `~`, `-`
     - `man` and `--help` for help
     - up/down arrow keys to access recently used commands
+    - quickly view file contents using `cat filename`
     - save text output of a command to file using redirection:
         - `ls > file_list.txt`
         - `cat > shopping_list.txt`
             - Ctrl+D on a blank line to finish writing to file
         - append to a file with `cat >>`, e.g. `cat >> shopping_list.txt`
         - redirection overwrites any existing file!
-        - view a file using `cat filename`
-- py interpreter
-    - interpreted vs compiled languages?
+- python interpreter
+    - interpreted vs compiled languages
     - calculator, math operators
     - up/down arrow keys to access recently used commands
-    - `print('hello world')`
-        - intro to functions: take input, generate output
-            - graphical/math representation: single input, single output; horizontal U is
-            technically not a function
-    - `input()`
+    - `print('hello world!')`
+        - functions: take some kind of input, generate some kind of output
+    - `s = input('prompt: ')`
 - make hello world script, run from command line
-    - `python scriptname.py`
+    - `python hello.py`
 - variable assignment
-    - multiple assignments on a single line (tuple expansion)
+    - `a = 1`
+    - multiple assignments on a single line (tuple expansion): `a, b = 1, 2`
 - help
     - in Python interpreter: `help(something)`
-    - online
+        - `q` to exit
+    - online: search, StackExchange, or official `http://docs.python.org`
 - basic Python data types
     - `int, float, str, bool`
         - types also are functions that convert input to that type
         - literals: `1, 1.0, '1', True`
     - `None`
     - division always gives float, unless `//` (div)
-        - find remainder using mod operator %
+        - find remainder using mod operator `%`
     - using `type()`
 - flow control:
-    - `if` statements
+    - comparison operators: `==`, `!=`, `>`, `<`, `>=`, `<=`
+        - compare multiple values at once: `a < b < c...`
+    - boolean logic with `and`, `or`, `not`
+    - `if` statements, each clause on a separate line
+        - `if a == 1:`
         - `elif`, `else`
-        - boolean logic with `and`, `or`, `not`
+        - compact one-line version:
+            - `a =` val1 `if` condition `else` val2
+    - shortcut: assign one of two values based on truth test of first value
+        - `a = val1 or val2`
+            - assign `val1` if `bool(val1)` evaluates to True, otherwise assign `val2`
     - `for` loops
-        - tabs vs spaces, check your editor
-        - `range()`
+        - `for i in range(10):`
+        - `range(n)` generates values 0 to n-1
+        - `range(3, n)` generates values 3 to n-1
         - `break`, `continue`
     - `while` loops
-- a few tips from coding style guide
-    - PEP 8: <https://www.python.org/dev/peps/pep-0008>
-    - why does coding style matter? easier to read, understand, debug
-        - like trying to read a book without paragraphs
+        - `while a > 1:`
+        - same as `for` loops, except you manually increment your variable as you like
+    - use of indentation to define blocks
+        - tabs vs spaces, check your editor
+
+- coding style: why does it matter? easier to read, understand, debug
+    - try reading a book without paragraphs!
+    - a few tips from coding style guide
+        - PEP 8: <https://www.python.org/dev/peps/pep-0008>
+        - assignment always leaves a space on either side of `=`

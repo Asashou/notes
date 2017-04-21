@@ -20,13 +20,13 @@
         - `.split(), .format(), .replace(), .strip(), .upper(), .lower()`
 - are there other string methods, how to discover them without doing a web search?
     - use `dir(something)`
-    - intro IPython as replacement for plain Python interpreter
-        - ? help
-        - command completion
-        - attribute exploration via dot notation, followed by ?
-        - referring to previous outputs and inputs with `_` and `_i`
-        - view all local variables with `whos`
-        - paste multiline code from editor directly into IPython
+- IPython as replacement for plain Python interpreter
+    - ? help
+    - command completion
+    - attribute exploration via dot notation, followed by ?
+    - referring to previous outputs and inputs with `_` and `_i`
+    - view all local variables with `whos`
+    - paste multiline code from editor directly into IPython
 - comments, docstrings
     - single line: `#`
     - multiline: `"""..."""` or  `'''...'''`
