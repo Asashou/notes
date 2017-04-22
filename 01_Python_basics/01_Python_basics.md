@@ -19,15 +19,24 @@
     - interpreted vs compiled languages
     - type `python` at the command line, type `exit()` or hit `Ctrl+D` to exit
     - calculator, math operators
+        - `+`, `-`, `*`, `/`, `**`
     - up/down arrow keys to access recently used commands
     - `print('hello world!')`
         - functions: take some kind of input, generate some kind of output
     - `s = input('prompt: ')`
 - make hello world script, run from command line
     - `python hello.py`
+    - `#` is the comment character
 - variable assignment
     - `a = 1`
     - multiple assignments on a single line (tuple expansion): `a, b = 1, 2`
+    - in place math operators:
+        - `+=`, `-=`, `*=`, `/=`
+        - `a += 2` increments `a` by 2, `a *= 2` multiplies `a` by 2, stores result in `a`
+    - variable names
+        - case sensitive
+        - letters, numbers, `_`
+        - can't start with a number
 - help
     - in Python interpreter: `help(something)`
         - `q` to exit
@@ -57,10 +66,13 @@
         - `range(n)` generates values 0 to n-1
             - "give me the first 10 integers"
             - better interpretation: "give me the integer values between fenceposts 0 to n"
-            - Like C, Python is "0-based", vs. Matlab is "1-based"
+            - Like C, Python is "0-based", vs. Matlab being "1-based"
             - this convention is useful later for something called "slicing"
         - `range(1, n)` generates values 1 to n-1
         - `range(3, n, 2)` generates values 3 to n-1 in steps of 2
+        - `range(10, n, -1)` generates values 10 to n+1 in steps of -1
+        - put `range()` in `list()` to quickly see what values it will generate:
+            - `list(range(10))`
         - `break`, `continue`
     - `while` loops
         - `while a > 1:`

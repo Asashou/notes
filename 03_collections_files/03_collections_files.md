@@ -55,7 +55,10 @@
             - list of tuples
             - dict of lists
     - memory, value vs reference, mutability
-        - `a = [1,2,3]; b = a` vs `a = [1,2,3]; b = a.copy()`
+        - `a = [1, 2, 3]; b = a` vs `a = [1, 2, 3]; b = a.copy()`
+        - `is` and `is not` operators check for identity instead of value
+            - `a = 1`
+            - `a == True` returns `True`, `a is True` returns `False`
 - file operations
     - `with open(filename) as f`
         - file modes: `r`, `rb`, `w`, `wb`
