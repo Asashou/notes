@@ -1,29 +1,42 @@
 ### Python basics
 
-- motivation:
-    - example: load data, analyze, plot, save
 - bash command line basics, assume git bash installed on windows
     - bash = "Bourne-Again SHell"
-    - `cd, ls, mv, cp, rm, mkdir, touch, cat`
-    - specifying paths: `/`, `.`, `..`, `~`, `-`
-    - `man` and `--help` for help
+    - critical commands:
+        - `pwd` - print working directory
+        - `cd` - change directories
+        - `ls` - list directory info
+    - others commonly used:
+        - `mv` - move files/folders
+        - `cp` - copy files/folders
+        - `rm` - remove files/folders
+        - `mkdir` - make directory
+        - `touch` - create an empty file, or update last access time of existing file
+        - `cat` - concatenate file(s)
+    - `man COMMAND` and `COMMAND --help` for help
+    - specifying paths:
+        - `/` - filesystem root
+        - `.` - current directory
+        - `..` - parent directory
+        - `~` - home folder
+        - `-` - last used directory, i.e. `cd -` changes to last directory
     - up/down arrow keys to access recently used commands
     - quickly view file contents using `cat filename`
     - save text output of a command to file using redirection:
-        - `ls > file_list.txt`
+        - `ls -al > file_list.txt` - save detailed directory info to file
         - `cat > shopping_list.txt`
-            - Ctrl+D on a blank line to finish writing to file
+            - start typing, Ctrl+D on a blank line to finish writing to file
+        - redirection `>` overwrites any existing file!
         - append to a file with `cat >>`, e.g. `cat >> shopping_list.txt`
-        - redirection overwrites any existing file!
 - python interpreter
     - interpreted vs compiled languages
     - type `python` at the command line, type `exit()` or hit `Ctrl+D` to exit
     - calculator, math operators
         - `+`, `-`, `*`, `/`, `**`
     - up/down arrow keys to access recently used commands
+- functions: take some kind of input, generate some kind of output
     - `print('hello world!')`
-        - functions: take some kind of input, generate some kind of output
-    - `s = input('prompt: ')`
+    - `s = input('hello? ')`
 - make hello world script, run from command line
     - `python hello.py`
     - `#` is the comment character
@@ -66,7 +79,7 @@
         - `range(n)` generates values 0 to n-1
             - "give me the first 10 integers"
             - better interpretation: "give me the integer values between fenceposts 0 to n"
-            - Like C, Python is "0-based", vs. Matlab being "1-based"
+            - Python is "0-based" like C, Matlab is "1-based"
             - this convention is useful later for something called "slicing"
         - `range(1, n)` generates values 1 to n-1
         - `range(3, n, 2)` generates values 3 to n-1 in steps of 2
