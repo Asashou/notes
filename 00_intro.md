@@ -1,3 +1,5 @@
+## Intro
+
 - visual neuroscience and electrophysiology
 - joined Laura Busse's lab, work on mouse vision and behaviour, while recording neurophysiology and doing optogenetic manipulation
 - my python experience:
@@ -26,18 +28,20 @@
         - code needs to run successfully
         - work on it during last 2 or 3 exercise classes
     - no homework! but programming is a skill, like any other language, need to practice listening/speaking it, or in this case, reading/writing it
-- outline:
-    1. Python basics
-    1. Python basics 2
-    1. collections, files
-    1. numpy 1D arrays
-    1. plotting with matplotlib
-    1. numpy ND arrays, numpy functions
-    1. algorithms
-    1. organizing code, data, results
-    1. version control with Git
-    1. object-oriented programming
-    1. data analysis with Pandas
-    1. command line interfaces
-    1. intro to GUIs: Jupyter notebook & PyQt
-    1. data acquisition
+
+## Outline
+
+1. Python basics
+2. Python basics 2
+3. collections, files
+4. numpy 1D arrays
+5. plotting with matplotlib
+6. numpy ND arrays, numpy functions
+7. algorithms
+8. organizing code, data, results
+9. version control with Git
+10. object-oriented programming
+11. data analysis with Pandas
+12. command line interfaces
+13. intro to GUIs: Jupyter notebook & PyQt
+14. data acquisition
