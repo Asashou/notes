@@ -50,6 +50,12 @@
         - case sensitive
         - letters, numbers, `_`
         - can't start with a number
+- importing: gives you access to groups of other functions, in a "module"
+    - e.g., `import math`
+    - use `dir()` to find out what's available in a module
+    - `dir(math)`
+    - `math.sqrt()`
+    - `math.log10()`
 - help
     - in Python interpreter: `help(something)`
         - `q` to exit
@@ -94,9 +100,3 @@
         - indent with tabs or spaces, but spaces are better
         - 4 spaces per indentation level, check editor settings
     - paste multiline code from editor directly into python interpreter
-
-- coding style: why does it matter? easier to read, understand, debug
-    - try reading a book without paragraphs...
-    - a few tips from coding style guide
-        - PEP 8: <https://www.python.org/dev/peps/pep-0008>
-        - variable assignment: always leave a space on either side of `=`

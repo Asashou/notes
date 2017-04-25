@@ -48,8 +48,10 @@
             - what happens if key already exists?
         - various methods
         - iterating over dicts:
-            - dict comprehension
+            - dict comprehension:
+                - `doubleddict = { key:2*val for (key, val) in d.items() }`
             - dict vs. ordered dict
+                - `from collections import OrderedDict as odict`
     - combining tuples, lists, dicts, any combination is possible, can be deeply nested
         - common ones:
             - list of tuples

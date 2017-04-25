@@ -1,6 +1,11 @@
 ### Python basics 2
 
-- aside on plain text editors
+- coding style: why does it matter? easier to read, understand, debug
+    - try reading a book without paragraphs...
+    - a few tips from coding style guide
+        - PEP 8: <https://www.python.org/dev/peps/pep-0008>
+        - variable assignment: always leave a space on either side of `=`
+- plain text editors
     - key features: fixed-width font, syntax highlighting, line numbering
     - linux: geany, gedit, mousepad
     - windows: geany, notepad++, ultraedit, textpad
