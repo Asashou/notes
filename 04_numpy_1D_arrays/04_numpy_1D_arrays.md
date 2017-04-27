@@ -1,6 +1,6 @@
 ## numpy 1D arrays
 
-- like lists, somewhat less flexible, but often faster and always more memory efficient
+- arrays are like lists, somewhat less flexible, but often faster, much more memory efficient
 - ideal for large datasets
 - typical usage: `import numpy as np`
 - initializing

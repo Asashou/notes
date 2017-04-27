@@ -1,10 +1,11 @@
 ### Python basics 2
 
-- coding style: why does it matter? easier to read, understand, debug
-    - try reading a book without paragraphs...
-    - a few tips from coding style guide
-        - PEP 8: <https://www.python.org/dev/peps/pep-0008>
-        - variable assignment: always leave a space on either side of `=`
+- review
+    - `==` vs `=`
+    - while loops
+    - `elif` clause in for loops, in addition to `else` clause
+    - running python scripts from command line
+    - write a loop, either a for loop or a while loop, that prints "hello" 3 times, then prints "hello?" 3 times, then prints "goodbye!" once
 - plain text editors
     - key features: fixed-width font, syntax highlighting, line numbering
     - linux: geany, gedit, mousepad
@@ -13,6 +14,11 @@
     - command line editor: nano, even cat
     - xplatform Python IDEs: pycharm, spyder
         - downside: maybe don't work as well for other types of languages or text files
+- coding style: why does it matter? easier to read, understand, debug
+    - try reading a book without paragraphs...
+    - a few tips from coding style guide
+        - PEP 8: <https://www.python.org/dev/peps/pep-0008>
+        - variable assignment: always leave a space on either side of `=`
 - strings
     - string formatting, operations and functions
         - combine strings with `+`
@@ -41,16 +47,17 @@
 - built-ins/keywords
     - listed in `help(), keywords`
     - can't be used as variable names
-- importing
-    - math package to introduce functions
 - calling functions
     - what is a function?
     - what are function arguments?
+    - remind of `math` module, how do you gain access to it?
     - `help(function)` or `function?` to get call signature
     - functions can have a fixed or variable number of arguments, some of which are optional
     - positional arguments: `function(a, b) != function(b, a)`
-    - keyword arguments `a=value1, b=value2` can be specified in any order
-    - use `datetime.datetime()` to demonstrate?
+    - keyword arguments `function(a=value1, b=value2)` can be specified in any order
+    - use `datetime.date()` to demonstrate
+        - `datetime.date(2005, 5, 2)`
+        - `datetime.date(month=5, year=2005, day=2)`
 - defining your own functions:
     - `def functionname(arguments):`
     - documentation string
