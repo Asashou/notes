@@ -1,16 +1,20 @@
 ### Python basics 2
 
 - review
+    - running python scripts from command line
     - `==` vs `=`
     - while loops
     - `elif` clause in for loops, in addition to `else` clause
-    - running python scripts from command line
-    - write a loop, either a for loop or a while loop, that prints "hello" 3 times, then prints "hello?" 3 times, then prints "goodbye!" once
+    - write a script with a loop, either a for loop or a while loop, that prints "hello" 3 times, then prints "hello?" 3 times, then prints "goodbye!" once
 - plain text editors
-    - key features: fixed-width font, syntax highlighting, line numbering
+    - key features:
+        - plain text format: `.txt`, `.py`, etc.
+        - fixed-width font
+        - syntax highlighting
+        - line numbering
     - linux: geany, gedit, mousepad
     - windows: geany, notepad++, ultraedit, textpad
-    - mac: geany, notepad++, atom, sublime, xcode
+    - mac: geany, atom, sublime, xcode
     - command line editor: nano, even cat
     - xplatform Python IDEs: pycharm, spyder
         - downside: maybe don't work as well for other types of languages or text files
