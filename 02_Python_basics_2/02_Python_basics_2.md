@@ -1,9 +1,15 @@
 ### Python basics 2
 
 - review
-    - running python scripts from command line
+    - running python scripts from command line: `python hello.py`
     - `==` vs `=`
-    - `elif` clause in if blocks, in addition to `else` clause
+    - `elif` clause in `if` blocks, in addition to `else` clause
+        - ```if something:
+                 x = 1
+             elif somethingelse:
+                 x = 2
+             else:
+                 x = 3```
     - while loops
     - write a script with a loop, either a `for` loop or a `while` loop, that prints "hello" 3 times, then prints "hello?" 3 times, then prints "goodbye!" once
 - plain text editors
@@ -69,21 +75,22 @@
         - `datetime.date(2005, 5, 2)`
         - `datetime.date(month=5, year=2005, day=2)`
 - defining your own functions:
-    - `def add(x, y):
-           """This is my function. It adds x and y"""
-           result = x + y
-           return result`
+    - ```def add(x, y):
+             """This is my function. It adds x and y"""
+             result = x + y
+             return result```
     - body is indented, like a for or while loop
     - documentation string
     - `return` a value, or multiple values separated by comma
     - can define positional and keyword arguments:
-        - `def add(x, y):`, `def add(x, y, z=0):`
+        - `def add(x, y):`
+        - `def add(x, y, z=0):`
     - variable scope/namespaces
 
 - optional: errors and debugging
-    - typical errors: `SyntaxError, NameError, TypeError, ValueError, IndexError, KeyError, RuntimeError, AttributeError`
+    - `assert` allows you to quickly check assumptions that might not always hold
+    - typical errors: `SyntaxError, NameError, TypeError, ValueError, IndexError, KeyError, RuntimeError, AttributeError, ZeroDivisionError`
     - set a breakpoint and "drop into debugger" with: `import pdb; pdb.set_trace()`
         - debugger commands: `l, w, s, n`
     - `try, except` blocks to catch specific types of errors and deal with them
-    - `assert` allows you to check assumptions that might not always hold
     - `raise` your own errors to stop execution and inform the user of something
