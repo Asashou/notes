@@ -48,7 +48,7 @@
             - what else does `%` do? how does python know whether to use it as a string
             replacement operator or as mod operator?
             - format strings act as placeholders: `%s, %d, %f, %g`
-        - `.split(), .format(), .replace(), .strip(), .upper(), .lower()`
+        - `.split(), .replace(), .strip(), .upper(), .lower()`
         - `s = 'abcd'`
             - indexing: `s[0]` returns `'a'`; `s[1]` returns `'b'`
             - slicing: `s[0:1]` returns `'a'`, `s[0:2]` returns `'ab'`
