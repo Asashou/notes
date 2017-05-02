@@ -3,13 +3,15 @@
 - review
     - running python scripts from command line: `python hello.py`
     - `==` vs `=`
-    - `elif` clause in `if` blocks, in addition to `else` clause
-        - ```if something:
-                 x = 1
-             elif somethingelse:
-                 x = 2
-             else:
-                 x = 3```
+    - in addition to `else` clause, can also use `elif` clause in `if` blocks:
+        ```
+        if something:
+            x = 1
+        elif somethingelse:
+            x = 2
+        else:
+            x = 3
+        ```
     - while loops
     - write a script with a loop, either a `for` loop or a `while` loop, that prints "hello" 3 times, then prints "hello?" 3 times, then prints "goodbye!" once
 - plain text editors
@@ -75,10 +77,12 @@
         - `datetime.date(2005, 5, 2)`
         - `datetime.date(month=5, year=2005, day=2)`
 - defining your own functions:
-    - ```def add(x, y):
+    ```
+    def add(x, y):
              """This is my function. It adds x and y"""
              result = x + y
-             return result```
+             return result
+    ```
     - body is indented, like a for or while loop
     - documentation string
     - `return` a value, or multiple values separated by comma
