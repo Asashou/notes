@@ -3,9 +3,9 @@
 - review
     - running python scripts from command line
     - `==` vs `=`
+    - `elif` clause in if blocks, in addition to `else` clause
     - while loops
-    - `elif` clause in for loops, in addition to `else` clause
-    - write a script with a loop, either a for loop or a while loop, that prints "hello" 3 times, then prints "hello?" 3 times, then prints "goodbye!" once
+    - write a script with a loop, either a `for` loop or a `while` loop, that prints "hello" 3 times, then prints "hello?" 3 times, then prints "goodbye!" once
 - plain text editors
     - key features:
         - plain text format: `.txt`, `.py`, etc.
@@ -16,13 +16,21 @@
     - windows: geany, notepad++, ultraedit, textpad
     - mac: geany, atom, sublime, xcode
     - command line editor: nano, even cat
-    - xplatform Python IDEs: pycharm, spyder
-        - downside: maybe don't work as well for other types of languages or text files
+    - cross-platform Python IDEs: pycharm, spyder
+        - downside:
+            - more complicated than simple text editor
+            - maybe don't work as well for other types of languages or text files
 - coding style: why does it matter? easier to read, understand, debug
     - try reading a book without paragraphs...
     - a few tips from coding style guide
         - PEP 8: <https://www.python.org/dev/peps/pep-0008>
         - variable assignment: always leave a space on either side of `=`
+    - comments, docstrings
+        - single line: `#`
+        - multiline: `"""..."""` or  `'''...'''`
+        - why comment? what makes a good comment?
+            - what happens if you change code without updating comment? confusion!
+            - another form of commenting: choose descriptive variable names, use them consistently
 - strings
     - string formatting, operations and functions
         - combine strings with `+`
@@ -33,21 +41,19 @@
             replacement operator or as mod operator?
             - format strings act as placeholders: `%s, %d, %f, %g`
         - `.split(), .format(), .replace(), .strip(), .upper(), .lower()`
-- are there other string methods, how to discover them without doing a web search?
-    - use `dir(something)`
+        - `s = 'abcd'`
+            - indexing: `s[0]` returns `'a'`; `s[1]` returns `'b'`
+            - slicing: `s[0:1]` returns `'a'`, `s[0:2]` returns `'ab'`
+- are there other string methods? how to discover them without doing a web search?
+    - `dir(s)`
 - IPython as replacement for plain Python interpreter
     - `something?` for help, `something??` for help plus source code, if available
     - command completion
+    - command history with up/down keys
     - attribute exploration via dot notation, followed by ?
     - referring to previous outputs and inputs with `_` and `_i`
     - view all local variables with `whos`
     - paste multiline code from editor directly into IPython
-- comments, docstrings
-    - single line: `#`
-    - multiline: `"""..."""` or  `'''...'''`
-    - why comment? what makes a good comment?
-        - another form of commenting: choose descriptive variable names, use them consistently
-        - what happens if you change code without updating comment? confusion!
 - built-ins/keywords
     - listed in `help(), keywords`
     - can't be used as variable names
@@ -63,16 +69,20 @@
         - `datetime.date(2005, 5, 2)`
         - `datetime.date(month=5, year=2005, day=2)`
 - defining your own functions:
-    - `def functionname(arguments):`
+    - `def add(x, y):
+           """This is my function. It adds x and y"""
+           result = x + y
+           return result`
+    - body is indented, like a for or while loop
     - documentation string
     - `return` a value, or multiple values separated by comma
-    - defining positional and keyword arguments
-    - "functional programming"
+    - can define positional and keyword arguments:
+        - `def add(x, y):`, `def add(x, y, z=0):`
     - variable scope/namespaces
-- errors and debugging
-    - typical errors: `SyntaxError, NameError, TypeError, ValueError, RuntimeError,
-    AttributeError`
-    - `import pdb; pdb.set_trace()`
+
+- optional: errors and debugging
+    - typical errors: `SyntaxError, NameError, TypeError, ValueError, IndexError, KeyError, RuntimeError, AttributeError`
+    - set a breakpoint and "drop into debugger" with: `import pdb; pdb.set_trace()`
         - debugger commands: `l, w, s, n`
     - `try, except` blocks to catch specific types of errors and deal with them
     - `assert` allows you to check assumptions that might not always hold

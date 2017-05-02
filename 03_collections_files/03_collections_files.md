@@ -4,15 +4,15 @@
     - IPython
         - more IPython magicks
         - saving your IPy history
-        - ipython_config.py file
+        - `ipython_config.py` file
         - ipython cheat sheet?
     - demo Jupyter notebook
     - installing packages/modules, just mention for familiarity's sake:
+        - `conda install`
+        - `pip install --user`
         - binaries, especially in windows
         - ubuntu/deb repos
         - from source code
-        - pip
-            - pip install --user
 - collections
     - sequences
         - tuples
@@ -32,9 +32,11 @@
             - 0-based
             - negative indices denote distance from end
         - slicing
-            - `a[starti:stopi]`
+            - `a[start:stop:step]`
             - fencepost analogy, slicing from one fencepost to another, not from one slot to
             another
+            - negative indices also work for slices
+            - colon `:` can be used as placeholder for start or stop if you don't want to specify them
         - iterating over sequences
             - for loops: `for val in sequence:`
                 - `enumerate()`
@@ -52,7 +54,7 @@
                 - `doubleddict = { key:2*val for (key, val) in d.items() }`
             - dict vs. ordered dict
                 - `from collections import OrderedDict as odict`
-    - combining tuples, lists, dicts, any combination is possible, can be deeply nested
+    - combining tuples, lists, dicts, any combination is possible, can be nested
         - common ones:
             - list of tuples
             - dict of lists
