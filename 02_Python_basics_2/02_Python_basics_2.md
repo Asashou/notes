@@ -11,7 +11,7 @@
             x = 2
         else:
             x = 3
-        ```
+        ````
     - while loops
     - write a script with a loop, either a `for` loop or a `while` loop, that prints "hello" 3 times, then prints "hello?" 3 times, then prints "goodbye!" once
 - plain text editors
@@ -82,7 +82,7 @@
              """This is my function. It adds x and y"""
              result = x + y
              return result
-    ```
+    ````
     - body is indented, like a for or while loop
     - documentation string
     - `return` a value, or multiple values separated by comma

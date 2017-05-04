@@ -14,6 +14,8 @@
             ```
             verylong<TAB> -> verylongvariablename
             import math
+            math.<TAB>
+                .acos .acosh, .asin, .asinh, etc.
             math.fac<TAB> -> math.factorial
             cd lon<TAB> -> cd long\ pathname\ with\ spaces
             ````
