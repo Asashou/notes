@@ -1,6 +1,6 @@
-### numpy ND arrays, numpy functions
+### numpy 2
 
-- multidimensional indexing, slicing, axis arg
+- multidimensional arrays, indexing, slicing, axis arg
     - rows vs. columns vs. hypercolumns
     - `-1`, `:`, `...`, `::2`, `::-1`
     - `a.reshape()`, or assign to `a.shape`
@@ -15,15 +15,18 @@
         - thresholding, masking an image
     - mpl.imshow, for images and matrices
     - mpl.cmaps
-- `a.reshape`, `a.ravel`
-- `a.transpose()`, `a.T`,
-- `np.save(), np.load(), np.savetxt(), np.loadtxt()`
-    - binary vs text files
-    - hex editor?
-- `np.diff()`
-- `np.searchsorted()` & `a.searchsorted()`
-- `np.sort` & `a.sort()`, `np.argsort()` & `a.argsort()`
-- `np.corrcoeff()`, `np.cov()`
+
+- various numpy functions
+    - `a.reshape`, `a.ravel`
+    - `a.transpose()`, `a.T`,
+    - `np.save(), np.load(), np.savetxt(), np.loadtxt()`
+        - binary vs text files
+        - hex editor?
+    - `np.diff()`
+    - `np.searchsorted()` & `a.searchsorted()`
+    - `np.sort` & `a.sort()`, `np.argsort()` & `a.argsort()`
+    - `np.corrcoeff()`, `np.cov()`
+
 - when to use numpy or not
     - compare to for loops, list comprehensions
     - use timeit to compare builtin min/max vs numpy min/max
