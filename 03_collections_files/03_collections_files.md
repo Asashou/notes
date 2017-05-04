@@ -1,18 +1,35 @@
 ### collections, files
 
-- aside: Ipython/Jupyter, installing packages
-    - IPython
-        - more IPython magicks
-        - saving your IPy history
-        - `ipython_config.py` file
-        - ipython cheat sheet?
-    - demo Jupyter notebook
-    - installing packages/modules, just mention for familiarity's sake:
-        - `conda install`
-        - `pip install --user`
-        - binaries, especially in windows
-        - ubuntu/deb repos
-        - from source code
+- review:
+    - different ways of running code/scripts
+        - in terminal/command line: type `python myscript.py`
+            - exits immediately back to terminal when done, can't inspect variables or plots
+            - add `input()` to last line of script to prevent exiting
+        - run `ipython`, type `run myscript.py`, then you can inspect variables when it's done
+        - run `python` or `ipython` interpreter, copy and paste code from editor to interpreter
+            - IPython handles pasted code better than plain Python
+        - Jupyter: like IPython, but in a web browser
+    - IPython tips:
+        - tab completion, saves time, mistakes, frustration - use it!
+            ```
+            verylong<TAB> -> verylongvariablename
+            import math
+            math.fac<TAB> -> math.factorial
+            cd lon<TAB> -> cd long\ pathname\ with\ spaces
+            ````
+        - `obj?` - get help about obj (variable, function, etc.)
+        - separately numbered input and output lines
+        - `_`, `__`, `___` - return last/2nd last/3rd last output
+        - `_5` - return output of output line 5
+        - `ipython_config.py` file in your hidden `~/.ipython` directory for changing defaults
+
+- ways of installing python libraries/packages/modules, just for familiarity's sake:
+    - `conda install`
+    - `pip install`
+    - less recommended: binaries (.exe, .zip), especially in windows, .dmg on Mac
+    - ubuntu/deb repositories
+    - advanced: from original source code, might require compiling
+
 - collections
     - sequences
         - tuples
@@ -52,7 +69,9 @@
         - iterating over dicts:
             - dict comprehension:
                 - `doubleddict = { key:2*val for (key, val) in d.items() }`
-            - dict vs. ordered dict
+            - dict vs. OrderedDict
+                - NOTE: order of keys in dict is not preserved! dict is a key:val mapping, not a sequence of keys
+                - OrderedDict is a hybrid of mapping and a sequence, preserves key order
                 - `from collections import OrderedDict as odict`
     - combining tuples, lists, dicts, any combination is possible, can be nested
         - common ones:
@@ -63,6 +82,7 @@
         - `is` and `is not` operators check for identity instead of value
             - `a = 1`
             - `a == True` returns `True`, `a is True` returns `False`
+
 - file operations
     - `with open(filename) as f`
         - file modes: `r`, `rb`, `w`, `wb`
@@ -76,4 +96,12 @@
     - JSON format for data storage/exchange
         - human readable, easy for computers to parse, supported by lots of different
         programming languages
-        - `json.dump(something)`, `load(f)`
+        ```python
+        import json
+        # save to .json file:
+        with open('outputfile.json') as jf:
+            json.dump(something, jf)
+        # load from .json file:
+        with open('inputfile.json') as jf:
+            something = json.load(jf)
+        ```
