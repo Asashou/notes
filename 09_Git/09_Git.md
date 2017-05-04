@@ -1,4 +1,4 @@
-## version control with Git
+### version control with Git
 
 - local VC, single committer
 - start with pure command line, no GUI

@@ -1,4 +1,4 @@
-## numpy ND arrays, numpy functions
+### numpy ND arrays, numpy functions
 
 - multidimensional indexing, slicing, axis arg
     - rows vs. columns vs. hypercolumns
@@ -17,7 +17,7 @@
     - mpl.cmaps
 - `a.reshape`, `a.ravel`
 - `a.transpose()`, `a.T`,
-- `save(), load(), savetxt(), loadtxt()`
+- `np.save(), np.load(), np.savetxt(), np.loadtxt()`
     - binary vs text files
     - hex editor?
 - `np.diff()`

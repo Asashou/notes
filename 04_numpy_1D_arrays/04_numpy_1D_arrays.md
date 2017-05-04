@@ -1,4 +1,4 @@
-## numpy 1D arrays
+### numpy 1D arrays
 
 - arrays are like lists, somewhat less flexible, but often faster, much more memory efficient
 - ideal for large datasets

@@ -1,4 +1,4 @@
-## plotting with matplotlib
+### plotting with matplotlib
 
 - line plots
 - scatterplots

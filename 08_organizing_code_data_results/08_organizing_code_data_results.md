@@ -1,4 +1,4 @@
-## organizing code, data, results
+### organizing code, data, results
 
 - code reuse
     - take a long script with repeating code patterns, replace with function
