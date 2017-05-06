@@ -1,4 +1,4 @@
-### collections, files
+### collections: tuples, lists, dictionaries
 
 - review:
     - different ways of running code/scripts
@@ -24,6 +24,7 @@
         - `_`, `__`, `___` - return last/2nd last/3rd last output
         - `_5` - return output of output line 5
         - `ipython_config.py` file in your hidden `~/.ipython` directory for changing defaults
+    - defining functions?
 
 - ways of installing python libraries/packages/modules, just for familiarity's sake:
     - `conda install`
@@ -32,55 +33,86 @@
     - ubuntu/deb repositories
     - advanced: from original source code, might require compiling
 
-- collections
-    - sequences
-        - tuples
-            - declare with `t = (value, value...)` or `t = value, value...`
-                - often the parentheses are optional
-            - tuple expansion allows for multiple assignment:
-                - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
-            - methods: `.count()`, `.index()`
-            - tuples can be used to `return` multiple values from a function
-        - lists
-            - init with `[]` or `list()`
-            - extra methods: `.append(value)`, `.clear()`,
-            - delete entries with `del`
-            - convert to a list with `list()`
-            - `del` an entry
-        - indexing
-            - 0-based
-            - negative indices denote distance from end
-        - slicing
-            - `a[start:stop:step]`
-            - fencepost analogy, slicing from one fencepost to another, not from one slot to
-            another
-            - negative indices also work for slices
-            - colon `:` can be used as placeholder for start or stop if you don't want to specify them
-        - iterating over sequences
-            - for loops: `for val in sequence:`
-                - `enumerate()`
-                    - `for index, val in enumerate(sequence):`
-            - list comprehension, good for doing repetitive things in a single line
-                - `doubledlist = [ 2*val for val in sequence ]`
-        - functions: `min(), max(), mean(), sorted(), tuple(), list()`
-    - dictionaries, aka "mappings"
+- collection
+    - sequence
+        - tuple
+        - list
+    - mapping
+        - dictionary
+        - ordered dictionary
+
+- sequences:
+    - tuples
+        - declare with `t = (value, value...)` or `t = value, value...`
+            - often the parentheses are optional
+        - tuple expansion allows for multiple assignment:
+            - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
+        - methods:
+            - `t.count(val)`
+            - `t.index(val)` returns index of first occurence of val
+        - tuples can be used to `return` multiple values from a function
+        ```python
+        def myfunc(a):
+            return a, 2*a, 3*a
+        a, b, c = myfunc(2)
+        ````
+    - lists
+        - initialize with `l = []` or `l = list()`
+        - same methods as tuple, plus these ones:
+            - `l.append(val)`
+            - `l.extend(anotherlist)`
+            - `l.reverse()`
+            - `l.sort()`
+            - `l.clear()`
+        - typical way to build up a list:
+        ```python
+        l = []
+        for i in range(10):
+            l.append(2*i)
+        ````
+        - delete entries with `del` by specifying their index: `del l[5]`
+        - convert a tuple to a list with `list()`
+    - indexing
+        - 0-based
+        - negative indices denote distance from end
+    - slicing
+        - `a[start:stop:step]`
+        - fencepost analogy, slicing from one fencepost to another, not from one slot to
+        another
+        - negative indices also work for slices
+        - colon `:` can be used as placeholder for start or stop if you don't want to specify them
+    - iterating over sequences
+        - `for val in sequence:`
+            - when iterating over a sequence using `enumerate()`, you also get the index of each value, which can be useful inside the loop
+                - `for index, val in enumerate(sequence):`
+        - list comprehension: handy for doing something repetitive to build up a list in a single line of code
+            - `doubledlist = [ 2*val for val in sequence ]`
+    - common functions: `min(), max(), mean(), sorted(), tuple(), list()`
+
+- mappings:
+    - dictionaries
         - init with `{}` or `dict()`
         - add new key:value pairs with `d[key] = value`
             - what happens if key already exists?
         - various methods
-        - iterating over dicts:
+        - iterating over dicts
+            - `for key in list(d):`
+            - `for key, val in d.items():`
+            - `for val in d.values():`
             - dict comprehension:
                 - `doubleddict = { key:2*val for (key, val) in d.items() }`
-            - dict vs. OrderedDict
-                - NOTE: order of keys in dict is not preserved! dict is a key:val mapping, not a sequence of keys
-                - OrderedDict is a hybrid of mapping and a sequence, preserves key order
-                - `from collections import OrderedDict as odict`
-    - combining tuples, lists, dicts, any combination is possible, can be nested
-        - common ones:
-            - list of tuples
-            - dict of lists
-    - memory, value vs reference, mutability
-        - `a = [1, 2, 3]; b = a` vs `a = [1, 2, 3]; b = a.copy()`
-        - `is` and `is not` operators check for identity instead of value
-            - `a = 1`
-            - `a == True` returns `True`, `a is True` returns `False`
+        - NOTE: order of keys in dict is not preserved! because dict is a mapping, from keys to values, not just a sequence of things, like a tuple or list
+    - OrderedDict
+        - OrderedDict is a hybrid of mapping and a sequence, preserves key order
+        - `from collections import OrderedDict as odict`
+
+- combining tuples, lists, dicts, any combination is possible, can be nested
+    - common ones:
+        - list of tuples
+        - dict of lists
+
+- memory, value vs reference, mutability
+    - `a = [1, 2, 3]; b = a` vs `a = [1, 2, 3]; b = a.copy()`
+    - `is` and `is not` operators check for identity instead of value
+        - `a = 1`
+        - `a == True` returns `True`, `a is True` returns `False`
