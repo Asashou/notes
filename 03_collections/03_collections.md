@@ -43,38 +43,48 @@
 
 - sequences:
     - tuples
-        - declare with `t = (value, value...)` or `t = value, value...`
-            - often the parentheses are optional
+        - denoted by **parentheses**, contain comma separated list of objects
+        - can hold anything: integers, floats, strings, etc.
+        - once declared, **cannot** be modified: "immutable"
+        - e.g. `t = [1, 2, 3]` or `t = ['a', True, 3.14]`
+            - often the parentheses are optional: `t = 1, 2, 3`
         - tuple expansion allows for multiple assignment:
             - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
         - methods:
             - `t.count(val)`
             - `t.index(val)` returns index of first occurence of val
-        - tuples can be used to `return` multiple values from a function
+        - tuples are often used to `return` multiple values from a function
         ```python
         def myfunc(a):
             return a, 2*a, 3*a
         a, b, c = myfunc(2)
         ````
     - lists
-        - initialize with `l = []` or `l = list()`
+        - denoted by **square** brackets, contain comma separated list of objects
+        - can hold anything: integers, floats, strings, etc.
+        - once declared, **can** be modified: "mutable"
+        - e.g. `l = [1, 2, 3]` or `l = ['a', True, 3.14]`
+        - initialize empty list with `l = []` or `l = list()`
         - same methods as tuple, plus these ones:
             - `l.append(val)`
-            - `l.extend(anotherlist)`
+            - `l.extend(anotherlist)`, or `l + [4, 5, 6]`
             - `l.reverse()`
             - `l.sort()`
+                - does `.sort()` work for lists of objects of different types?
             - `l.clear()`
         - typical way to build up a list:
         ```python
         l = []
         for i in range(10):
-            l.append(2*i)
+            l.append(i)
         ````
-        - delete entries with `del` by specifying their index: `del l[5]`
+        or ```l = list(range(10))```
         - convert a tuple to a list with `list()`
-    - indexing
-        - 0-based
-        - negative indices denote distance from end
+    - indexing for tuples and lists is 0-based, same as for strings:
+        - `t[0]` returns the first index, `t[n-1]` returns the last
+        - negative indices denote distance from end, starting with -1:
+        - last value is `t[-1]`, second last is `t[-2]`, etc.
+        - delete entries from a list with `del` by specifying their index: `del l[2]`
     - slicing
         - `a[start:stop:step]`
         - fencepost analogy, slicing from one fencepost to another, not from one slot to
@@ -90,6 +100,8 @@
     - common functions: `min(), max(), mean(), sorted(), tuple(), list()`
 
 - mappings:
+    - what if you want to store your values by name, instead of by index?
+    - a "mapping" maps keys (names) to values
     - dictionaries
         - init with `{}` or `dict()`
         - add new key:value pairs with `d[key] = value`
