@@ -33,16 +33,19 @@
     - ubuntu/deb repositories
     - advanced: from original source code, might require compiling
 
-- collection
-    - sequence
-        - tuple
-        - list
+- collections
+    - data types for storing multiple values together as one variable
+    - sequences
+        - tuples
+        - lists
     - mapping
         - dictionary
         - ordered dictionary
 
 - sequences:
     - tuples
+        - comes from words like "quadruple, quintuple, etc"
+        - wiki: "A tuple is a finite ordered list of elements"
         - denoted by **parentheses**, contain comma separated list of objects
         - can hold anything: integers, floats, strings, etc.
         - once declared, **cannot** be modified: "immutable"
