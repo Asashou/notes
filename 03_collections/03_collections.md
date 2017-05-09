@@ -24,7 +24,16 @@
         - `_`, `__`, `___` - return last/2nd last/3rd last output
         - `_5` - return output of output line 5
         - `ipython_config.py` file in your hidden `~/.ipython` directory for changing defaults
-    - defining functions?
+    - functions - why bother writing them?
+        - code reuse: replace multiple lines of code with just one
+        ```python
+        def rms(a, b):
+            """Return root mean square of the inputs a and b"""
+            import math
+            sumsquare = a**2 + b**2
+            meansquare = sumsquare / 2
+            return math.sqrt(meansquare)
+        ````
 
 - ways of installing python libraries/packages/modules, for familiarity, in decreasing order of ease:
     - `conda install`
@@ -124,9 +133,7 @@
         - `from collections import OrderedDict as odict`
 
 - combining tuples, lists, dicts, any combination is possible, can be nested
-    - common ones:
-        - list of tuples
-        - dict of lists
+    - common ones: list of tuples, dict of lists
 
 - reference vs. a copy for mutable sequences, things get tricky!:
     1. `a = [1, 2, 3]; b = a`
