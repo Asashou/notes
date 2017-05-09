@@ -1,11 +1,37 @@
 ### numpy 1D arrays
 
-- arrays are like lists, somewhat less flexible, but often faster, much more memory efficient
-- ideal for large datasets
+- review
+    - sequences:
+        - tuples are immutable, lists are mutable
+    - `val in sequence` keyword asks whether a value can be found in a sequence
+        - ```l = [1, 2, 3]```
+        - ```2 in l``` returns True, ```5 in l``` returns False
+    - mappings:
+        - dict, OrderedDict
+        - map keys to values
+        - add new key:value pairs with `d[key] = value`
+            - what happens if key already exists?
+        - access key:value pairs with `d[key]`
+            - what happens if key doesn't exist in d? get a KeyError
+        - remove an existing key:value pair with `del d[key]`
+            - what happens if key doesn't exist in d? get a KeyError
+        - dictionary methods
+            - `list(d.keys())` returns a list of d's keys
+            - `list(d.values())` returns a list of d's values
+            - `list(d.items())` returns a list tuples of d's `(key, value)` pairs
+            - `d[key].pop()` returns the value of `d[key]` and also removes the key and its val from d
+
+- numpy is the main numerical library in Python, forms basis for a lot of other scientific libraries
+- numpy provides the array object + lots of array functions
+    - arrays are like lists, but faster and much more memory efficient
+    - arrays are ideal for large datasets
+    - tradeoff: to gain this increase in efficiency, each entry in an array has to be of the same data type
+    - like a tuple, array length generally **can't** change, but like a list, its values **can** be changed
 - typical usage: `import numpy as np`
-- initializing
-    - `a = np.arange()`
-    - `a = np.zeros()`
+- initializing an array
+    - `a = np.arange(10)`
+        - very similar to `range()`, but returns an array
+    - `a = np.zeros(10)`
     - `a = np.random()`
     - `a = np.tile()`
     - `a.fill()`
@@ -21,14 +47,18 @@
     - assign to a slice: the first 10 entries
         - `a[0:10] = 7`
     - boolean indexing, fancy indexing, compare to lists
-- array operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparisons (`==`, `>`, `<`, `!=`)
+- math operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparisons (`==`, `>`, `<`, `!=`) are **vectorized**, i.e., they work on all values of an array at the same time
+    - `a = np.array([1, 2, 3])`
+    - `b = np.array([4, 5, 6])`
+    - e.g., `a + b` returns another array each of whose values are the sum of the corresponding two values in `a` and `b`
+        - compare with `+` for strings and lists
     - arrays and scalars, arrays and arrays
     - broadcasting
 - array properties
     - `.shape`
 - array methods
     - `.max()`, `.min()`, `.ptp()`, `.sum()`, `.mean()`, `.std()`
-    - `.sort()`
+    - `.sort()` - in place!
     - `.tolist()`, `.tostring()`
     - many have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc.
     - gotcha: in-place vs copy
