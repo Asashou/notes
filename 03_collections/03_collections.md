@@ -113,7 +113,7 @@
                 - `for index, val in enumerate(sequence):`
         - list comprehension: handy for doing something repetitive to build up a list in a single line of code
             - `doubledlist = [ 2*val for val in sequence ]`
-    - common functions: `min(), max(), mean(), sorted(), tuple(), list()`
+    - common functions: `min(), max(), sum(), sorted(), tuple(), list()`
 
 - mappings:
     - what if you want to store your values by name, instead of by index?
