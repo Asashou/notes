@@ -65,6 +65,8 @@
         - methods:
             - `t.count(val)` returns number of occurrences of val
             - `t.index(val)` returns index of first occurence of val
+        - get length of a tuple (or any other sequence) with the `len()` function
+            - `len(t)` gives 3
         - tuples are often used to `return` multiple values from a function
         ```python
         def myfunc(a):
