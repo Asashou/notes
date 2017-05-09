@@ -35,7 +35,8 @@
             return math.sqrt(meansquare)
         ````
 
-- ways of installing python libraries/packages/modules, for familiarity, in decreasing order of ease:
+- ways of installing python libraries/packages/modules, for familiarity, in decreasing order
+of ease:
     - `conda install`
     - `pip install`
     - less recommended: binaries (.exe, .zip), especially in windows, .dmg on Mac
@@ -86,7 +87,8 @@
             - `l.sort()`
                 - does `.sort()` work for lists of objects of different types?
             - `l.clear()`
-            - all the above methods operate *in place*, i.e. they modify the list, but don't return anything
+            - all the above methods operate *in place*, i.e. they modify the list, but don't
+            return anything
         - typical way to build up a list:
         ```python
         l = []
@@ -106,33 +108,56 @@
         - fencepost analogy, slicing from one fencepost to another, not from one slot to
         another
         - negative indices also work for slices
-        - colon `:` can be used as placeholder for start or stop if you don't want to specify them
+        - colon `:` can be used as placeholder for start or stop if you don't want to specify
+        them
     - iterating over sequences
         - `for val in sequence:`
-            - when iterating over a sequence using `enumerate()`, you also get the index of each value, which can be useful inside the loop
+            - when iterating over a sequence using `enumerate()`, you also get the index of
+            each value, which can be useful inside the loop
                 - `for index, val in enumerate(sequence):`
-        - list comprehension: handy for doing something repetitive to build up a list in a single line of code
+        - list comprehension: handy for doing something repetitive to build up a list in a
+        single line of code
             - `doubledlist = [ 2*val for val in sequence ]`
     - common functions: `min(), max(), sum(), sorted(), tuple(), list()`
+
+    - exercise:
+        1. create a tuple of length 5
+        2. convert it to a list
+        3. sort the list
+        - what happens if your list contains objects of different data types? can it be sorted?
 
 - mappings:
     - what if you want to store your values by name, instead of by index?
     - a "mapping" maps keys (names) to values
     - dictionaries
-        - init with `{}` or `dict()`
+        - init with `d = {}` or `d = dict()`
         - add new key:value pairs with `d[key] = value`
-            - what happens if key already exists?
-        - various methods
+            - what happens if key already exists? its value is overwritten
+        - access key:value pairs with `d[key]`
+            - what happens if key doesn't exist in d? get a KeyError
+        - remove an existing key:value pair with `del d[key]`
+            - what happens if key doesn't exist in d? get a KeyError
+        - dictionary methods
+            - `list(d.keys())` returns a list of d's keys
+            - `list(d.values())` returns a list of d's values
+            - `list(d.items())` returns a list tuples of d's `(key, value)` pairs
+            - `d[key].pop()` returns the value of `d[key]` and also removes the key and its
+            val from d
         - iterating over dicts
             - `for key in list(d):`
             - `for key, val in d.items():`
             - `for val in d.values():`
             - dict comprehension:
                 - `doubleddict = { key:2*val for (key, val) in d.items() }`
-        - NOTE: order of keys in dict is not preserved! because dict is a mapping, from keys to values, not just a sequence of things, like a tuple or list
+        - NOTE: order of keys in dict is not preserved! because dict is a mapping, from keys
+        to values, not just a sequence of things, like a tuple or list
     - OrderedDict
         - OrderedDict is a hybrid of mapping and a sequence, preserves key order
         - `from collections import OrderedDict as odict`
+        - init with `od = odict()`
+        - looks a bit different from a `dict` when printed out, but has nearly all the same
+        syntax and methods as a normal `dict`, and always prints out key:value pairs in the
+        order they were added to the odict
 
 - combining tuples, lists, dicts, any combination is possible, can be nested
     - common ones: list of tuples, dict of lists
@@ -148,6 +173,8 @@
         - `b == [1, 2, 3]` returns True
         - `a is b` returns False
         - `a is [1, 2, 3]` also returns False
-        - `is` and `is not` operators check for identity, i.e., whether two variables point to the same object stored in memory
+        - `is` and `is not` operators check for identity, i.e., whether two variables point to
+        the same object stored in memory
         - `==` checks for value, i.e. whether two variables have the same value
-        - generally, it's safer and less confusing to use `==` than `is`, but good to know about
+        - generally, it's safer and less confusing to use `==` than `is`, but good to know
+        about
