@@ -26,7 +26,7 @@
         - `ipython_config.py` file in your hidden `~/.ipython` directory for changing defaults
     - defining functions?
 
-- ways of installing python libraries/packages/modules, just for familiarity's sake:
+- ways of installing python libraries/packages/modules, for familiarity, in decreasing order of ease:
     - `conda install`
     - `pip install`
     - less recommended: binaries (.exe, .zip), especially in windows, .dmg on Mac
@@ -54,7 +54,7 @@
         - tuple expansion allows for multiple assignment:
             - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
         - methods:
-            - `t.count(val)`
+            - `t.count(val)` returns number of occurrences of val
             - `t.index(val)` returns index of first occurence of val
         - tuples are often used to `return` multiple values from a function
         ```python
@@ -63,7 +63,7 @@
         a, b, c = myfunc(2)
         ````
     - lists
-        - denoted by **square** brackets, contain comma separated list of objects
+        - denoted by **square brackets**, contain comma separated list of objects
         - can hold anything: integers, floats, strings, etc.
         - once declared, **can** be modified: "mutable"
         - e.g. `l = [1, 2, 3]` or `l = ['a', True, 3.14]`
@@ -75,6 +75,7 @@
             - `l.sort()`
                 - does `.sort()` work for lists of objects of different types?
             - `l.clear()`
+            - all the above methods operate *in place*, i.e. they modify the list, but don't return anything
         - typical way to build up a list:
         ```python
         l = []
@@ -83,6 +84,7 @@
         ````
         or ```l = list(range(10))```
         - convert a tuple to a list with `list()`
+            - `l = list((1, 2, 3))`
     - indexing for tuples and lists is 0-based, same as for strings:
         - `t[0]` returns the first index, `t[n-1]` returns the last
         - negative indices denote distance from end, starting with -1:
@@ -126,8 +128,17 @@
         - list of tuples
         - dict of lists
 
-- memory, value vs reference, mutability
-    - `a = [1, 2, 3]; b = a` vs `a = [1, 2, 3]; b = a.copy()`
-    - `is` and `is not` operators check for identity instead of value
-        - `a = 1`
-        - `a == True` returns `True`, `a is True` returns `False`
+- reference vs. a copy for mutable sequences, things get tricky!:
+    1. `a = [1, 2, 3]; b = a`
+        - `a` and `b` point to the same object in memory
+    2. `a = [1, 2, 3]; b = a.copy()`
+        - `a` and `b` have the same value, but point to different objects in memory
+    - if we set `b[2] = 666`, what's the value of `a` in the above two cases?
+    - `is` and `is not` operators
+        - `a == [1, 2, 3]` returns True
+        - `b == [1, 2, 3]` returns True
+        - `a is b` returns False
+        - `a is [1, 2, 3]` also returns False
+        - `is` and `is not` operators check for identity, i.e., whether two variables point to the same object stored in memory
+        - `==` checks for value, i.e. whether two variables have the same value
+        - generally, it's safer and less confusing to use `==` than `is`, but good to know about
