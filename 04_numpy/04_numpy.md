@@ -26,28 +26,34 @@
 
 - numpy: main numerical library in Python
     - basis for many other scientific Python libraries
-- numpy provides the array object + lots of array functions
+    - numpy provides the array object + lots of array functions
     - arrays are a type of sequence, like lists and tuples, but faster and much more memory efficient
     - arrays are ideal for large datasets
     - tradeoff: not as flexible as lists: for efficiency, each entry in an array has to be of the same data type
     - like a tuple, array length generally **can't** change, but like a list, its values **can** be changed, so it's "semi-mutable"
-- typical usage: `import numpy as np`
+    - typical usage: `import numpy as np`
+
 - initializing an array
     - `a = np.arange(10)`
         - very similar to `range()`, but returns an array
     - `a = np.zeros(10)`
-    - `a = np.random(10)`
+    - `a = np.ones(10)`
+    - `a = np.random.random(10)`
     - `a = np.tile([1, 2, 3], 10)`
     - `a.fill()`
-- as for tuples/lists, check length using `len()`, but can also get shape using `a.shape`
+    - array methods tend to operate on the array in-place, while numpy functions tend to return a new array, but there are lots of exceptions
+
+- like other sequences (tuples & lists), get length of array using `len(a)`, but can also get array shape using `a.shape` attribute
     - shape returns the length along all dimensions of `a`, multidimensional arrays covered later
-    - to get length of the first dimension, use `len()`, or `a.shape[0]`
+    - length of the first dimension is `a.shape[0]`, identical to `len(a)`
+
 - indexing in 1D is very similar to tuples & lists: 0-based
     - manual assignment of first entry
         - `a[0] = 7`
     - negative indices count from the end
         - `a[-1] = 7` assigns to last entry
         - `a[-2] = 7` assigns to 2nd last entry
+
 - slicing in 1D
     - retrieve a slice: the first 10 entries
         - `b = a[0:10]`
@@ -60,7 +66,7 @@
         - ask some question of values of the array, get an answer back of boolean values of same length as original array
         - `i = a > 5` returns an array of booleans, which can be used for indexing
         - `a[a > 5]` returns only those entries in a that are > 5
-        - what if you have another array `b` that is of different length? can you also index into it with the above `i`?
+        - what if you have another array `b` that is of different length? can you also index into it with the above `i`? no!
         - can't do this with lists: try `l[i]`
     - fancy indexing
         - like boolean indexing, a way to ask for multiple values from a list in a single call
@@ -73,20 +79,21 @@
           a[i] = -1 # assignment using fancy indexing
           ````
         - can't do this with lists: try `l[i]`
+
 - **vectorized** math operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparitors (`==`, `>`, `<`, `!=`)
     - what does vectorized mean? they work on all values of an array at the same time
     - `a = np.array([1, 2, 3])`
     - `b = np.array([4, 5, 6])`
     - `a + b` returns another array each of whose values are the sum of the corresponding two values in `a` and `b`
         - in comparison, what does `+` do for strings and lists?
-        - use `np.concatenate()` to combine arrays
+        - use `np.concatenate((a, b))` or `np.concatenate([a, b])` to combine arrays
     - arrays & scalars, vs. arrays & arrays
         - `a + 2` returns an array with 2 added to all the values in `a`
 
 - array methods
-    - `.max()`, `.min()`, `.ptp()`, `.sum()`, `.mean()`, `.std()`
-    - `.sort()` - in place!
-    - `.tolist()`, `.tostring()`
+    - `a.max()`, `a.min()`, `a.ptp()`, `a.sum()`, `a.mean()`, `a.std()`
+    - `a.sort()` - in place!
+    - `a.tolist()`, `a.tostring()`
     - many have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc.
     - gotcha: in-place vs copy
 
@@ -104,13 +111,27 @@
     - `np.savetxt()` - recommended way to save to a text file
     - `a.tofile()` - another way to save, to a text or binary file
 
-- numpy data types (dtype)
-    - integer, float, boolean
-    - num bytes per entry, signed, unsigned, precision, overflow, underflow
+- basic numpy data types (dtype)
     - used across programming languages, correspond to underlying C data types
-        - take care converting between dtypes
+    - integers
+        - signed integers are symmetric around 0, unsigned integers are >= 0
+        - `np.int8`, `np.int16`, `np.int32`, `np.int64` - 1, 2, 4 and 8 byte signed
+        - `np.uint8`, `np.uint16`, `np.uint32`, `np.uint64` - 1, 2, 4 and 8 byte **un**signed
+        - when to use signed or unsigned?
+        - integer overflow and underflow
+    - floats - always signed, and made of "mantissa + 10^exponent"
+        - bigger floats have greater precision
+        - np.float16, np.float32, np.float64 - 2, 4 and 8 bytes floats
+    - can convert from one dtype to another by using the dtype as a function:
+        - e.g., `np.float64(a)` converts `a` to float64 dtype
+    - take care converting between dtypes!
+        - especially from larger ones to smaller ones, and from floats to ints
+        - a number that can be represented in one data type might not be possible to represent in another
         - dramatic example: Ariane 5 1996 failure
-    - floats are always signed, and made of base + exponent
+            - float64 to int16 conversion resulted in integer overflow, caused computer to think it was suddenly way off course, tried to correct by rapidly changing direction, high G-forces caused it to start to disintegrate, which triggered self-destruct. Cost: $370M
+
+- commonly used array attributes:
+    - `a.shape`, `a.dtype`, `a.nbytes`
 
 - exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from 0 to 1000, while using as little memory as possible
     - is it safe to add/subtract two such arrays to/from each other?
@@ -120,14 +141,10 @@
     - `np.save()` - to a binary `.npy` file
     - `np.savez()` & `np.savez_compressed()` - save multiple arrays to an uncompressed or compressed `.zip` file
 
-- commonly used array properties:
-    - `a.shape`, `a.dtype`, `a.nbytes`
-
-- use judgement when deciding between lists and arrays
-- use a list when:
-    - have heterogenous data types you want to store together in a sequence
-    - want to easily add and remove items from a sequence
-    - don't have to store a very large number of items, memory use isn't an issue
-    - don't have to do vectorized operations on the sequence, e.g. adding two of them together
-
-- otherwise, use an array!
+- deciding between lists and arrays:
+    - use a list when:
+        - have heterogenous data types you want to store together in a sequence
+        - want to easily add and remove items from a sequence
+        - don't have to store a very large number of items, memory use isn't an issue
+        - don't have to do vectorized operations on the sequence, e.g. adding two of them together
+    - otherwise, use an array!

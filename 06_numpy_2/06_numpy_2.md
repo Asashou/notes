@@ -30,7 +30,11 @@
     - `np.diff()`
     - `np.searchsorted()` & `a.searchsorted()`
     - `np.sort` & `a.sort()`, `np.argsort()` & `a.argsort()`
+    - `np.random.shuffle`
     - `np.corrcoeff()`, `np.cov()`
+
+- introduce 3D and higher dim arrays
+    - movie is easy 3D array to understand
 
 - when to use numpy or not
     - compare to for loops, list comprehensions
