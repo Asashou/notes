@@ -74,7 +74,7 @@
         - can ask for values in arbitrary order
         - integer index array need not be the same as the original array
         - ```python
-          i = [3, 10, 5, 2, 7]
+          i = [3, 7, 5, 2, 7]
           vals = a[i] # this is fancy indexing
           a[i] = -1 # assignment using fancy indexing
           ````
@@ -107,16 +107,19 @@
         - hex editor is a good way to learn about different data types
             - same set of bytes on the disk/in memory can be interpreted in different ways
     - `np.loadtxt()` - recommended way to load from a text file
-    - `np.fromfile()` - another way to load, from a text or binary file
     - `np.savetxt()` - recommended way to save to a text file
-    - `a.tofile()` - another way to save, to a text or binary file
 
 - basic numpy data types (dtype)
     - used across programming languages, correspond to underlying C data types
     - integers
         - signed integers are symmetric around 0, unsigned integers are >= 0
+            - if `n` is the number of unique integers that can be represented by a data type:
+            - signed integers range from `-n/2` to `n/2-1`
+            - unsigned integers range from `0` to `n-1`
+            - `n = 2**nbits`
         - `np.int8`, `np.int16`, `np.int32`, `np.int64` - 1, 2, 4 and 8 byte signed
         - `np.uint8`, `np.uint16`, `np.uint32`, `np.uint64` - 1, 2, 4 and 8 byte **un**signed
+        - find max/min value of each type using `np.iinfo()`, e.g. `np.iinfo(np.int8).max`
         - when to use signed or unsigned?
         - integer overflow and underflow
     - floats - always signed, and made of "mantissa + 10^exponent"
@@ -135,11 +138,15 @@
 
 - exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from 0 to 1000, while using as little memory as possible
     - is it safe to add/subtract two such arrays to/from each other?
+    - unless you absolutely need the extra double max value, it's safer to use signed integers, in case of subtraction
 
 - binary files:
     - `np.load()` - from a binary `.npy` file, or a `.zip` file containing multiple `.npy` files
     - `np.save()` - to a binary `.npy` file
     - `np.savez()` & `np.savez_compressed()` - save multiple arrays to an uncompressed or compressed `.zip` file
+    - for loading/saving binary files from/to other systems:
+        - `np.fromfile()`
+        - `a.tofile()`
 
 - deciding between lists and arrays:
     - use a list when:
