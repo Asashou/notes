@@ -1,11 +1,13 @@
 ### numpy 1D arrays
 
-- review
+- review of collections:
     - sequences:
-        - tuples are immutable, lists are mutable
-    - `val in sequence` keyword asks whether a value can be found in a sequence
-        - ```l = [1, 2, 3]```
-        - ```2 in l``` returns True, ```5 in l``` returns False
+        - tuples and lists
+        - which are mutable/immutable?
+        - how to initialize them?
+        - `val in sequence` keyword asks whether a value can be found in a sequence
+            - ```l = [1, 2, 3]```
+            - ```2 in l``` returns True, ```5 in l``` returns False
     - mappings:
         - dict, OrderedDict
         - map keys to values
@@ -15,27 +17,32 @@
             - what happens if key doesn't exist in d? get a KeyError
         - remove an existing key:value pair with `del d[key]`
             - what happens if key doesn't exist in d? get a KeyError
-        - dictionary methods
+        - dictionary methods, these were skipped last class:
             - `list(d.keys())` returns a list of d's keys
             - `list(d.values())` returns a list of d's values
             - `list(d.items())` returns a list tuples of d's `(key, value)` pairs
             - `d[key].pop()` returns the value of `d[key]` and also removes the key and its val from d
+        - `val in dict` works as for sequences, but asks whether val is a key in dict
 
-- numpy is the main numerical library in Python, forms basis for a lot of other scientific libraries
+- numpy: main numerical library in Python
+    - basis for many other scientific Python libraries
 - numpy provides the array object + lots of array functions
-    - arrays are like lists, but faster and much more memory efficient
+    - arrays are a type of sequence, like lists and tuples, but faster and much more memory efficient
     - arrays are ideal for large datasets
-    - tradeoff: to gain this increase in efficiency, each entry in an array has to be of the same data type
-    - like a tuple, array length generally **can't** change, but like a list, its values **can** be changed
+    - tradeoff: not as flexible as lists: for efficiency, each entry in an array has to be of the same data type
+    - like a tuple, array length generally **can't** change, but like a list, its values **can** be changed, so it's "semi-mutable"
 - typical usage: `import numpy as np`
 - initializing an array
     - `a = np.arange(10)`
         - very similar to `range()`, but returns an array
     - `a = np.zeros(10)`
-    - `a = np.random()`
-    - `a = np.tile()`
+    - `a = np.random(10)`
+    - `a = np.tile([1, 2, 3], 10)`
     - `a.fill()`
-- indexing in 1D, 0-based as for lists
+- as for tuples/lists, check length using `len()`, but can also get shape using `a.shape`
+    - shape returns the length along all dimensions of `a`, multidimensional arrays covered later
+    - to get length of the first dimension, use `len()`, or `a.shape[0]`
+- indexing in 1D is very similar to tuples & lists: 0-based
     - manual assignment of first entry
         - `a[0] = 7`
     - negative indices count from the end
@@ -46,24 +53,48 @@
         - `b = a[0:10]`
     - assign to a slice: the first 10 entries
         - `a[0:10] = 7`
-    - boolean indexing, fancy indexing, compare to lists
-- math operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparisons (`==`, `>`, `<`, `!=`) are **vectorized**, i.e., they work on all values of an array at the same time
+    - assign to a slice: all entries
+        - `a[:] = 8`, same as `a.fill(8)`
+    - boolean indexing, fancy indexing
+        - ask for multiple values from a list in a single call, but those values can be at arbitrary indices, don't have to be at consecutive or regular indices in the array
+        - ```python
+          i = [3, 10, 5, 2, 7]
+          vals = a[i] # this is fancy indexing
+          a[i] = -1 # assignment using fancy indexing
+          ````
+        - can't do this with lists: try `l[i]`
+        - kind of a hybrid between normal indexing and slicing
+- **vectorized** math operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparitors (`==`, `>`, `<`, `!=`)
+    - what does vectorized mean? they work on all values of an array at the same time
     - `a = np.array([1, 2, 3])`
     - `b = np.array([4, 5, 6])`
-    - e.g., `a + b` returns another array each of whose values are the sum of the corresponding two values in `a` and `b`
-        - compare with `+` for strings and lists
-    - arrays and scalars, arrays and arrays
-    - broadcasting
-- array properties
-    - `.shape`
+    - `a + b` returns another array each of whose values are the sum of the corresponding two values in `a` and `b`
+        - in comparison, what does `+` do for strings and lists?
+        - use `np.concatenate()` to combine arrays
+    - arrays & scalars, vs. arrays & arrays
+        - `a + 2` returns an array with 2 added to all the values in `a`
+
 - array methods
     - `.max()`, `.min()`, `.ptp()`, `.sum()`, `.mean()`, `.std()`
     - `.sort()` - in place!
     - `.tolist()`, `.tostring()`
     - many have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc.
     - gotcha: in-place vs copy
-- array layout in memory, C-order vs F-order
-    - use `timeit` to show difference in mean along columns vs rows of square array
+
+- loading/saving arrays from/to text files:
+    - text vs. binary files?
+        - text files are easier to view in a text editor
+        - binary files require a "hex" editor, harder to view and edit, but are much more space efficient and faster
+            - same amount of data can be stored using less disk space
+        - which one to use depends on how your data are saved
+        - for large data sets, like images or electrophysiology, binary files are critical
+        - hex editor is a good way to learn about different data types
+            - same set of bytes on the disk/in memory can be interpreted in different ways
+    - `np.loadtxt()` - recommended way to load from a text file
+    - `np.fromfile()` - another way to load, from a text or binary file
+    - `np.savetxt()` - recommended way to save to a text file
+    - `a.tofile()` - another way to save, to a text or binary file
+
 - numpy data types (dtype)
     - integer, float, boolean
     - num bytes per entry, signed, unsigned, precision, overflow, underflow
@@ -71,6 +102,23 @@
         - take care converting between dtypes
         - dramatic example: Ariane 5 1996 failure
     - floats are always signed, and made of base + exponent
-- record arrays?
-    - a numpy array with a custom dtype made of basic dtypes
-- object arrays?
+
+- exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from 0 to 1000, while using as little memory as possible
+    - is it safe to add/subtract two such arrays to/from each other?
+
+- binary files:
+    - `np.load()` - from a binary `.npy` file, or a `.zip` file containing multiple `.npy` files
+    - `np.save()` - to a binary `.npy` file
+    - `np.savez()` & `np.savez_compressed()` - save multiple arrays to an uncompressed or compressed `.zip` file
+
+- commonly used array properties:
+    - `a.shape`, `a.dtype`, `a.nbytes`
+
+- use judgement when deciding between lists and arrays
+- use a list when:
+    - have heterogenous data types you want to store together in a sequence
+    - want to easily add and remove items from a sequence
+    - don't have to store a very large number of items, memory use isn't an issue
+    - don't have to do vectorized operations on the sequence, e.g. adding two of them together
+
+- otherwise, use an array!

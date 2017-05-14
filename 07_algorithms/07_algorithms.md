@@ -1,6 +1,6 @@
 ### algorithms
 
-- file operations
+- file operations, or maybe these are better in organizing code and results
     - `with open(filename) as f`
         - file modes: `r`, `rb`, `w`, `wb`
         - text mode vs binary mode
@@ -34,9 +34,10 @@
         - fft
         - spectrograms
     - generate some audio! or write to .wav file and then listen to it
+- scikit-image
+- opencv somewhere?
 - sklearn, MDP
     - PCA, ICA
-- talk a bit about math concepts
-- opencv somewhere?
+- talk a bit about math concepts?
 - jupyter notebook for interactive exploration of parameters and effect on resulting plots
     - lorenz attractor example looks nice!
