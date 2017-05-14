@@ -55,15 +55,24 @@
         - `a[0:10] = 7`
     - assign to a slice: all entries
         - `a[:] = 8`, same as `a.fill(8)`
-    - boolean indexing, fancy indexing
-        - ask for multiple values from a list in a single call, but those values can be at arbitrary indices, don't have to be at consecutive or regular indices in the array
+    - arrays have boolean and fancy indexing, both are kind of a hybrid between normal indexing and slicing which we saw in tuples and lists
+    - boolean indexing
+        - ask some question of values of the array, get an answer back of boolean values of same length as original array
+        - `i = a > 5` returns an array of booleans, which can be used for indexing
+        - `a[a > 5]` returns only those entries in a that are > 5
+        - what if you have another array `b` that is of different length? can you also index into it with the above `i`?
+        - can't do this with lists: try `l[i]`
+    - fancy indexing
+        - like boolean indexing, a way to ask for multiple values from a list in a single call
+        - unlike boolean indexing, use integers to specify multiple indices
+        - can ask for values in arbitrary order
+        - integer index array need not be the same as the original array
         - ```python
           i = [3, 10, 5, 2, 7]
           vals = a[i] # this is fancy indexing
           a[i] = -1 # assignment using fancy indexing
           ````
         - can't do this with lists: try `l[i]`
-        - kind of a hybrid between normal indexing and slicing
 - **vectorized** math operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparitors (`==`, `>`, `<`, `!=`)
     - what does vectorized mean? they work on all values of an array at the same time
     - `a = np.array([1, 2, 3])`
