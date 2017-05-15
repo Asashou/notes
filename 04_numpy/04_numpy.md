@@ -37,7 +37,7 @@
     - explicitly, using a list or a tuple, convert to array:
     - `a = np.array([1, 2, 3])` or `a = np.array((1, 2, 3))``
     - `a = np.arange(10)`
-        - very similar to `range()`, but returns an array
+        - very similar to `list(range(10))`, but returns an array
     - `a = np.zeros(10)`
     - `a = np.ones(10)`
     - `a = np.random.random(10)`
@@ -63,24 +63,26 @@
     - assign to a slice: all entries
         - `a[:] = 8`, same as `a.fill(8)`
         - what happens if you go `a = 8`?
-    - arrays have boolean and fancy indexing, both are kind of a hybrid between normal indexing and slicing which we saw in tuples and lists
-    - boolean indexing
+
+- arrays also have "fancy" indexing:
+    - two types: integer & boolean fancy indexing
+    - both are kind of hybrid between normal indexing and slicing
+    - allow you to ask for multiple values from an array in a single call
+    - integer fancy indexing
+        - ```python
+          i = [3, 7, 5, 2, 7] # create a list of indices
+          vals = a[i] # this is integer fancy indexing
+          a[i] = -1 # assignment using integer fancy indexing
+          ````
+        - can ask for array values in arbitrary order
+        - can ask for the same value repeatedly
+        - can't do this with lists: try `l[i]`
+    - boolean fancy indexing
         - ask some question of values of the array, get an answer back of boolean values of same length as original array
         - `i = a > 5` returns an array of booleans, which can be used for indexing
         - `a[a > 5]` returns only those entries in a that are > 5
         - what if you have another array `b` that is of different length? can you also index into it with the above `i`? no!
-        - can't do this with lists: try `l[i]`
-    - fancy indexing
-        - like boolean indexing, a way to ask for multiple values from a list in a single call
-        - unlike boolean indexing, use integers to specify multiple indices
-        - can ask for values in arbitrary order
-        - integer index array need not be the same as the original array
-        - ```python
-          i = [3, 7, 5, 2, 7]
-          vals = a[i] # this is fancy indexing
-          a[i] = -1 # assignment using fancy indexing
-          ````
-        - can't do this with lists: try `l[i]`
+        - again, can't do this with lists: try `l[i]`
 
 - **vectorized** math operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparitors (`==`, `>`, `<`, `!=`)
     - what does vectorized mean? they work on all values of an array at the same time
@@ -106,8 +108,6 @@
             - same amount of data can be stored using less disk space
         - which one to use depends on how your data are saved
         - for large data sets, like images or electrophysiology, binary files are critical
-        - hex editor is a good way to learn about different data types
-            - same set of bytes on the disk/in memory can be interpreted in different ways
     - `np.loadtxt()` - recommended way to load from a text file
     - `np.savetxt()` - recommended way to save to a text file
 
@@ -138,7 +138,7 @@
             - float64 to int16 conversion resulted in integer overflow, caused computer to think it was suddenly way off course, tried to correct by rapidly changing direction, high G-forces caused it to start to disintegrate, which triggered self-destruct. Cost: $370M
 
 - commonly used array attributes:
-    - `a.shape`, `a.dtype`, `a.nbytes`
+    - `a.shape`, `a.ndim`, `a.dtype`, `a.nbytes`
 
 - exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from 0 to 1000, while using as little memory as possible
     - is it safe to add/subtract two such arrays to/from each other?
