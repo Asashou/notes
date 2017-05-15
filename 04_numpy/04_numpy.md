@@ -26,7 +26,7 @@
 
 - numpy: main numerical library in Python
     - basis for many other scientific Python libraries
-    - numpy provides the array object + lots of array functions
+    - numpy provides the `ndarray` object + lots of array functions
     - arrays are a type of sequence, like lists and tuples, but faster and much more memory efficient
     - arrays are ideal for large datasets
     - tradeoff: not as flexible as lists: for efficiency, each entry in an array has to be of the same data type
@@ -34,33 +34,35 @@
     - typical usage: `import numpy as np`
 
 - initializing an array
+    - explicitly, using a list or a tuple, convert to array:
+    - `a = np.array([1, 2, 3])` or `a = np.array((1, 2, 3))``
     - `a = np.arange(10)`
         - very similar to `range()`, but returns an array
     - `a = np.zeros(10)`
     - `a = np.ones(10)`
     - `a = np.random.random(10)`
-    - `a = np.tile([1, 2, 3], 10)`
-    - `a.fill()`
+    - `a = np.tile([1, 2], 5)`
+    - `a.fill(7)` fills the array with the number 7
     - array methods tend to operate on the array in-place, while numpy functions tend to return a new array, but there are lots of exceptions
 
 - like other sequences (tuples & lists), get length of array using `len(a)`, but can also get array shape using `a.shape` attribute
     - shape returns the length along all dimensions of `a`, multidimensional arrays covered later
     - length of the first dimension is `a.shape[0]`, identical to `len(a)`
 
-- indexing in 1D is very similar to tuples & lists: 0-based
-    - manual assignment of first entry
-        - `a[0] = 7`
-    - negative indices count from the end
-        - `a[-1] = 7` assigns to last entry
-        - `a[-2] = 7` assigns to 2nd last entry
+- indexing in 1D is the same as for tuples & lists: 0-based, -ve indices count from the end
+    - `a[0] = 7` assigns `7` to 1st entry
+    - `a[1] = 7` assigns `7` to 2nd entry
+    - `a[-1] = 7` assigns to last entry
+    - `a[-2] = 7` assigns to 2nd last entry
 
-- slicing in 1D
-    - retrieve a slice: the first 10 entries
-        - `b = a[0:10]`
-    - assign to a slice: the first 10 entries
-        - `a[0:10] = 7`
+- slicing in 1D is also the same as for tuples and lists
+    - retrieve a slice: the first 5 entries
+        - `b = a[0:5]` or `b = a[:5]`
+    - assign to a slice: the last 5 entries
+        - `a[5:10] = 7` or `a[5:] = 7`
     - assign to a slice: all entries
         - `a[:] = 8`, same as `a.fill(8)`
+        - what happens if you go `a = 8`?
     - arrays have boolean and fancy indexing, both are kind of a hybrid between normal indexing and slicing which we saw in tuples and lists
     - boolean indexing
         - ask some question of values of the array, get an answer back of boolean values of same length as original array
@@ -113,10 +115,12 @@
     - used across programming languages, correspond to underlying C data types
     - integers
         - signed integers are symmetric around 0, unsigned integers are >= 0
-            - if `n` is the number of unique integers that can be represented by a data type:
+            - if `n` is the number of unique integers that can be represented by an integer data type:
             - signed integers range from `-n/2` to `n/2-1`
             - unsigned integers range from `0` to `n-1`
             - `n = 2**nbits`
+            - so, the bigger the integer data type (in bits or bytes), the more integer numbers it can represent
+            - what's a byte? 8 bits
         - `np.int8`, `np.int16`, `np.int32`, `np.int64` - 1, 2, 4 and 8 byte signed
         - `np.uint8`, `np.uint16`, `np.uint32`, `np.uint64` - 1, 2, 4 and 8 byte **un**signed
         - find max/min value of each type using `np.iinfo()`, e.g. `np.iinfo(np.int8).max`
@@ -139,14 +143,6 @@
 - exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from 0 to 1000, while using as little memory as possible
     - is it safe to add/subtract two such arrays to/from each other?
     - unless you absolutely need the extra double max value, it's safer to use signed integers, in case of subtraction
-
-- binary files:
-    - `np.load()` - from a binary `.npy` file, or a `.zip` file containing multiple `.npy` files
-    - `np.save()` - to a binary `.npy` file
-    - `np.savez()` & `np.savez_compressed()` - save multiple arrays to an uncompressed or compressed `.zip` file
-    - for loading/saving binary files from/to other systems:
-        - `np.fromfile()`
-        - `a.tofile()`
 
 - deciding between lists and arrays:
     - use a list when:
