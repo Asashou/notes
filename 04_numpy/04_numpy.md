@@ -52,8 +52,8 @@
 - indexing in 1D is the same as for tuples & lists: 0-based, -ve indices count from the end
     - `a[0] = 7` assigns `7` to 1st entry
     - `a[1] = 7` assigns `7` to 2nd entry
-    - `a[-1] = 7` assigns to last entry
-    - `a[-2] = 7` assigns to 2nd last entry
+    - `a[-1] = 7` assigns `7` to last entry
+    - `a[-2] = 7` assigns `7` to 2nd last entry
 
 - slicing in 1D is also the same as for tuples and lists
     - retrieve a slice: the first 5 entries
@@ -84,7 +84,7 @@
         - what if you have another array `b` that is of different length? can you also index into it with the above `i`? no!
         - again, can't do this with lists: try `l[i]`
 
-- **vectorized** math operators (`=`, `+`, `-`, `*`, `/`, `**`) and comparitors (`==`, `>`, `<`, `!=`)
+- **vectorized** math operators (`+`, `-`, `*`, `/`, `**`) and comparitors (`==`, `>`, `<`, `!=`)
     - what does vectorized mean? they work on all values of an array at the same time
     - `a = np.array([1, 2, 3])`
     - `b = np.array([4, 5, 6])`
