@@ -97,7 +97,7 @@
 - array methods
     - `a.max()`, `a.min()`, `a.ptp()`, `a.sum()`, `a.mean()`, `a.std()`
     - `a.sort()` - in place!
-    - `a.tolist()`, `a.tostring()`
+    - `a.tolist()` returns list equivalent of `a`, same as `list(a)` if `a` is 1D
     - many have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc.
     - gotcha: in-place vs copy
 
@@ -108,8 +108,8 @@
             - same amount of data can be stored using less disk space
         - which one to use depends on how your data are saved
         - for large data sets, like images or electrophysiology, binary files are critical
-    - `np.loadtxt()` - recommended way to load from a text file
-    - `np.savetxt()` - recommended way to save to a text file
+    - `np.loadtxt(fname)` - recommended way to load from a text file
+    - `np.savetxt(fname, a)` - recommended way to save to a text file
 
 - basic numpy data types (dtype)
     - used across programming languages, correspond to underlying C data types

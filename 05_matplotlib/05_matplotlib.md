@@ -19,6 +19,7 @@
     - matplotlib.style.available
 
 - loading and saving binary files:
+    - to see hex representation of bytes in memory for array `a` : `a.tobytes()`
     - `np.load()` - from a binary `.npy` file, or a `.zip` file containing multiple `.npy` files
     - `np.save()` - to a binary `.npy` file
     - `np.savez()` & `np.savez_compressed()` - save multiple arrays to an uncompressed or compressed `.zip` file
