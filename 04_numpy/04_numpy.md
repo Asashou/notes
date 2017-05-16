@@ -11,6 +11,7 @@
     - mappings:
         - dict, OrderedDict
         - map keys to values
+        - how to initialize them?
         - add new key:value pairs with `d[key] = value`
             - what happens if key already exists?
         - access key:value pairs with `d[key]`
@@ -27,8 +28,8 @@
 - numpy: main numerical library in Python
     - basis for many other scientific Python libraries
     - numpy provides the `ndarray` object + lots of array functions
-    - arrays are a type of sequence, like lists and tuples, but faster and much more memory efficient
-    - arrays are ideal for large datasets
+    - arrays are a sequence, like lists and tuples, but faster and much more memory efficient
+        - ideal for large datasets!
     - unlike lists, can explicitly be multidimensional - useful for e.g. images and movies
     - tradeoff: not as flexible as lists: for efficiency, each entry in an array has to be of the same data type
     - like a tuple, array length generally **can't** change, but like a list, its values **can** be changed, so it's "semi-mutable"
@@ -41,11 +42,10 @@
         - very similar to `list(range(10))`, but returns an array
     - `a = np.zeros(10)`
     - `a = np.ones(10)`
-    - `a = np.empty(10)` inits an array without resetting the values, `np.zeros` is preferred
     - `a = np.random.random(10)`
     - `a = np.tile([1, 2], 5)`
     - `a.fill(7)` fills the array with the number 7
-    - array methods tend to operate on the array in-place, while numpy functions tend to return a new array, but there are lots of exceptions
+    - array methods often operate on the array in-place, while numpy functions often return a new array, but there are lots of exceptions
 
     - exercise: use a for loop to build a list of 3 arrays, each array of length 5, initialized to zeros
 
@@ -69,9 +69,9 @@
         - what happens if you go `a = 8`?
 
 - arrays also have "fancy" indexing:
+    - allow you to ask for multiple values from an array in a single call
     - two types: integer & boolean fancy indexing
     - both are kind of hybrid between normal indexing and slicing
-    - allow you to ask for multiple values from an array in a single call
     - integer fancy indexing
         - ```python
           i = [3, 7, 5, 2, 7] # create a list of indices
@@ -84,7 +84,8 @@
     - boolean fancy indexing
         - ask some question of values of the array, get an answer back of boolean values of same length as original array
         - `i = a > 5` returns an array of booleans, which can be used for indexing
-        - `a[a > 5]` returns only those entries in a that are > 5
+        - `a[a > 5]` or `a[i]` returns only those entries in a that are > 5
+        - i.e., where `i` is True, return the value in `a` at that index
         - what if you have another array `b` that is of different length? can you also index into it with the above `i`? no!
         - again, can't do this with lists: try `l[i]`
 
@@ -95,15 +96,15 @@
     - `a + b` returns another array each of whose values are the sum of the corresponding two values in `a` and `b`
         - in comparison, what does `+` do for strings and lists?
         - use `np.concatenate((a, b))` or `np.concatenate([a, b])` to combine arrays
+    - what happens if you try to do one of the above vectorized operations on two arrays of different length?
     - arrays & scalars, vs. arrays & arrays
         - `a + 2` returns an array with 2 added to all the values in `a`
 
 - array methods
     - `a.max()`, `a.min()`, `a.ptp()`, `a.sum()`, `a.mean()`, `a.std()`
-    - `a.sort()` - in place!
+    - `a.sort()` - sorts in place! same as for a list
     - `a.tolist()` returns list equivalent of `a`, same as `list(a)` if `a` is 1D
     - many have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc.
-    - gotcha: in-place vs copy
 
 - loading/saving arrays from/to text files:
     - text vs. binary files?
@@ -113,14 +114,16 @@
         - which one to use depends on how your data are saved
         - for large data sets, like images or electrophysiology, binary files are critical
     - `np.loadtxt(fname)` - recommended way to load from a text file
+        - use the `delimiter=','` kwarg to handle e.g. comma separated values, see `test.csv`
     - `np.savetxt(fname, a)` - recommended way to save to a text file
-        - notice that dtype information can be lost using the above
-        - saving to and loading from binary files can prevent that, covered later
+        - again, use the `delimiter=','` kwarg to create comma separated values
+        - notice that dtype information can be lost using the above, `fmt=%g'` kwarg helps
+        - saving to and loading from binary files is handles metadata better, covered later
 
-- basic numpy data types (dtype)
-    - used across programming languages, correspond to underlying C data types
+- numeric data types (dtype)
+    - a common set of numeric data types are used across programming languages, super important!
     - integers
-        - signed integers are symmetric around 0, unsigned integers are >= 0
+        - signed integers are symmetric around 0, unsigned integers are always >= 0
             - if `n` is the number of unique integers that can be represented by an integer data type:
             - signed integers range from `-n/2` to `n/2-1`
             - unsigned integers range from `0` to `n-1`
@@ -129,12 +132,16 @@
             - what's a byte? 8 bits
         - `np.int8`, `np.int16`, `np.int32`, `np.int64` - 1, 2, 4 and 8 byte signed
         - `np.uint8`, `np.uint16`, `np.uint32`, `np.uint64` - 1, 2, 4 and 8 byte **un**signed
-        - find max/min value of each type using `np.iinfo()`, e.g. `np.iinfo(np.int8).max`
-        - when to use signed or unsigned?
+        - can easily calculate max/min values of each dtype yourself, or use `np.iinfo()`, e.g. `np.iinfo(np.int8).max`
+        - when to use signed or unsigned? if in doubt, use signed!
         - integer overflow and underflow
     - floats - always signed, and made of "mantissa + 10^exponent"
         - bigger floats have greater precision
         - np.float16, np.float32, np.float64 - 2, 4 and 8 bytes floats
+    - init arrays to the desired data type by using the `dtype` kwarg:
+        - `a = np.zeros(10, dtype=np.int8)`
+        - `a = np.zeros(10, dtype=np.int64)`
+        - `a = np.zeros(10, dtype=np.float64)`
     - can convert from one dtype to another by using the dtype as a function:
         - e.g., `np.float64(a)` converts `a` to float64 dtype
     - take care converting between dtypes!
@@ -146,7 +153,7 @@
 - commonly used array attributes:
     - `a.shape`, `a.ndim`, `a.dtype`, `a.nbytes`
 
-- exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from 0 to 1000, while using as little memory as possible
+- exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from -1000 to 1000, while using as little memory as possible
     - how many bytes of memory do you predict it will use? how many does it actually use?
     - is it safe to add/subtract two such arrays to/from each other?
     - unless you absolutely need the extra double max value, it's safer to use signed integers, in case of subtraction
