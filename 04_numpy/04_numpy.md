@@ -29,6 +29,7 @@
     - numpy provides the `ndarray` object + lots of array functions
     - arrays are a type of sequence, like lists and tuples, but faster and much more memory efficient
     - arrays are ideal for large datasets
+    - unlike lists, can explicitly be multidimensional - useful for e.g. images and movies
     - tradeoff: not as flexible as lists: for efficiency, each entry in an array has to be of the same data type
     - like a tuple, array length generally **can't** change, but like a list, its values **can** be changed, so it's "semi-mutable"
     - typical usage: `import numpy as np`
@@ -40,10 +41,13 @@
         - very similar to `list(range(10))`, but returns an array
     - `a = np.zeros(10)`
     - `a = np.ones(10)`
+    - `a = np.empty(10)` inits an array without resetting the values, `np.zeros` is preferred
     - `a = np.random.random(10)`
     - `a = np.tile([1, 2], 5)`
     - `a.fill(7)` fills the array with the number 7
     - array methods tend to operate on the array in-place, while numpy functions tend to return a new array, but there are lots of exceptions
+
+    - exercise: use a for loop to build a list of 3 arrays, each array of length 5, initialized to zeros
 
 - like other sequences (tuples & lists), get length of array using `len(a)`, but can also get array shape using `a.shape` attribute
     - shape returns the length along all dimensions of `a`, multidimensional arrays covered later
@@ -110,6 +114,8 @@
         - for large data sets, like images or electrophysiology, binary files are critical
     - `np.loadtxt(fname)` - recommended way to load from a text file
     - `np.savetxt(fname, a)` - recommended way to save to a text file
+        - notice that dtype information can be lost using the above
+        - saving to and loading from binary files can prevent that, covered later
 
 - basic numpy data types (dtype)
     - used across programming languages, correspond to underlying C data types
@@ -141,6 +147,7 @@
     - `a.shape`, `a.ndim`, `a.dtype`, `a.nbytes`
 
 - exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from 0 to 1000, while using as little memory as possible
+    - how many bytes of memory do you predict it will use? how many does it actually use?
     - is it safe to add/subtract two such arrays to/from each other?
     - unless you absolutely need the extra double max value, it's safer to use signed integers, in case of subtraction
 

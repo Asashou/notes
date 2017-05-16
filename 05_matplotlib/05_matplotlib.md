@@ -30,6 +30,9 @@
         - hex = hexadecimal = base 16 representation of numbers, 0 to 9 plus 6 more: abcdef instead of just 0 to 9
         - hex editor is a good way to learn about different data types
             - same set of bytes on the disk/in memory can be interpreted in different ways
+        - windows: [HexEdit](http://www.catch22.net/software/hexedit)
+        - mac: [Hex Fiend](http://ridiculousfish.com/hexfiend/)
+        - linux: ghex, bless
 
 - exercise:
     - create 1D array, plot it to see what it looks like, save the plot to disk, save the array to both a text file (using `np.savetxt()`) and a binary file (using `np.save()`) to disk, compare their file sizes. Now exit ipython, restart ipython, load array from the both the text file and the binary file, plot both arrays, compare them to each other, and to the saved plot to make sure they look the same
