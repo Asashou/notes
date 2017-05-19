@@ -55,6 +55,7 @@
               ````
         - alternative: if you have a **lot** of rows, and you want to store everything in a single array, and you know the maximum number of columns for a given row ahead of time, declare your array to have as many columns as your longest row, pad shorter rows with some placeholder, like np.nan if it's a float, or some special integer if it's an int array, like -1, or `np.iinfo(a).min` or `np.iinfo(a).max` or `np.iinfo(dtype).min`
 
+- np.stack, np.hstack, np.vstack
 
 - record arrays?
     - a numpy array with a custom dtype made of basic dtypes
