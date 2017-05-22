@@ -1,4 +1,4 @@
-### numpy 2
+### more matplotlib, numpy matrices and ndarrays
 
 - multidimensional arrays, indexing, slicing, axis arg
     - rows vs. columns vs. hypercolumns
