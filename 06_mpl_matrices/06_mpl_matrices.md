@@ -4,22 +4,18 @@
 
 - create a new empty figure with `plt.figure()`
 
-- many different kinds of plots:
+- subplots: multiple axes in a single figure
+    - `plt.subplot()`
 
+- many different kinds of plots:
     - scatterplots
     - histograms
     - bar charts
     - 3d plots
 
-- subplots
-    - `plt.subplot()`
-
 - `.matplotlibrc` file for changing defaults
     - builtin styles?
     - matplotlib.style.available
-
-- pyqtgraph is good for fast high performance plotting
-    - requires qt5, and does everything directly in opengl
 
 #### matrices and ndarrays
 
@@ -39,12 +35,9 @@
                 - convolution, say box filter
         - array/image rotation, flipping (lots of different ways, indexing, np.flip, skimage, multiply by transformation matrix), rescaling:
         - thresholding, masking an image
-    - `matplotlib.cm`
+    - choose colormaps in `matplotlib.cm`
 
 - array broadcasting
-
-- 2D array layout in memory, C-order vs F-order
-    - use `timeit` to show difference in mean along columns vs rows of square array
 
 - various array methods and numpy functions:
     - `a.reshape()`, `a.ravel()`
@@ -55,14 +48,18 @@
     - `np.random.shuffle`
     - `np.corrcoeff()`, `np.cov()`
 
+- 2D array layout in memory, C-order vs F-order
+    - use `timeit` to show difference in mean along columns vs rows of square array
+
 - introduce 3D and higher dim arrays
     - movie is easy 3D array to understand
 
 - when to use numpy or not
     - compare to for loops, list comprehensions
-    - use timeit to compare builtin min/max vs numpy min/max
+    - use `timeit` to compare them, maybe also builtin `sum()` on list vs numpy `a.sum()`
     - what's happening under the hood?
         - multiple python ops vs single python op w/ multiple C ops
+    - don't worry too much about optimizing for speed until it becomes an issue
 
 - ragged arrays vs full arrays:
     - ragged: when e.g. each row has a different number of columns

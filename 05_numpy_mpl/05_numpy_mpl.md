@@ -12,7 +12,7 @@
           a -= a.mean() # now mean is very close to 0
           a /= a.std() # now std is also very close to 0
           ````
-        - note that e.g. `-3.3306690738754695e-17` is shorthand for `-3.33... x 10^-17`
+        - note that e.g. `-3.271e-17` is shorthand for `-3.271 x 10^-17`
         - what if you now want the sum of the values to be 1?
     - `a.sort()` - sorts in place! same as for a list
     - `a.tolist()` returns list equivalent of `a`, same as `list(a)` if `a` is 1D
@@ -31,8 +31,8 @@
     - max value for unsigned int: `2**nbits - 1`
     - min/max val for signed int: `-(2**nbits)/2, (2**nbits)/2 - 1`
         - or, use `np.iinfo()`
-        - unless you absolutely need the extra double max value, it's usually safer to use signed integers, especially for subtraction
-    - what's overflow? it's what happens when you
+        - usually safest to use signed integers instead of unsigned, especially for subtraction
+    - what's overflow? it's what happens when you exceed the max or min value
     - when converting between dtypes, numpy *warns* about overflow but doesn't stop execution:
         - what's the max value expressable by int8?
         - `np.int8(120) + np.int8(10)` warns
@@ -40,7 +40,8 @@
         - set numpy error setting using e.g. `np.seterr(over='raise')` to "raise" an *error* on overflow, which stops execution of your code, more strict than a *warning*
             - `np.seterr()` returns old settings before setting new ones
 
-- exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from -1000 to 1000, while using as little memory as possible
+- exercise: create an empty 1D array (using `np.zeros`) of length 1 million that can store values integer values from -1000 to 1000
+    - which dtype can do so while using the least memory?
     - how many bytes of memory do you predict it will use?
     - check `a.nbytes` to see if you got it right
     - is it safe to add/subtract two such arrays to/from each other?
@@ -60,31 +61,35 @@
 - loading/saving arrays from/to files:
 - two broad types of files: **text** and **binary**
     - **text files** are familiar, easy to view in a plain text editor, just a bunch of printable characters
-        - what's a printable char? basically any available on your keyboard, plus maybe some old ones from the early days when computers didn't have screens
-        - these characters are stored by bytes in memory, and on disk
+        - what's a printable char? basically any available on your keyboard
+        - like any other data, these chars are stored in bytes in memory and on disk
         - computers have to agree on which bytes represent which chars
             - encoding: mapping of byte values to characters
-            - most common encoding is ASCII: American Standard Code for Information Interchange
+            - simplest standard encoding is ASCII: American Standard Code for Information Interchange
             - ASCII uses 1 byte per character, but only uses the first 128 integer values (0 to 127) to represent various characters, plus outdated "characters" that controlled direct output to printers and communications with old modems
             - see `ASCII-Conversion-Chart.pdf`
             - a newer increasingly common one is UTF-8, an extension of ASCII that can encode many more characters from more languages
         - in a text file, if you want to save the number `100`, you need to save 3 characters to disk (one `1`, two `0`s), so this takes up 3 bytes of space.
         - what's the smallest integer data type that can represent `100`? How many bytes does it take up?
-    - **binary files** are much more space efficient for storing numbers, and are therefore also faster, but require a "hex" editor
-        - if you try and open a binary file using a plain text editor, it will either show you a bunch of garbled characters, or it will refuse to open it at all
-        - binaries are harder to view and edit than a simple plain text file, but mostly you load/save them programmatically anyway
-    - which one to use depends on your application, how your data are saved
+    - **binary files** are much more space efficient for storing numbers, and therefore also faster, but require a "hex" editor to directly view them
+        - trying to open a binary file with a plain text editor will either show a bunch of nonesense text, or it will refuse to open it at all
+        - open-source hex editors:
+            - windows: [HexEdit](http://www.catch22.net/software/hexedit)
+            - mac: [Hex Fiend](http://ridiculousfish.com/hexfiend/)
+            - linux: [ghex](https://github.com/GNOME/ghex), [bless](http://home.gna.org/bless/)
+        - mostly you load/save them programmatically anyway, no need to directly edit them
+    - which file type to use depends on your data source, and your data size
     - for large data sets, like images or electrophysiology, binary files are critical, text files aren't appropriate
 
-- loading/saving text files
-    - `np.loadtxt(fname)` - recommended way to load from a text file
+- loading/saving arrays from/to text files
+    - `np.loadtxt(fname)` - load from a text file
         - use the `delimiter=','` kwarg to handle e.g. comma separated values, see `test.csv`
-    - `np.savetxt(fname, a)` - recommended way to save to a text file
+    - `np.savetxt(fname, a)` - save to a text file
         - again, use the `delimiter=','` kwarg to create comma separated values
         - notice that dtype information can be lost using the above, `fmt=%g'` kwarg helps
-        - saving to and loading from binary files is handles metadata better, covered later
+        - saving to and loading from binary files handles metadata better
 
-- loading/saving binary files:
+- loading/saving arrays from/to binary files:
     - to see hex representation of bytes in memory for array `a` : `a.tobytes()`
     - `np.load()` - from a binary `.npy` file, or a `.zip` file containing multiple `.npy` files
     - `np.save()` - to a binary `.npy` file
@@ -92,14 +97,7 @@
     - for loading/saving raw binary representation of array data from/to files, for use with other systems:
         - `np.fromfile()`
         - `a.tofile()`
-    - inspect binary files with hex editor
-        - hex = hexadecimal = base 16 representation of numbers, 0 to 9 plus 6 more: abcdef instead of just 0 to 9
-        - hex editor is a good way to learn about different data types
-            - same set of bytes on the disk/in memory can be interpreted in different ways
-        - open-source hex editors:
-            - windows: [HexEdit](http://www.catch22.net/software/hexedit)
-            - mac: [Hex Fiend](http://ridiculousfish.com/hexfiend/)
-            - linux: [ghex](https://github.com/GNOME/ghex), [bless](http://home.gna.org/bless/)
+    - can inspect binary files with hex editor
 
 #### plotting with matplotlib (MPL)
 
@@ -110,7 +108,7 @@
 - line plots:
     - let's create a data array using `np.linspace()` to get a set of evenly spaced time points, and then `np.sin()` or `np.cos()` to create a nice sinusoid as a function of time
         ```python
-        t = np.linspace(0, 4*np.pi, 100) # 100 evenly spaced timepoints
+        t = np.linspace(0, 4*np.pi, 100) # 100 evenly spaced timepoints, 2 cycles
         s = np.sin(t) # calculate sine as a function of t
         plt.plot(t, s) # plot points in t on x-axis vs. points in s on y-axis
         ````
@@ -132,29 +130,39 @@
             - home button returns to default view
             - magnifying glass: zoom to rectangle
                 - left button drag to zoom to rectangle
-                - right button drag to zoom view out to fit rectangle
+                - right button drag to zoom out the view to fit rectangle
         - configure subplots: change borders, spacing between subplots (if any)
             - tight layout button minimizes borders and maximizes data, good for saving to file
         - edit plot params: titles, labels, limits, scales, line and marker formatting
         - save: save figure to disk, typically `.pdf` or `.png`
-    - everything you can do interactively with the toolbar, you can also do programmatically in python code
+    - everything you can do interactively with the toolbar, you can also do programmatically in code
     - add another line to the same plot:
         ```python
-        c = np.cin(t) # calculate cosine as a function of the same timebase t
+        c = np.cos(t) # calculate cosine as a function of the same timebase t
         plt.plot(t, c) # plot points in t on x-axis vs. points in c on y-axis
         ````
-    - by default, MPL adds the new line plot to the existing one
+    - by default, MPL adds the new line plot to the existing figure's axes, using a new colour
+    - multiple figures open? new plots go on most recently used figure
+    - to specify color, marker type and line style with kwargs:
+        ``` `color: 'red', 'green', 'blue'` etc.
+            `marker: '.', 'o', 'x', '+', '*'`
+            `linestyle: `'solid', 'dashed', 'dotted', 'None'`
+        - e.g. ```plt.plot(t, c, color='red', marker='.', linestyle='solid')```
+               ```plt.plot(t, c, 'r.-')``` is shorthand for the above
+        - check ```plt.plot?``` docstring for more options, including color, marker and line abbreviations
+        - `label` kwarg lets you give each line a name, which then shows up in `plt.legend`
 
 - exercise:
     - create 1D array using `np.sin()` or `np.cos()`
     - plot it with `plt.plot()` to see what it looks like
     - give it some labels, save the plot to disk
     - save the array to a text file with `np.savetxt()`
-    - examine the text file in your text editor, make sure it's saved the way you want
+    - examine the text file in your text editor
     - now save the same array to binary file using `np.save()`
+    - exit ipython/jupyter
     - compare the size of the text and binary file
-    - exit ipython/jupyter, restart ipython/jupyter
-    - load array twice: from the text file & form the binary file, save to two different names
+    - restart ipython/jupyter
+    - load array twice: from the text file & from the binary file, save to two different names
     - plot both arrays, compare them to each other, compare to saved plot to make sure they look the same
 
 - anatomy of a MPL figure
@@ -163,7 +171,6 @@
     - annotate, text, circle
 
 - many different kinds of plots:
-
     - scatterplots
     - histograms
     - bar charts
