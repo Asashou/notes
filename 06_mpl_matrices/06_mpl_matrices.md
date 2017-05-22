@@ -1,5 +1,28 @@
 ### more matplotlib, numpy matrices and ndarrays
 
+#### more matplotlib
+
+- create a new empty figure with `plt.figure()`
+
+- many different kinds of plots:
+
+    - scatterplots
+    - histograms
+    - bar charts
+    - 3d plots
+
+- subplots
+    - `plt.subplot()`
+
+- `.matplotlibrc` file for changing defaults
+    - builtin styles?
+    - matplotlib.style.available
+
+- pyqtgraph is good for fast high performance plotting
+    - requires qt5, and does everything directly in opengl
+
+#### matrices and ndarrays
+
 - multidimensional arrays, indexing, slicing, axis arg
     - rows vs. columns vs. hypercolumns
     - `-1`, `:`, `...`, `::2`, `::-1`
@@ -7,17 +30,16 @@
     - another useful array property: `a.size` - total number of elements in array, across all dimensions
         - same as flattening the array and asking for the length of the result
         - `len(a.ravel())`
-    - ndimage?
+    - `scipy.ndimage`
         - loading different image types
-        - imshow
+        - `plt.imshow` to display matrices and images
         - increase contrast of an image
-            - np.percentile
+            - `np.percentile`
             - denoising/smoothing
                 - convolution, say box filter
         - array/image rotation, flipping (lots of different ways, indexing, np.flip, skimage, multiply by transformation matrix), rescaling:
         - thresholding, masking an image
-    - mpl.imshow, for images and matrices
-    - mpl.cmaps
+    - `matplotlib.cm`
 
 - array broadcasting
 

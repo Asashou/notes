@@ -18,8 +18,10 @@
     - `a.tolist()` returns list equivalent of `a`, same as `list(a)` if `a` is 1D
     - many array methods have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc., which you can use directly on lists or tuples
 
-- review dtypes:
-    - what's a bit? bit = binary digit, takes two values, 0 or 1
+- review integer dtypes:
+    - what's a digit? numeric symbol used to represent numbers
+    - "digiti": Latin for "fingers", decimal digits are numeric symbols for counting in base 10, values 0 to 9
+    - what's a bit? bit = binary digit, bits are numeric symbols for counting in base 2, values 0 and 1
     - what's a byte? 8 bits: 00000000, 00000001, 00000010, 00000011 ... == 0, 1, 2, 3, ...
     - 8 bit integer takes up 1 byte of memory
     - 16 bit takes up 2 bytes
@@ -56,7 +58,7 @@
 - so far we've been using mostly made up values to fill arrays, generated in code
 - in reality you have to load data from disk, and save results (and figures) back to disk
 - loading/saving arrays from/to files:
-- two broad types of files: text and binary
+- two broad types of files: **text** and **binary**
     - **text files** are familiar, easy to view in a plain text editor, just a bunch of printable characters
         - what's a printable char? basically any available on your keyboard, plus maybe some old ones from the early days when computers didn't have screens
         - these characters are stored by bytes in memory, and on disk
@@ -98,7 +100,6 @@
             - windows: [HexEdit](http://www.catch22.net/software/hexedit)
             - mac: [Hex Fiend](http://ridiculousfish.com/hexfiend/)
             - linux: [ghex](https://github.com/GNOME/ghex), [bless](http://home.gna.org/bless/)
-
 
 #### plotting with matplotlib (MPL)
 
@@ -144,13 +145,22 @@
         ````
     - by default, MPL adds the new line plot to the existing one
 
+- exercise:
+    - create 1D array using `np.sin()` or `np.cos()`
+    - plot it with `plt.plot()` to see what it looks like
+    - give it some labels, save the plot to disk
+    - save the array to a text file with `np.savetxt()`
+    - examine the text file in your text editor, make sure it's saved the way you want
+    - now save the same array to binary file using `np.save()`
+    - compare the size of the text and binary file
+    - exit ipython/jupyter, restart ipython/jupyter
+    - load array twice: from the text file & form the binary file, save to two different names
+    - plot both arrays, compare them to each other, compare to saved plot to make sure they look the same
+
 - anatomy of a MPL figure
     - http://matplotlib.org/examples/showcase/anatomy.html
     - axes, markers, lines, labels, titles, legends, ticks, grids, spines
     - annotate, text, circle
-
-- exercise:
-    - create 1D array, plot it to see what it looks like, save the plot to disk, save the array to both a text file (using `np.savetxt()`) and a binary file (using `np.save()`) to disk, compare their file sizes. Now exit ipython, restart ipython, load array from the both the text file and the binary file, plot both arrays, compare them to each other, and to the saved plot to make sure they look the same
 
 - many different kinds of plots:
 
@@ -158,13 +168,3 @@
     - histograms
     - bar charts
     - 3d plots
-
-- subplots
-    - `plt.subplot()`
-
-- `.matplotlibrc` file for changing defaults
-    - builtin styles?
-    - matplotlib.style.available
-
-- pyqtgraph is good for fast high performance plotting
-    - requires qt5, and does everything directly in opengl
