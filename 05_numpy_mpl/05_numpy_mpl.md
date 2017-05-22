@@ -1,14 +1,22 @@
-### more numpy 1D arrays, plotting with matplotlib
+### more numpy 1D arrays, numpy file operations, plotting with matplotlib
 
-#### more numpy 1D arrays, numpy file operations
+#### more numpy 1D arrays
 
 - `import numpy as np` to gain convenient access to numpy functions/modules/objects with `np.something`
 
 - array methods
+    - `a = np.random.random(10)` of random float values between 0 and 1
     - `a.max()`, `a.min()`, `a.ptp()`, `a.sum()`, `a.mean()`, `a.std()`
+    - how can we shift all these values to have zero mean and a standard deviation of 1?
+        - ```python
+          a -= a.mean() # now mean is very close to 0
+          a /= a.std() # now std is also very close to 0
+          ````
+        - note that e.g. `-3.3306690738754695e-17` is shorthand for `-3.33... x 10^-17`
+        - what if you now want the sum of the values to be 1?
     - `a.sort()` - sorts in place! same as for a list
     - `a.tolist()` returns list equivalent of `a`, same as `list(a)` if `a` is 1D
-    - many have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc.
+    - many array methods have an equivalent numpy function, e.g. `np.max()`, `np.min()`, etc., which you can use directly on lists or tuples
 
 - review dtypes:
     - what's a bit? bit = binary digit, takes two values, 0 or 1
@@ -21,11 +29,19 @@
     - max value for unsigned int: `2**nbits - 1`
     - min/max val for signed int: `-(2**nbits)/2, (2**nbits)/2 - 1`
         - or, use `np.iinfo()`
+        - unless you absolutely need the extra double max value, it's usually safer to use signed integers, especially for subtraction
+    - what's overflow? it's what happens when you
+    - when converting between dtypes, numpy *warns* about overflow but doesn't stop execution:
+        - what's the max value expressable by int8?
+        - `np.int8(120) + np.int8(10)` warns
+        - get numpy error settings using `np.geterr()`
+        - set numpy error setting using e.g. `np.seterr(over='raise')` to "raise" an *error* on overflow, which stops execution of your code, more strict than a *warning*
+            - `np.seterr()` returns old settings before setting new ones
 
 - exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from -1000 to 1000, while using as little memory as possible
-    - how many bytes of memory do you predict it will use? check `a.nbytes` to see many it actually uses
+    - how many bytes of memory do you predict it will use?
+    - check `a.nbytes` to see if you got it right
     - is it safe to add/subtract two such arrays to/from each other?
-    - unless you absolutely need the extra double max value, it's safer to use signed integers, in case of subtraction
 
 - deciding between lists and arrays:
     - use a list when:
@@ -35,11 +51,26 @@
         - don't have to do vectorized operations on the sequence, e.g. adding two of them together
     - otherwise, use an array!
 
+#### numpy file operations
+
+- so far we've been using mostly made up values to fill arrays, generated in code
+- in reality you have to load data from disk, and save results (and figures) back to disk
 - loading/saving arrays from/to files:
-    - text vs. binary files?
-    - text files are easier to view in a text editor
-    - binary files require a "hex" editor, harder to view and edit, but are much more space efficient and faster
-        - same amount of data can be stored using less disk space
+- two broad types of files: text and binary
+    - **text files** are familiar, easy to view in a plain text editor, just a bunch of printable characters
+        - what's a printable char? basically any available on your keyboard, plus maybe some old ones from the early days when computers didn't have screens
+        - these characters are stored by bytes in memory, and on disk
+        - computers have to agree on which bytes represent which chars
+            - encoding: mapping of byte values to characters
+            - most common encoding is ASCII: American Standard Code for Information Interchange
+            - ASCII uses 1 byte per character, but only uses the first 128 integer values (0 to 127) to represent various characters, plus outdated "characters" that controlled direct output to printers and communications with old modems
+            - see `ASCII-Conversion-Chart.pdf`
+            - a newer increasingly common one is UTF-8, an extension of ASCII that can encode many more characters from more languages
+        - in a text file, if you want to save the number `100`, you need to save 3 characters to disk (one `1`, two `0`s), so this takes up 3 bytes of space.
+        - what's the smallest integer data type that can represent `100`? How many bytes does it take up?
+    - **binary files** are much more space efficient for storing numbers, and are therefore also faster, but require a "hex" editor
+        - if you try and open a binary file using a plain text editor, it will either show you a bunch of garbled characters, or it will refuse to open it at all
+        - binaries are harder to view and edit than a simple plain text file, but mostly you load/save them programmatically anyway
     - which one to use depends on your application, how your data are saved
     - for large data sets, like images or electrophysiology, binary files are critical, text files aren't appropriate
 
@@ -83,12 +114,13 @@
         plt.plot(t, s) # plot points in t on x-axis vs. points in s on y-axis
         ````
         - compare `np.linspace(start, stop, npoints)` with `np.arange(start, stop, step)`
-            - `linspace`
+            - `np.linspace()`
                 - lets you specify the number of points you want to get out
                 - is end-inclusive (`stop` value is included in the output)
-            - `arange`
+            - `np.arange()`
                 - lets you specify the step size between points
                 - is end-exclusive (`stop` value is excluded in the output)
+        - `np.logspace()` is the logarithmic equivalent of `np.linspace`, but creates requested number of points equally spaced on a logarithmic scale instead of linear scale
 
     - if no existing plot window ("figure") exists, a new one will pop up, or will be embedded in your jupyter notebook
     - figure toolbar:
@@ -128,7 +160,9 @@
     - 3d plots
 
 - subplots
-- matplotlibrc for changing defaults
+    - `plt.subplot()`
+
+- `.matplotlibrc` file for changing defaults
     - builtin styles?
     - matplotlib.style.available
 
