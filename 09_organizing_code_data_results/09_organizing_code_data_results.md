@@ -1,5 +1,9 @@
 ### organizing code, data, results
 
+- so far we've been dealing with code fragments, in practice you need to organize your code in some way
+    - scripts
+    - modules/libraries of functions/objects you've written and rely on in your scripts
+        - this way, you don't need to write the same function multiple times, just once, then import it into each script where you need it
 - code reuse
     - take a long script with repeating code patterns, replace with function
     - take a script with several functions, move those functions into their own modules,
