@@ -1,6 +1,7 @@
 ### object-oriented programming
 
 - use datetime.datetime and datetime.timedelta objects, and ndarray object, as reminder of  attribs and methods
+- another good example: procedural MPL vs. OOP MPL
 - object == instance of a class, class == type more or less
 - writing a class: __init__(self), other methods, attributes
 - one nice thing about using an object with attributes and methods is that you don't have
