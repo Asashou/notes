@@ -136,13 +136,16 @@
         - edit plot params: titles, labels, limits, scales, line and marker formatting
         - save: save figure to disk, typically `.pdf` or `.png`
     - everything you can do interactively with the toolbar, you can also do programmatically in code
+        - `plt.xlim()`, `plt.ylim()`, `plt.xlabel()`, `plt.ylabel()`, `plt.title()`
     - add another line to the same plot:
         ```python
         c = np.cos(t) # calculate cosine as a function of the same timebase t
         plt.plot(t, c) # plot points in t on x-axis vs. points in c on y-axis
         ````
     - by default, MPL adds the new line plot to the existing figure's axes, using a new colour
+    - create a new empty figure with `plt.figure()`
     - multiple figures open? new plots go on most recently used figure
+    - `plt.close()` closes current figure, `plt.close('all')` closes all figures
     - to specify color, marker type and line style with kwargs:
         ``` `color: 'red', 'green', 'blue'` etc.
             `marker: '.', 'o', 'x', '+', '*'`
@@ -174,4 +177,4 @@
     - scatterplots
     - histograms
     - bar charts
-    - 3d plots
+    - 3D plots
