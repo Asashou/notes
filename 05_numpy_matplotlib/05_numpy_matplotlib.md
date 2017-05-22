@@ -23,7 +23,7 @@
         - or, use `np.iinfo()`
 
 - exercise: create a 1D array of length 1 million that's suitable for storing integer values ranging from -1000 to 1000, while using as little memory as possible
-    - how many bytes of memory do you predict it will use? how many does it actually use?
+    - how many bytes of memory do you predict it will use? check `a.nbytes` to see many it actually uses
     - is it safe to add/subtract two such arrays to/from each other?
     - unless you absolutely need the extra double max value, it's safer to use signed integers, in case of subtraction
 
@@ -112,22 +112,25 @@
         ````
     - by default, MPL adds the new line plot to the existing one
 
-- line plots
-- scatterplots
-- histograms
-- bar charts?
-- 3d plots?
 - anatomy of a MPL figure
     - http://matplotlib.org/examples/showcase/anatomy.html
     - axes, markers, lines, labels, titles, legends, ticks, grids, spines
+    - annotate, text, circle
+
+- exercise:
+    - create 1D array, plot it to see what it looks like, save the plot to disk, save the array to both a text file (using `np.savetxt()`) and a binary file (using `np.save()`) to disk, compare their file sizes. Now exit ipython, restart ipython, load array from the both the text file and the binary file, plot both arrays, compare them to each other, and to the saved plot to make sure they look the same
+
+- many different kinds of plots:
+
+    - scatterplots
+    - histograms
+    - bar charts
+    - 3d plots
+
 - subplots
 - matplotlibrc for changing defaults
     - builtin styles?
     - matplotlib.style.available
 
-
 - pyqtgraph is good for fast high performance plotting
     - requires qt5, and does everything directly in opengl
-
-- exercise:
-    - create 1D array, plot it to see what it looks like, save the plot to disk, save the array to both a text file (using `np.savetxt()`) and a binary file (using `np.save()`) to disk, compare their file sizes. Now exit ipython, restart ipython, load array from the both the text file and the binary file, plot both arrays, compare them to each other, and to the saved plot to make sure they look the same
