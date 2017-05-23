@@ -54,51 +54,6 @@
         - don't have to do vectorized operations on the sequence, e.g. adding two of them together
     - otherwise, use an array!
 
-#### numpy file operations
-
-- so far we've been using mostly made up values to fill arrays, generated in code
-- in reality you have to load data from disk, and save results (and figures) back to disk
-- loading/saving arrays from/to files:
-- two broad types of files: **text** and **binary**
-    - **text files** are familiar, easy to view in a plain text editor, just a bunch of printable characters
-        - what's a printable char? basically any available on your keyboard
-        - like any other data, these chars are stored in bytes in memory and on disk
-        - computers have to agree on which bytes represent which chars
-            - encoding is used to map byte values to characters
-            - standard encoding is ASCII: American Standard Code for Information Interchange
-            - ASCII uses 1 byte per character, but only uses the first 128 integer values (0 to 127) to represent various characters, plus outdated "characters" that controlled direct output to printers and communications with old modems
-            - see `ASCII-Conversion-Chart.pdf`
-            - a newer increasingly common one is UTF-8, an extension of ASCII that can encode many more characters from more languages
-        - in a text file, if you want to save the number `100`, you need to save 3 characters to disk (one `1`, two `0`s), so this takes up 3 bytes of space.
-        - what's the smallest integer data type that can represent `100`? How many bytes does it take up?
-    - **binary files** are much more space efficient for storing numbers, faster to load/save, but require a "hex" editor to directly view them
-        - trying to open a binary file with a plain text editor will either show a bunch of nonesense text, or it will refuse to open it at all
-        - open-source hex editors:
-            - windows: [HexEdit](http://www.catch22.net/software/hexedit)
-            - mac: [Hex Fiend](http://ridiculousfish.com/hexfiend/)
-            - linux: [ghex](https://github.com/GNOME/ghex), [bless](http://home.gna.org/bless/)
-        - mostly you load/save them programmatically anyway, no need to directly edit them
-    - which file type to use depends on your data source, and your data size
-    - for large data sets, like images or electrophysiology, binary files are critical, text files aren't appropriate
-
-- loading/saving arrays from/to text files
-    - `np.savetxt(fname, a)` - save to a text file
-        - use the `delimiter=','` kwarg to create comma separated values
-        - notice that dtype information can be lost using the above, `fmt=%g'` kwarg helps
-        - saving to and loading from binary files handles metadata better
-    - `np.loadtxt(fname)` - load from a text file
-        - use the `delimiter=','` kwarg to handle e.g. comma separated values, see `test.csv`
-
-- loading/saving arrays from/to binary files:
-    - to see hex representation of bytes in memory for array `a` : `a.tobytes()`
-    - `np.save(fname, a)` - to a binary `.npy` file
-    - `np.load(fname)` - from a binary `.npy` file, or a `.zip` file containing multiple `.npy` files
-    - can inspect binary files with hex editor
-    - `np.savez('experiments', exp1=a, exp2=b)` & `np.savez_compressed()` - save multiple arrays to an uncompressed or compressed `.zip` file
-    - optional: for loading/saving raw binary representation of array data from/to files, for use with other systems:
-        - `np.fromfile()`
-        - `a.tofile()`
-
 #### plotting with matplotlib (MPL)
 
 - main plotting library for python, others exist, but often based on MPL
@@ -155,6 +110,36 @@
         - check ```plt.plot?``` docstring for more options, including color, marker and line abbreviations
         - `label` kwarg lets you give each line a name, which then shows up in `plt.legend`
 
+- histogram plot is useful for getting a graphical overview of all the values in your data
+    - `plt.hist(a)`, defaults to 10 bins
+    - `plt.hist(a, bins=100)` specifies desired number of bins
+    - similar plotting options as for `plt.plot()` for controlling e.g. colour
+    - see documentation for lots of details
+
+- anatomy of a MPL figure
+    - http://matplotlib.org/examples/showcase/anatomy.html
+    - axes, markers, lines, labels, titles, legends, ticks, grids, spines
+    - annotate, text, circle
+
+- plotting issues:
+    - figures not popping up in ipython?
+        - turn on interactive mode by calling `plt.ion()`
+        - permanently enable interactive mode in matplotlib settings file:
+            - linux: `~/.config/matplotlib/matplotlibrc`
+            - mac + windows: `~/.matplotlib/matplotlibrc`
+            - uncomment `#interactive: False` line and set to `True` instead
+    - figures in jupyter not automatically displaying inline?
+        - type `%matplotlib inline` in a cell, all cells that follow will do inline plots
+        - make this setting permanent in `~/.ipython/ipython_config.py` file
+        - uncomment `#c.InteractiveShellApp.matplotlib = None` line and set to `'inline'`
+        - for interactive plotting in jupyter, type `%matplotlib notebook`
+        - make this setting permanent with `c.InteractiveShellApp.matplotlib = 'notebook'` in `ipython_config.py` file
+            - NOTE: this only works in more recent versions of matplotlib/jupyter?
+            - quite a bit slower than interactive plots in ipython
+    - missing toolbar?
+        - set `toolbar : toolbar2` in `matplotlibrc` file
+    - the icon for "edit axes/curve/image params" in figure window might be missing
+
 - exercise:
     - create 1D array using `np.sin()` or `np.cos()`
     - plot it with `plt.plot()` to see what it looks like
@@ -168,13 +153,53 @@
     - load array twice: from the text file & from the binary file, save to two different names
     - plot both arrays, compare them to each other, compare to saved plot to make sure they look the same
 
-- anatomy of a MPL figure
-    - http://matplotlib.org/examples/showcase/anatomy.html
-    - axes, markers, lines, labels, titles, legends, ticks, grids, spines
-    - annotate, text, circle
+- other kinds of plots:
+    - scatterplots: `plt.scatter()`
+    - error bars: `plt.errorbar()`
+    - bar plots: `plt.bar()`
 
-- many different kinds of plots:
-    - scatterplots
-    - histograms
-    - bar charts
-    - 3D plots
+#### numpy file operations
+
+- so far we've been using mostly made-up values to fill arrays, generated in code
+- in reality you have to load data from disk, and save results (and figures) back to disk
+- loading/saving arrays from/to files:
+- two broad types of files: **text** and **binary**
+    - **text files** are familiar, easy to view in a plain text editor, just a bunch of printable characters
+        - what's a printable char? basically any available on your keyboard
+        - like any other data, these chars are stored in bytes in memory and on disk
+        - computers have to agree on which bytes represent which chars
+            - encoding is used to map byte values to characters
+            - standard encoding is ASCII: American Standard Code for Information Interchange
+            - ASCII uses 1 byte per character, but only uses the first 128 integer values (0 to 127) to represent various characters, plus outdated "characters" that controlled direct output to printers and communications with old modems
+            - see `ASCII-Conversion-Chart.pdf`
+            - a newer increasingly common one is UTF-8, an extension of ASCII that can encode many more characters from more languages
+        - in a text file, if you want to save the number `100`, you need to save 3 characters to disk (one `1`, two `0`s), so this takes up 3 bytes of space.
+        - what's the smallest integer data type that can represent `100`? How many bytes does it take up?
+    - **binary files** are much more space efficient for storing numbers, faster to load/save, but require a "hex" editor to directly view them
+        - trying to open a binary file with a plain text editor will either show a bunch of nonesense text, or it will refuse to open it at all
+        - open-source hex editors:
+            - windows: [HexEdit](http://www.catch22.net/software/hexedit)
+            - mac: [Hex Fiend](http://ridiculousfish.com/hexfiend/)
+            - linux: [ghex](https://github.com/GNOME/ghex), [bless](http://home.gna.org/bless/)
+        - mostly you load/save them programmatically anyway, no need to directly edit them
+    - which file type to use depends on your data source, and your data size
+    - for large data sets, like images or electrophysiology, binary files are critical, text files aren't appropriate
+
+- loading/saving arrays from/to text files
+    - `np.savetxt(fname, a)` - save to a text file
+        - use the `delimiter=','` kwarg to create comma separated values
+        - notice that dtype information can be lost using the above, `fmt=%g'` kwarg helps
+        - saving to and loading from binary files handles metadata better
+    - `np.loadtxt(fname)` - load from a text file
+        - use the `delimiter=','` kwarg to handle e.g. comma separated values, see `test.csv`
+
+- loading/saving arrays from/to binary files:
+    - to see hex representation of bytes in memory for array `a` : `a.tobytes()`
+    - `np.save(fname, a)` - to a binary `.npy` file
+    - `np.load(fname)` - from a binary `.npy` file, or a `.zip` file containing multiple `.npy` files
+    - can inspect binary files with hex editor
+    - `np.savez('experiments', exp1=a, exp2=b)` & `np.savez_compressed()` - save multiple arrays to an uncompressed or compressed `.zip` file
+    - optional: for loading/saving raw binary representation of array data from/to files, for use with other systems:
+        - `np.fromfile()`
+        - `a.tofile()`
+
