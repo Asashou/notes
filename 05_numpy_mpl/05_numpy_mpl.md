@@ -102,9 +102,9 @@
     - multiple figures open? new plots go on most recently used figure
     - `plt.close()` closes current figure, `plt.close('all')` closes all figures
     - to specify color, marker type and line style with kwargs:
-        ``` `color: 'red', 'green', 'blue'` etc.
-            `marker: '.', 'o', 'x', '+', '*'`
-            `linestyle: `'solid', 'dashed', 'dotted', 'None'`
+        - `color: 'red', 'green', 'blue'` etc.
+        - `marker: '.', 'o', 'x', '+', '*'`
+        - `linestyle: `'solid', 'dashed', 'dotted', 'None'`
         - e.g. ```plt.plot(t, c, color='red', marker='.', linestyle='solid')```
                ```plt.plot(t, c, 'r.-')``` is shorthand for the above
         - check ```plt.plot?``` docstring for more options, including color, marker and line abbreviations
