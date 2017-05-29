@@ -134,9 +134,12 @@
     ax.set_xticks([]) # disable x ticks
     ax.set_yticks([]) # disable y ticks
     ````
-    - use different colormaps to change how values in an array map to colours:
+    - use different colormaps to change how values in an array map to colours in displayed image:
         - default is called "viridis"
-        - colormaps listed in `matplotlib.cm`
+        - another popular one is "jet"
+        - all colormaps listed using `plt.colormaps()`
+        - `im = ax.imshow(a, cmaps='jet')` - set during `imshow` call
+        - `im.set_cmap('viridis')` - modify existing image object
 
 - `scipy.ndimage`
     - loading different image types
@@ -158,6 +161,9 @@
     - get every other row: `a[::2]`
     - flip matrix vertically by reversing order of rows: `a[::-1]`
     - flip matrix horizontally by reversing order of columns: `a[:, ::-1]`
+    - rotate matrix in steps of 90 deg:
+        - `np.rot90(a)` - counterclockwise
+        - `np.rot90(a, -1)` - clockwise
 
 - arithmetic operations on 2D arrays
     - matrix & scalar, same as for 1D arrays, works elementwise
@@ -169,9 +175,19 @@
     - matrix & vector:
         - array "broadcasting"
 
-- 2D array methods and functions:
+- matrix operations:
     - `a.transpose()` or its shortcut property `a.T` - swaps rows with columns
     - `a.diagonal()` returns the diagonal
     - `a.trace()` returns sum along the diagonal
+    - inner product, results in new matrix, whose entry at (i, j) is sum of elementwise product of row i of `a` and column j of `b`
+        - `np.dot(a, b)` raises error, ncols of `a` must equal nrows of `b`
+        - `np.dot(a, b.T)` works
+    - outer product: take two vectors `x` and `y`, resulting matrix has (i, j)th entry that is `x[i] * y[j]`
+        - `x = np.arange(10)`
+        - `y = x.copy()`
+        - `np.outer(x, y)`
+        - builds a multiplication table!
+
+- 2D array methods and functions:
     - `np.concatenate()`, `axis` kwarg
     - `np.stack()`, `np.hstack()`, `np.vstack()`
