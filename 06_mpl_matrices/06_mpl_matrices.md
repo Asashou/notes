@@ -143,18 +143,17 @@
 
 - `scipy.ndimage`
     - loading different image types
-    - `plt.imshow` to display matrices and images
     - increase contrast of an image
         - `np.percentile`
         - denoising/smoothing
             - convolution, say box filter
-    - array/image rotation, flipping (lots of different ways, indexing, np.flip, skimage, multiply by transformation matrix), rescaling:
     - thresholding, masking an image
 
 - 2D indexing and slicing
     - get element in 1st row, 1st column: `a[0, 0]`
     - get element in 3rd row, 2nd column: `a[2, 1]`
     - get element in last row, last column: `a[-1, -1]`
+    - get element in 3rd row, 3rd column: `a[2, 2]` - IndexError!
     - get the first row, across all the columns: `a[0, :]`, or just `a[0]` for short
     - get the first column, across all the rows: `a[:, 0]`
     - get first 3 rows: `a[:3]`
@@ -172,8 +171,11 @@
         - `b = np.random.random(16).reshape((8, 2))`
         - `a + b`, `a - b`, `a * b`, `a / b` etc.
         - what happens if you try `b / a`? divide by zero warning, results in `np.inf` at [0, 0]
-    - matrix & vector:
-        - array "broadcasting"
+    - matrix `a` & vector `x`, bit more complex:
+        - still elementwise, but the last dimension of `a` has to have same length as `x`
+        - `x = np.arange(8)`
+        - `a * x` doesn't work, `a.T * x` does
+        - called array "broadcasting"
 
 - matrix operations:
     - `a.transpose()` or its shortcut property `a.T` - swaps rows with columns
@@ -181,7 +183,8 @@
     - `a.trace()` returns sum along the diagonal
     - inner product, results in new matrix, whose entry at (i, j) is sum of elementwise product of row i of `a` and column j of `b`
         - `np.dot(a, b)` raises error, ncols of `a` must equal nrows of `b`
-        - `np.dot(a, b.T)` works
+        - `np.dot(a, b.T)` works, and so does `np.dot(a.T, b)`, but give different results
+        - new matrix multiplication operator in Python 3.5 `@` does the same as `np.dot()`
     - outer product: take two vectors `x` and `y`, resulting matrix has (i, j)th entry that is `x[i] * y[j]`
         - `x = np.arange(10)`
         - `y = x.copy()`
