@@ -3,33 +3,59 @@
 #### more matplotlib
 
 - MATLAB style vs. OOP style:
-    - last week we learned the MATLAB style of plotting:
+    - last week we learned the MATLAB "procedural" style of plotting:
     ```python
     import matplotlib.pyplot as plt
     t = np.linspace(0, 4*np.pi, 100) # 100 evenly spaced timepoints, 2 cycles
     s = np.sin(t) # calculate sine as a function of t
+    c = np.cos(t) # calculate cosine as a function of t
     plt.plot(t, s) # plot points in t on x-axis vs. points in s on y-axis
     ````
-    - MPL also has a more Pythonic object-oriented style, with very similar commands
-    - first, you should explicitly create a figure and an axes
-    - `fig, ax = plt.subplots()` - creates a new figure with one set of x-y axes, and returns objects representing them
-    - now, we can do most of our plot commands on this particular axes `ax`:
-        - `ax.plot(t, s)`
+    - MPL also has an alternative, more Pythonic, object-oriented (OOP) style, with very similar commands
+    - first, you explicitly create a figure and an axes
+    - `f, a = plt.subplots()` - creates a new figure with one set of x-y axes, and returns objects representing them
+        - note that `plt.subplot()` is a slightly different MATLAB-style procedural command
+    - now, we can do most of our plot commands as methods of this particular axes `ax`:
+        - `a.plot(t, s)`
         - common formatting commands in OOP style:
-            - `ax.set_xlim()`, `ax.set_ylim()`, `ax.set_xlabel()`, `ax.set_ylabel()`, `ax.set_title()`
-    - if we have multiple figures and multiple axes open, we can refer directly to them by however we name their objects:
-    - `fig2, ax2 = plt.subplots()`
-    - `ax2.plot(t, s)`
-    - to clear a particular axes: `ax.clear()`
+            - `a.set_xlim()`, `a.set_ylim()`, `a.set_xlabel()`, `a.set_ylabel()`, `a.set_title()`
+        - compare with MATLAB style:
+            - `plt.xlim()`, `plt.ylim()`, `plt.xlabel()`, `plt.ylabel`, `plt.title()`
+        - one more useful one is `spines`, which is only easily accessible through the OOP interface:
+            - `a.set_spines`
+        - OOP style is slightly more wordy, but much more explicit, gives better control over multiple figures
+    - with multiple figures and axes open, we can refer to them directly by name, no longer have to worry about which is the "current" figure:
+    - `f2, a2 = plt.subplots()`
+    - `a2.hist(s)` - do a histogram this time
+    - to clear a particular axes: `a2.clear()`
 
-- subplots: multiple axes in a single figure
-    - `plt.subplot()`
+- subplots: create multiple axes in a single figure
+    - `f, axs = plt.subplots(nrows=2, ncols=2)`
+    - `axs` is now a 2D array, you choose your axes by indexing into it with row and col indicies:
+        - `axs[0, 1].plot(t, s) # plot s vs. t in axes in 1st row 2nd column`
+        - `axs[1, 0].plot(t, c, color='r') # plot c vs. t in red in axes in 2nd row 1st column`
+    - optional kwargs `sharex`, `sharey`
+        ```python
+        plt.close('all')
+        f1, axs1 = plt.subplots(2, 1, sharex=True, sharey=False) # axs1 is 1D array
+        axs1[0].plot(t, s) # plot s vs. t
+        axs1[1].plot(t, c, color='r') # plot c vs. t in red, shared x axis as above
+        f2, axs2 = plt.subplots(2, 1, sharex=True, sharey=False) # axs1 is 1D array
+        axs2[0].hist(s) # plot hist of s
+        axs2[1].hist(c, color='r') # plot hist of c in red, shared x axis as above
+        ````
+    - change the name of a figure, i.e. its titlebar and its default filename in the save dialog box:
+        ```python
+        f1.canvas.set_window_title('time series')
+        f2.canvas.set_window_title('histograms')
+        ````
 
 - many different kinds of plots:
-    - scatterplots
+    - scatterplots:
+        - `a.scatter(x, y)` - very similar to `a.plot()`, but allows each point to be formatted differently (colour, marker, size), doesn't allow lines between points?
     - histograms
     - bar charts
-    - 3d plots
+    - 3D plots
 
 - `.matplotlibrc` file for changing defaults
     - builtin styles?
