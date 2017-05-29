@@ -2,6 +2,29 @@
 
 #### more matplotlib
 
+- plotting issues:
+    ```python
+    import matplotlib.pyplot as plt
+    plt.plot() # should pop up a figure window with axes
+    ````
+    - figures not popping up in **ipython**?
+        - turn on interactive mode by calling `plt.ion()`
+        - permanently enable interactive mode in matplotlib settings file:
+            - linux: `~/.config/matplotlib/matplotlibrc`
+            - mac + windows: `~/.matplotlib/matplotlibrc`
+            - uncomment `#interactive: False` line and set to `True` instead
+    - figures in **jupyter** not automatically displaying inline?
+        - type `%matplotlib inline` in a cell, all cells that follow will do inline plots
+        - make this setting permanent in `~/.ipython/ipython_config.py` file
+        - uncomment `#c.InteractiveShellApp.matplotlib = None` line and set to `'inline'`
+        - for interactive plotting in jupyter, type `%matplotlib notebook`
+        - make this setting permanent with `c.InteractiveShellApp.matplotlib = 'notebook'` in `ipython_config.py` file
+            - NOTE: this only works in more recent versions of matplotlib/jupyter?
+            - quite a bit slower than interactive plots in ipython
+    - missing toolbar?
+        - set `toolbar : toolbar2` in `matplotlibrc` file
+    - the button for "edit axes/curve/image params" in figure window might be missing
+
 - MATLAB style vs. OOP style:
     - last week we learned the MATLAB "procedural" style of plotting:
     ```python
@@ -13,16 +36,17 @@
     ````
     - MPL also has an alternative, more Pythonic, object-oriented (OOP) style, with very similar commands
     - first, you explicitly create a figure and an axes
-    - `f, a = plt.subplots()` - creates a new figure with one set of x-y axes, and returns objects representing them
-        - note that `plt.subplot()` is a slightly different MATLAB-style procedural command
-    - now, we can do most of our plot commands as methods of this particular axes `ax`:
+    - `f, a = plt.subplots()` - by default creates a new figure with one set of x-y axes, and returns objects representing them
+        - notice the `s` in `plt.subplots()`, `plt.subplot()` is a slightly different MATLAB-style procedural command
+    - now, we can do most of our plot commands as methods of this particular axes `a`:
         - `a.plot(t, s)`
         - common formatting commands in OOP style:
             - `a.set_xlim()`, `a.set_ylim()`, `a.set_xlabel()`, `a.set_ylabel()`, `a.set_title()`
         - compare with MATLAB style:
             - `plt.xlim()`, `plt.ylim()`, `plt.xlabel()`, `plt.ylabel`, `plt.title()`
-        - one more useful one is `spines`, which is only easily accessible through the OOP interface:
-            - `a.set_spines`
+        - one more useful figure property worth formatting is `spines`, only easily accessible through the OOP interface:
+            - `a.spines['top'].set_visible(False)`
+            - `a.spines['right'].set_visible(False)`
         - OOP style is slightly more wordy, but much more explicit, gives better control over multiple figures
     - with multiple figures and axes open, we can refer to them directly by name, no longer have to worry about which is the "current" figure:
     - `f2, a2 = plt.subplots()`
@@ -37,29 +61,28 @@
     - optional kwargs `sharex`, `sharey`
         ```python
         plt.close('all')
-        f1, axs1 = plt.subplots(2, 1, sharex=True, sharey=False) # axs1 is 1D array
-        axs1[0].plot(t, s) # plot s vs. t
-        axs1[1].plot(t, c, color='r') # plot c vs. t in red, shared x axis as above
-        f2, axs2 = plt.subplots(2, 1, sharex=True, sharey=False) # axs1 is 1D array
-        axs2[0].hist(s) # plot hist of s
-        axs2[1].hist(c, color='r') # plot hist of c in red, shared x axis as above
+        f1, a1 = plt.subplots(2, 1, sharex=True, sharey=False) # a1 is 1D array
+        a1[0].plot(t, s) # plot s vs. t
+        a1[1].plot(t, c, color='r') # plot c vs. t in red, shared x axis as above
+        f2, a2 = plt.subplots(2, 1, sharex=True, sharey=False) # a2 is 1D array
+        a2[0].hist(s) # plot hist of s
+        a2[1].hist(c, color='r') # plot hist of c in red, shared x axis as above
         ````
     - change the name of a figure, i.e. its titlebar and its default filename in the save dialog box:
         ```python
         f1.canvas.set_window_title('time series')
         f2.canvas.set_window_title('histograms')
         ````
-
-- many different kinds of plots:
+- some other kinds of plots:
     - scatterplots:
-        - `a.scatter(x, y)` - very similar to `a.plot()`, but allows each point to be formatted differently (colour, marker, size), doesn't allow lines between points?
-    - histograms
+        - `a.scatter(x, y)` - very similar to `a.plot()`
+            - allows each point to be formatted differently (colour, marker, size)
+            - defaults to not drawing a line between points
+    - errorbar plot
+        - `a.errorbar(x, y, yerr=5, xerr=2)` - again similar to `a.plot()`, but with errorbars
     - bar charts
-    - 3D plots
-
-- `.matplotlibrc` file for changing defaults
-    - builtin styles?
-    - matplotlib.style.available
+        - `a.bar(left, height)` - vertical bars, left and height are sequences
+        - `a.bar(bottom, width)` - horizontal bars
 
 #### matrices, ndarrays, ndimage
 
@@ -83,6 +106,8 @@
     - `a = np.tile([1, 2], 5)`
     - `a.fill(7)` fills the array with the number 7, but maintains its shape
     - array methods often operate on the array in-place, while numpy functions often return a new array, but there are lots of exceptions
+
+- `np.eye(5)` - create 5x5 identity matrix
 
 - to get number of rows: `a.shape[0]`
 - to get number of columns: `a.shape[1]`
