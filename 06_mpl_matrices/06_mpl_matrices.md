@@ -177,7 +177,7 @@
         - `a * x` doesn't work, `a.T * x` does
         - called array "broadcasting"
     - can use many of the same methods as on 1D arrays:
-        - `a.max()`, `a.min()`, `a.sum()`, `a.mean()`, etc.
+        - `a.max()`, `a.min()`, `a.sum()`, `a.mean()`, `a.std()`, etc.
         - by default, these work on all elements in a 2D array, and return a single value
         - can be made to work across rows only, or columns only, by specifying the `axis` kwarg
         - `a.max(axis=0)` finds the max across the 1st dimension, i.e. across all rows, and returns one result per column
@@ -201,7 +201,7 @@
     - `np.concatenate()` also has an `axis` kwarg
     - `np.stack()`, `np.hstack()`, `np.vstack()`
 
-- 3D array:
+- 3D arrays:
     - can think of them as movies, i.e. a sequence of images
     ```python
     movie = np.random.random(80).reshape((5, 4, 4)) # 5 frames, each 4 x 4 pixels
