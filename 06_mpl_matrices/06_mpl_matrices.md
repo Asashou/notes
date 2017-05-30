@@ -1,4 +1,4 @@
-### more matplotlib, numpy matrices and ndarrays
+### more matplotlib, numpy matrices
 
 #### more matplotlib
 
@@ -85,7 +85,7 @@
         - `ax.bar(left, height)` - vertical bars, left and height are sequences
         - `ax.bar(bottom, width)` - horizontal bars
 
-#### matrices, ndarrays, ndimage
+#### matrices
 
 - so far, we've (mostly) only dealt with 1D arrays, a.k.a. vectors
 - numpy allows for N dimensional arrays, but most common are 2D arrays, a.k.a. matrices
@@ -111,9 +111,7 @@
     - `a = np.random.random((8, 2))`
     - `a = np.tile([1, 2], 8)`
     - `a.fill(7)` fills the array with the number 7, but maintains its shape
-    - array methods often operate on the array in-place, while numpy functions often return a new array, but there are lots of exceptions
-
-- `np.eye(5)` - create 5x5 identity matrix
+    - `np.eye(5)` - create 5x5 identity matrix
 
 - to get number of rows: `a.shape[0]`
 - to get number of columns: `a.shape[1]`
@@ -141,13 +139,15 @@
         - `im = ax.imshow(a, cmaps='jet')` - set during `imshow` call
         - `im.set_cmap('viridis')` - modify existing image object
 
-- `scipy.ndimage`
-    - loading different image types
-    - increase contrast of an image
-        - `np.percentile`
-        - denoising/smoothing
-            - convolution, say box filter
+- `scipy.ndimage` and `skimage` are great for all kinds of image manipulation
+    - loading different image types as arrays
+    - change contrast of an image
+    - manipulate colours
     - thresholding, masking an image
+    - image denoising/smoothing
+    - image segmentation
+    - see recent local Python talk by Joe Donovan for lots of examples:
+        - https://github.com/superpythontalks/image_analysis/blob/master/image%20processing.ipynb
 
 - 2D indexing and slicing
     - get element in 1st row, 1st column: `a[0, 0]`
@@ -176,6 +176,12 @@
         - `x = np.arange(8)`
         - `a * x` doesn't work, `a.T * x` does
         - called array "broadcasting"
+    - can use many of the same methods as on 1D arrays:
+        - `a.max()`, `a.min()`, `a.sum()`, `a.mean()`, etc.
+        - by default, these work on all elements in a 2D array, and return a single value
+        - can be made to work across rows only, or columns only, by specifying the `axis` kwarg
+        - `a.max(axis=0)` finds the max across the 1st dimension, i.e. across all rows, and returns one result per column
+        - `a.max(axis=1)` finds the max across the 2nd dimension, i.e. across all colmuns, and returns one result per row
 
 - matrix operations:
     - `a.transpose()` or its shortcut property `a.T` - swaps rows with columns
@@ -191,6 +197,16 @@
         - `np.outer(x, y)`
         - builds a multiplication table!
 
-- 2D array methods and functions:
-    - `np.concatenate()`, `axis` kwarg
+- concatenating arrays in 2D:
+    - `np.concatenate()` also has an `axis` kwarg
     - `np.stack()`, `np.hstack()`, `np.vstack()`
+
+- 3D array:
+    - can think of them as movies, i.e. a sequence of images
+    ```python
+    movie = np.random.random(80).reshape((5, 4, 4)) # 5 frames, each 4 x 4 pixels
+    for framei, image in enumerate(movie):
+        f, ax = plt.subplots()
+        ax.imshow(image, cmap='jet')
+        f.canvas.set_window_title('frame %d' % framei)
+    ```
