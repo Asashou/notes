@@ -33,21 +33,22 @@
     s = np.sin(t) # calculate sine as a function of t
     c = np.cos(t) # calculate cosine as a function of t
     plt.plot(t, s) # plot points in t on x-axis vs. points in s on y-axis
+    plt.plot(t, c) # plot cosine as well
     ````
     - MPL also has an alternative, more Pythonic, object-oriented (OOP) style, with very similar commands
     - first, you explicitly create a figure and an axes
     - `f, ax = plt.subplots()` - by default creates a new figure with one set of x-y axes, and returns objects representing them
         - notice the `s` in `plt.subplots()`, `plt.subplot()` is a slightly different MATLAB-style procedural command which you shouldn't need to use
-    - now, we can do most of our plot commands as methods of this particular axes `a`:
+    - now, we can do most of our plot commands as methods of this particular axes `ax`:
         - `ax.plot(t, s)`
         - common formatting commands in OOP style:
             - `ax.set_xlim()`, `ax.set_ylim()`, `ax.set_xlabel()`, `ax.set_ylabel()`, `ax.set_title()`, `ax.legend()`
         - compare with MATLAB style:
             - `plt.xlim()`, `plt.ylim()`, `plt.xlabel()`, `plt.ylabel`, `plt.title()`, `plt.legend()`
+        - OOP style is slightly more wordy, but much more explicit, gives better control over multiple figures
         - one more useful figure property worth formatting is `spines`, only easily accessible through the OOP interface:
             - `ax.spines['top'].set_visible(False)`
             - `ax.spines['right'].set_visible(False)`
-        - OOP style is slightly more wordy, but much more explicit, gives better control over multiple figures
     - with multiple figures and axes open, we can refer to them directly by name, no longer have to worry about which is the "current" figure:
     - `f2, ax2 = plt.subplots()`
     - `ax2.hist(s)` - plot a histogram of sin(t) this time
@@ -99,7 +100,7 @@
     - using `np.arange()`, and then reshaping:
     - `a = np.arange(16).reshape((8, 2))`
         - creates a 1D array, but then reshapes it to 2D
-        - 2D array shape tuples are always `(nrows, ncolums)`
+        - 2D array shape tuples are always `(nrows, ncolumns)`
         - check the shape of an array: `a.shape`
         - `nrows * ncols` of the reshaped array have to equal the number of elements in the 1D array
         - get the total number of elements in an array, whether 1D or 2D or ND: `a.size`
