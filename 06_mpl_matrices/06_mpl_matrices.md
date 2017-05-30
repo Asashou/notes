@@ -95,7 +95,7 @@
 
 - initializing a 2D array is very similar to 1D arrays
     - explicitly, using a list of lists, or a tuple of tuples, convert to array:
-    - `a = np.array([[1, 2, 3], [4, 5, 6]])` or `a = np.array(((1, 2, 3), (4, 5, 6)))``
+    - `a = np.array([[1, 2, 3], [4, 5, 6]])` or `a = np.array(((1, 2, 3), (4, 5, 6)))`
     - using `np.arange()`, and then reshaping:
     - `a = np.arange(16).reshape((8, 2))`
         - creates a 1D array, but then reshapes it to 2D
@@ -198,7 +198,8 @@
         - builds a multiplication table!
 
 - concatenating arrays in 2D:
-    - `np.concatenate()` also has an `axis` kwarg
+    - `np.concatenate()` also has an `axis` kwarg which denotes which axis you want to lengthen
+        - compare `np.concatenate([a, b], axis=0)` with `np.concatenate([a, b], axis=1)`
     - `np.stack()`, `np.hstack()`, `np.vstack()`
 
 - 3D arrays:
