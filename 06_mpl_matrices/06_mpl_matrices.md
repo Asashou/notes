@@ -110,7 +110,7 @@
     - `a = np.zeros((8, 2))`
     - `a = np.ones((8, 2))`
     - `a = np.random.random((8, 2))`
-    - `a = np.tile([1, 2], 8)`
+    - `a = np.tile([1, 2], (8, 1))` - tile the pattern `[1, 2]` in 8 rows and 1 column
     - `a.fill(7)` fills the array with the number 7, but maintains its shape
     - `np.eye(5)` - create 5x5 identity matrix
 
@@ -151,19 +151,23 @@
         - https://github.com/superpythontalks/image_analysis/blob/master/image%20processing.ipynb
 
 - 2D indexing and slicing
+    - very similar to 1D arrays, but now we require two indices, not just one
+    - `a = np.arange(16).reshape((8, 2))`
     - get element in 1st row, 1st column: `a[0, 0]`
     - get element in 3rd row, 2nd column: `a[2, 1]`
     - get element in last row, last column: `a[-1, -1]`
-    - get element in 3rd row, 3rd column: `a[2, 2]` - IndexError!
+    - get element in 3rd row, 3rd column: `a[2, 2]` - IndexError! there is no 3rd column
     - get the first row, across all the columns: `a[0, :]`, or just `a[0]` for short
     - get the first column, across all the rows: `a[:, 0]`
     - get first 3 rows: `a[:3]`
     - get every other row: `a[::2]`
+    - get first 2 columns: `a[:, :2]` - there are only 2 column anway, so this just returns `a`
     - flip matrix vertically by reversing order of rows: `a[::-1]`
     - flip matrix horizontally by reversing order of columns: `a[:, ::-1]`
     - rotate matrix in steps of 90 deg:
         - `np.rot90(a)` - counterclockwise
         - `np.rot90(a, -1)` - clockwise
+        - `np.rot90(a, -2)` - 180 degrees clockwise
 
 - arithmetic operations on 2D arrays
     - matrix & scalar, same as for 1D arrays, works elementwise
