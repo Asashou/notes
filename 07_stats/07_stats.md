@@ -1,20 +1,11 @@
 ### statistics
 
-- numpy
-    - some linalg?
-- scipy
-    - stats
-    - loadmat, savemat, .mat versions
-    - ndimage
-    - signal
-        - filtering
-        - fft
-        - spectrograms
-    - generate some audio! or write to .wav file and then listen to it
-- scikit-image
-- opencv somewhere?
-- sklearn, MDP
-    - PCA, ICA
-- talk a bit about math concepts?
-- jupyter notebook for interactive exploration of parameters and effect on resulting plots
-    - lorenz attractor example looks nice!
+- mpl hist vs np hist
+- AJ had stats talk, gleaned from scipy.stats tutorial
+- create distribution object, sample it to get data
+    - plot pdf and cdf of sampled data, maybe add noise to it, or give it a slight offset?
+
+    - then do some stats to test if it's significantly different from 0 (due to offset), or significantly different from some other distrib
+    - various different stats tests, parametric vs non-parametric?
+- next run a fitting algorithm to extract the estimated distribution parameters (say mean and std of Gaussian) from the noisy data
+    - scipy.optimize?
