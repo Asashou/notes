@@ -28,7 +28,8 @@
         mu, sigma = 0, 1
         s = np.random.normal(loc=mu, scale=sigma, size=1000) # s for "sample"
         f, ax = plt.subplots()
-        ax.hist(x, bins=30)````
+        ax.hist(x, bins=30)
+        ````
     - what if your data are bimodally distributed (having 2 peaks) like this?:
         ```python
         s1 = np.random.normal(loc=0, scale=1, size=1000)
@@ -148,8 +149,8 @@
         t, p = stats.ttest_ind(s1, s2, equal_var=False) # Welch's
         # p < 0.05, reject null hypothesis, samples are significantly different
         ````
-    - t-test is a kind of "parametric" test, assumes data come from some distribution that can be described by some parameters, in this case mean and std
-    - there are also "non-parametric" tests, which assume nothing about the underlying distributions of two samples
+    - t-test is a kind of "parametric" test, assumes data come from some distribution that can be described by some parameters, in this case mean and std of normal distrib
+    - there are also "non-parametric" tests, which assume nothing about the underlying distributions
     - this makes them safe in their assumptions, but gives them less statistical power
     - a commonly used one is Mann-Whitney U test
         - `u, p = stats.mannwhitneyu(s1, s2)` still gives p < 0.05, but is higher than for Welch's t-test
