@@ -26,7 +26,7 @@
     - in addition to uniform distrib, the other very common continuous distribution is the normal (Gaussian) distrib
         ```python
         mu, sigma = 0, 1
-        s = np.random.normal(loc=mu, scale=sigma, size=1000) # call it s for "sample"
+        s = np.random.normal(loc=mu, scale=sigma, size=1000) # s for "sample"
         f, ax = plt.subplots()
         ax.hist(x, bins=30)````
     - what if your data are bimodally distributed (having 2 peaks) like this?:
@@ -56,7 +56,7 @@
         - for discrete values, best to use no more than one bin per possible value, as above, otherwise you'll end up with artificial gaps between discrete values:
         ```python
         f, ax = plt.subplots()
-        edges = np.arange(0, 10.5, 0.5) # bin edges, 0 to 10, inclusive, steps of 0.5
+        edges = np.arange(0, 10.5, 0.5) # bin edges, 0 to 10 inclusive, 0.5 steps
         ax.hist(s, bins=edges) # notice the artificial gaps
         ````
 
@@ -83,7 +83,7 @@
         rv.std() # returns exactly 0.5
         s = rv.rvs(1000) # sample 1000 random values from rv
         f, ax = plt.subplots()
-        ax.hist(s, bins=30) # looks similar to what we got earlier from np.random.normal()
+        ax.hist(s, bins=30) # similar to what we got before from np.random.normal()
         ````
     - note that each time you sample a random value, you get different values out:
         ```python
@@ -98,7 +98,7 @@
         - let's plot the exact representation of the normal distribution over top of the normalized histogram of our 1000 sampled values from that distribution:
         ```python
         f, ax = plt.subplots()
-        ax.hist(s, bins=30, normed=True) # plot a normalized distrib, ie area == 1
+        ax.hist(s, bins=30, normed=True) # plot a normalized distrib, area == 1
         x = np.arange(3, 7, 0.01) # evenly spaced x values from 3 to 7
         y = rv.pdf(x) # exact distribution
         ax.plot(x, y)
@@ -145,7 +145,7 @@
         f, ax = plt.subplots()
         ax.hist(s1, bins='auto')
         ax.hist(s2, bins='auto')
-        t, p = stats.ttest_ind(s1, s2, equal_var=False) # equal_var=False is Welch's
+        t, p = stats.ttest_ind(s1, s2, equal_var=False) # Welch's
         # p < 0.05, reject null hypothesis, samples are significantly different
         ````
     - t-test is a kind of "parametric" test, assumes data come from some distribution that can be described by some parameters, in this case mean and std
@@ -156,7 +156,9 @@
     - to test if a sample comes from a given type of distribution, use the "Kolmogorov-Smirnov" test, whose null hypothesis says the sample comes from the distribution:
         ```python
         mu, sigma = bimodal.mean(), bimodal.std() # blindly assume it's normal
-        d, p = stats.kstest(bimodal, 'norm', args=(mu, sigma)) # p = 0.0, reject null, not normal
+        d, p = stats.kstest(bimodal, 'norm', args=(mu, sigma))
+        # p = 0.0, reject null, not normal
         s = stats.norm.rvs(loc=-2, scale=2, size=200)
-        d, p = stats.kstest(s, 'norm', args=(-2, 2)) # p > 0.05, can't reject null, likely normal
+        d, p = stats.kstest(s, 'norm', args=(-2, 2))
+        # p > 0.05, can't reject null, likely normal
         ````
