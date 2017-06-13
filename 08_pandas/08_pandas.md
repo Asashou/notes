@@ -147,7 +147,7 @@
         - `exps.groupby('outcome').mean()` will now show duration as well
 
 
-- `.to_records()` gives `numpy.recarray` - special "record array" that can handle heterogenous data
+- `.to_records()` gives `numpy.recarray` - special numpy "record array" that can handle heterogenous data
 
 
 - missing data:
@@ -183,9 +183,12 @@
             - `a.dtype` gives `dtype('float64')`
             - this is because `np.nan` is itself a special float value
             - a single `np.nan` forces the whole array to become float, even though all the real values it was given were integers
-    - pandas DataFrame deals better with missing data:
+    - pandas DataFrame deals better with missing data
+        - `pd.DataFrame(missd)` and `pd.DataFrame(nand)`
+        - any stats exclude missing data
 
-
-- `pd.date_range()`
+- pandas can handle dates, and date ranges, which can then be used as indices:
+    - `dr = pd.date_range('2017-06-01', periods=10, freq='D')`
+    - `s3 = pd.Series(data=fl, index=dr)`
 
 - see both pandas cheat sheets
