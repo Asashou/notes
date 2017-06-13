@@ -70,8 +70,11 @@
         - `s.plot.hist()`
         - `s.plot.bar()`, and others
     - simple stats as Series methods:
-        - `s.min()`, `s.max()`, `.mean()`, `.median()`, `.std()`
+        - `s.min()`, `s.max()`, `.sum()`, `.mean()`, `.median()`, `.std()`
         - `s.describe()` returns nice summary of several stats
+    - pandas can handle dates, and date ranges, which can then be used as indices:
+        - `dr = pd.date_range('2017-06-01', periods=10, freq='D')`
+        - `s3 = pd.Series(data=fl, index=dr)`
     - note if indices are numeric (as opposed to strings), they need not be in numerical order, they're just a label:
     ```python
     t2 = np.array([ 0.5,  0.7,  0.4,  0.2,  0.1,  0.8,  0.9,  0.3,  0. ,  0.6])
@@ -129,8 +132,10 @@
     - `exp1 = pd.read_excel('exp.xlsx', sheetname='exp1')`
     - `exp2 = pd.read_excel('exp.xlsx', sheetname='exp2')`
 
+- can also save DataFrames to .csv and .xslx files using `.to_csv()` and `.to_excel()`
+
 - DataFrame has same simple stats methods as Series, but now calculated separately for each numerical column:
-    - `exps.min()`, `exps.max()`, `exps.mean()`, `exps.median()`, `exps.std()`
+    - `exps.min()`, `exps.max()`, `exps.sum()`, `exps.mean()`, `exps.median()`, `exps.std()`
     - `exps.describe()` returns separate stats summary for each column
     - `.nunique()` counts number of unique values of a column or Series:
         - `exps.subject.nunique()`
@@ -145,10 +150,6 @@
     - if you want examine trial outcome vs trial duration, need to add duration as a new column:
         - `exps['duration'] =  exps.end_time - exps.start_time`
         - `exps.groupby('outcome').mean()` will now show duration as well
-
-
-- `.to_records()` gives `numpy.recarray` - special numpy "record array" that can handle heterogenous data
-
 
 - missing data:
     - say you have 2D data, and one data point is missing
@@ -186,9 +187,5 @@
     - pandas DataFrame deals better with missing data
         - `pd.DataFrame(missd)` and `pd.DataFrame(nand)`
         - any stats exclude missing data
-
-- pandas can handle dates, and date ranges, which can then be used as indices:
-    - `dr = pd.date_range('2017-06-01', periods=10, freq='D')`
-    - `s3 = pd.Series(data=fl, index=dr)`
 
 - see both pandas cheat sheets
