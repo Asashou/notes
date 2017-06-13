@@ -42,40 +42,41 @@
         - another annoyance: say you want to get fluorescence value at a specific timepoint, like t=0.2 seconds
         - 2 step process:
         ```python
-        idx = t == 0.2 # find where t is 0.2, get a boolean array idx
+        idx = t == 0.2 # find where t is 0.2, save boolean array to idx
         v = fl[idx] # use idx as index into fl, get a float array with one entry
         # or in one line:
         v = fl[t == 0.2] # also a float array with one entry
-        v[0] # to get the actual float value out of it, tedious!
+        v[0] # in either case, to get the actual float value out - tedious!
         ````
-    - combine fluorescence data and timestamps into a single pandas data series:
+    - pandas lets you combine fluorescence data and timestamps into a single pandas data series:
     - `s = pd.Series(data=fl, index=t)` - kwarg 'index' means row labels
     - now if you want to trim the Series, it's a single command:
-    - `s.iloc[:5]` for the 1st 5 data points - `.iloc` stand for "integer location"
+    - `s.iloc[:5]` for the 1st 5 data points - `.iloc` stands for "integer location"
         - same as `s.head()`
         - `s.tail()` returns last 5 data points
     - to get fluorescence at t=0.2 sec, it's a single user-friendly command:
-        - `s[0.2]`, or equivalently, `s.loc[0.2]` - `.loc` stand for "location"
+        - `s[0.2]`, or equivalently, `s.loc[0.2]` - `.loc` stands for "location"
     - can also slice data directly between non-integer indices:
         - `s[:0.2]` returns all values from start to t=0.2, inclusive
         - `s[0.3:0.7]` does what you'd expect
-        - Series slices always return another Series. To get the actual values out, use `.values`
+        - Series slices always return another Series. To get the actual data values out, use `.values`
             - `s[0.3:0.7].values` - returns a normal array of just fluorescence values
     - can do vectorized math operations on Series, just like on arrays:
         - `s - 5`
     - you can plot immediately using Series methods, without having to specify x and y args!
         - `s.plot()` - line plot to current MPL axes, or creates new one if none exist
-        - use `f, ax = plt.subplots` to prevent overwriting existing figures, don't forget to `import matplotlib.pyplot as plt`
+        - use `f, ax = plt.subplots` to prevent overwriting existing figures
+            - don't forget to `import matplotlib.pyplot as plt`
         - `s[:0.5].plot()`
         - `s.plot.hist()`
-        - `s.plot.bar()`, and others
+        - `s.plot.bar()`, `s.plot.area()`, and others
     - simple stats as Series methods:
-        - `s.min()`, `s.max()`, `.sum()`, `.mean()`, `.median()`, `.std()`
+        - `s.min()`, `s.max()`, `s.sum()`, `s.mean()`, `s.median()`, `s.std()`
         - `s.describe()` returns nice summary of several stats
     - pandas can handle dates, and date ranges, which can then be used as indices:
         - `dr = pd.date_range('2017-06-01', periods=10, freq='D')`
-        - `s3 = pd.Series(data=fl, index=dr)`
-    - note if indices are numeric (as opposed to strings), they need not be in numerical order, they're just a label:
+        - `s3 = pd.Series(data=fl, index=dr)` - fluorescence as a f'n of time in days!
+    - NOTE: numeric indices need not be in numerical order, they're just a label:
     ```python
     t2 = np.array([ 0.5,  0.7,  0.4,  0.2,  0.1,  0.8,  0.9,  0.3,  0. ,  0.6])
     s2 = pd.Series(data=fl, index=t2)
@@ -84,20 +85,22 @@
     - indices don't even have to be unique! but that's weird
 
 - `pd.DataFrame`
-    - looks and feels a lot like a spreadsheet
     - like a 2D numpy array, but both row and column indices can be non-integers
+    - looks and feels a lot like a spreadsheet
     - again, indices are more like labels, can be ints, floats, strings
     - e.g., short segment of neural EEG voltage data on 3 channels
         ```python
-        v = np.array(np.random.random((20, 3))) # voltage
+        v = np.array(np.random.random((20, 3))) # 2D array of voltages
         t = np.arange(0, 20*50, 50) # timestamps, in ms
         chans = ['Fz', 'Cz', 'Pz'] # scalp electrode labels
         df = pd.DataFrame(data=v, index=t, columns=chans) # 'index' is rows
         ````
     - `df.iloc[:5]` - returns another dataframe of first five rows, same as `df.head()`
+    - `df.iloc[0, 0]` - returns entry in 1st row and 1st column, just like 2D array
+    - `df.iloc[-1, -1]` - returns entry in last row and last column
     - `df['Fz']` returns a single column, this time as a series, because it's only 1D
     - `df.Fz` can also be used as a shortcut
-    - `df.loc[50]` returns a single row (at t=50 ms), also a series
+    - `df.loc[50]` returns a single row at t=50 ms, also a series
     - if we want a specific voltage value at a specific channel and timestamp:
         - `df['Fz'][50]` - specify column, then row, opposite of numpy, but same as spreadsheet indexing (i.e., cell A2, C7, etc.)
         - or if you prefer (row, column) indexing: `df.loc[50]['Fz']` gives same result
@@ -109,7 +112,7 @@
     - each line of text is a row, commas separate the columns
     - first line can be treated as a "header" of column labels
     - `exp1 = pd.read_csv('exp1.csv')`
-    - pandas automatically uses the header to label each column in the DataFrame
+    - pandas automatically uses the file header to label each column in the DataFrame
     - notice the data types differ across columns, but are consistent within column
     - what might happen if we try `exp1.plot()`?
         - plots numerical columns as a function of trials
@@ -123,8 +126,8 @@
         - horizontally by using the kwarg `axis=1` ("across columns")
     - now that we have more data, scatter plot trial start and end times:
         - `exps.plot.scatter('start_time', 'end_time')`
-        - computer correlations between all numeric column s: `exps.corr()`
-    - sorting DataFrame by column: `exps.sort_values('start_time')`
+        - compute correlations between all numeric columns: `exps.corr()`
+    - sort a DataFrame by values according to a column: `exps.sort_values('start_time')`
 
 - can also load directly from .xlsx files
     - pandas relies on another library for this called `xlrd`, which comes with Anaconda
@@ -132,7 +135,7 @@
     - `exp1 = pd.read_excel('exp.xlsx', sheetname='exp1')`
     - `exp2 = pd.read_excel('exp.xlsx', sheetname='exp2')`
 
-- can also save DataFrames to .csv and .xslx files using `.to_csv()` and `.to_excel()`
+- can also save a DataFrame to .csv and .xslx files using `.to_csv()` and `.to_excel()`
 
 - DataFrame has same simple stats methods as Series, but now calculated separately for each numerical column:
     - `exps.min()`, `exps.max()`, `exps.sum()`, `exps.mean()`, `exps.median()`, `exps.std()`
@@ -141,7 +144,7 @@
         - `exps.subject.nunique()`
 
 - `.groupby()` is amazing!
-    - give it column name to "group by", and it finds all the unique values of that column
+    - give it column name to "group by", and it finds all the unique values in that column
     - returns a groupby object, with all the same simple stats methods, including `.describe()`, but now tabulated according to the unique values of the chosen column
     - `exps.groupby('outcome').mean()`
     - `exps.groupby('outcome').describe()`
