@@ -80,10 +80,10 @@
 
 - resizing an image, either up or down:
     ```python
-    ndimage.zoom(faceg, 10) # resize up to original size
+    biglowresgauss = ndimage.zoom(lowresgauss, 10) # resize up to original size
+    biglowresgauss.shape # 790 x 790
     f, ax = plt.subplots()
-    ax.imshow(lowresgauss, cmap='gray') # ... but its pixels have been smoothed
-
+    ax.imshow(biglowresgauss, cmap='gray') # ... but its pixels have been smoothed
     ````
 
 - colour
@@ -125,7 +125,7 @@
     - images can also have a 4th channel: alpha, aka transparency. The alpha channel is a transparency mask for the image. 0 is fully transparent, 255 is fully opaque. So pixels you don't want painted are set to 0:
     ```python
     facea = io.imread('face_alpha.png')
-    facea.shape # gives (782, 782, 4)
+    facea.shape # gives (782, 782, 4), i.e. RGBA
     alpha = facea[:, :, 3] # prints last (4th) hypercolumn
     f, ax = plt.subplots()
     ax.imshow(alpha, cmap='gray')
