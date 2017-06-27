@@ -169,11 +169,20 @@
     ````
 
 - watershed-based segmentation:
+    - see exercises
 
-
-
-
-
+- loading movies using pyav
+    ```python
+    import av
+    v = av.open('movie.avi')
+    mv = []
+    for frame in v.decode(video=0): # get the first video stream in file
+        mv.append(np.asarray(frame.to_image()))
+    mv = np.asarray(mv)
+    mv.shape # 4D array: nframes x nrows x ncols x 3 colour channels
+    f, ax = plt.subplots()
+    ax.imshow(mv[0]) # plot the first frame
+    ````
 
 - useful resources:
 
