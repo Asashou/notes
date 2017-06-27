@@ -171,7 +171,8 @@
 - watershed-based segmentation:
     - see exercises
 
-- loading movies using pyav
+- loading movies using [pyav](http://mikeboers.github.io/PyAV/):
+    - to install pyav in anacoda: `conda install -c soft-matter pyav` at the command line
     ```python
     import av
     v = av.open('movie.avi')
