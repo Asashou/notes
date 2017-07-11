@@ -120,8 +120,9 @@
 
 - `git config`
     - used to tell Git your name, so that changes that you make to a project show up under your name
-    ```git config --global user.name "Martin Spacek"
-       git config --global user.email git@mspacek.mm.st
+    ```
+    git config --global user.name "Martin Spacek"
+    git config --global user.email git@mspacek.mm.st
     ````
     - check your config with `git config --list`
     - you can always get help on a subcommand with `git <subcommand> --help` or `git help <command>`
