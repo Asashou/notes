@@ -172,16 +172,19 @@
     - you can refer to a commit by just the first few characters of its ID, i.e. f7e6501
     - `git log f7e6501` displays only that one commit
 
-- do Exercises 3 and 4
+- do Exercises 3, 4 and 5
 
 - `git checkout`
     - revert uncommited changes with `git checkout -- filename` or `git checkout --force filename`
     - "check out" the state of your files at a particular time in history by specifying the commit ID:
         - `git checkout f7e6501`
+        - notice the `HEAD detached` message in `git status`
+        - to go back to the latest version, use `git checkout master`
 
-- `.gitignore` file
+- `.gitignore` file lets you specify patterns to match which kinds of files/folders git should ignore, so that they never even show up as untracked
+    - e.g. `*.temp` - one pattern per line
 
-- do Exercises 5 and 6
+- do Exercises 6 and 7
 
 - you can version control any files, not just code or plain text
     - images, PDFs, excel files, word docs... - these are binary files, can't be viewed in text editor
@@ -195,8 +198,6 @@
 - `git pull`
     - updates your local copy of a repository from the remote one
     - if you've made your own local changes and commits, conflicts might arise!
-
-- do Exercises 7 and 8
 
 - GUIs for Git:
     - see https://git-scm.com/download/gui/linux for an extensive list
