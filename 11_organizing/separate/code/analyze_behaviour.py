@@ -19,7 +19,7 @@ for subjfname in subjfnames:
         expbasename, ext = os.path.splitext(expfname) # remove .xlsx extension
         ax.set_title(expbasename) # set axes title
         f.canvas.set_window_title(expbasename) # set figure window title
-        f.savefig(os.path.join(RESULTSPATH, expbasename + '.pdf'), format='pdf')
+        f.savefig(os.path.join(RESULTSPATH, expbasename + '_rt.pdf'), format='pdf')
         dfs.append(df) # collect all experiment DataFrames
 
 # plot average reaction time as a function of outcome, for all experiments in all subjects:
