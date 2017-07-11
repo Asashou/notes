@@ -60,16 +60,15 @@
 
     code/
         common.py
-        scripts/
-            analyze_behaviour.py
-            analyze_imaging.py
+        analyze_behaviour.py
+        analyze_imaging.py
 
     results/
         subj01/
             subj01_exp01_2017_01_08_behaviour.pdf
             subj01_exp01_2017_01_08_imaging.pdf
             subj01_exp02_2017_01_09_behaviour.pdf
-            subj01_exp02_2017_01_09_images/
+            subj01_exp02_2017_01_09_imaging.pdf
         subj02/
             subj02_exp07_2017_02_10_behaviour.pdf
             subj02_exp08_2017_02_11_behaviour.pdf
@@ -77,11 +76,11 @@
         all_subjects_imaging.pdf
         ...
     ````
-    - keeping code/data/results separate might also reduce the number of files per folder, making file listings easier to look at
+    - keeping code/data/results separate might also reduce the number of files per folder, making file listings easier to examine at once
     - another benefit is that your original raw data should never be modified - storing it separately from your code and results will help ensure that you don't modify (or delete!) it by accident
         - another safeguard is to only give yourself read access to the raw data when doing analysis - details of that depend on your OS and filesystem
 
-    - code folder might consist of both scripts and modules (AKA libraries)
+    - code folder might consist of both scripts and modules
         - scripts are something you run, either directly at the command line (`python my_script.py`) or from within IPython/Jupyter (`run -i my_script.py`)
         - modules are something you import, typically define functions that you might use throughout many scripts. script might start with `from common import plot_reaction_times` and then use that function somewhere in the script
         - modules are great because you don't need to write the same function multiple times, just once, then import it into each script where you need it
@@ -90,12 +89,12 @@
             - less code to read, less code to understand and debug
             - bugs are detected faster, because all your scripts rely on the same common functions in your module(s) - one error will likely affect all of your scripts, instead of just one or two
 
+- module and script file names are typically lowercase, no spaces, underscores if need-be
+
 - you might want to modify your code to make it more readable
     - some style guides:
-        http://pep8.org
-        http://docs.python-guide.org/en/latest/writing/style/
-
-- module and script file names are typically lowercase, no spaces, underscores if need-be
+        - http://pep8.org
+        - http://docs.python-guide.org/en/latest/writing/style/
 
 - Python lets you control what happens if a `.py` file is being run as a script vs. if it's being imported as a module
     - at the end of the file, you can write:
