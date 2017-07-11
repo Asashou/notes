@@ -22,20 +22,20 @@
     - e.g. storing data, code and results together for an experiment with both behaviour and imaging for some subjects, and only behaviour for other subjects:
     ```
     experiments/
-        subj21/
-            subj21_exp01_2017_01_08.xlsx
-            subj21_exp01_2017_01_08_images/
-            subj21_exp01_2017_01_08_behaviour.ipynb
-            subj21_exp01_2017_01_08_imaging.ipynb
-            subj21_exp02_2017_01_09.xlsx
-            subj21_exp02_2017_01_09_images/
-            subj21_exp02_2017_01_09_behaviour.ipynb
-            subj21_exp02_2017_01_09_imaging.ipynb
-        subj23/
-            subj23_exp07_2017_02_10.xlsx
-            subj23_exp07_2017_02_10_behaviour.ipynb
-            subj23_exp08_2017_02_11.xlsx
-            subj23_exp08_2017_02_11_behaviour.ipynb
+        subj01/
+            subj01_exp01_2017_01_08.xlsx
+            subj01_exp01_2017_01_08_images/
+            subj01_exp01_2017_01_08_behaviour.ipynb
+            subj01_exp01_2017_01_08_imaging.ipynb
+            subj01_exp02_2017_01_09.xlsx
+            subj01_exp02_2017_01_09_images/
+            subj01_exp02_2017_01_09_behaviour.ipynb
+            subj01_exp02_2017_01_09_imaging.ipynb
+        subj02/
+            subj02_exp07_2017_02_10.xlsx
+            subj02_exp07_2017_02_10_behaviour.ipynb
+            subj02_exp08_2017_02_11.xlsx
+            subj02_exp08_2017_02_11_behaviour.ipynb
         ...
     ````
     - over time, as you collect new data, you probably want to run the same code on the new data
@@ -49,14 +49,14 @@
     - in any of these cases, it might be better to store your data, code and results in separate locations, and write python scripts/modules (`.py` files) instead of Jupyter notebooks (`.ipynb` files):
     ```
     data/
-        subj21/
-            subj21_exp01_2017_01_08.xlsx
-            subj21_exp01_2017_01_08_images/
-            subj21_exp02_2017_01_09.xlsx
-            subj21_exp02_2017_01_09_images/
-        subj23/
-            subj23_exp07_2017_02_10.xlsx
-            subj23_exp08_2017_02_11.xlsx
+        subj01/
+            subj01_exp01_2017_01_08.xlsx
+            subj01_exp01_2017_01_08_images/
+            subj01_exp02_2017_01_09.xlsx
+            subj01_exp02_2017_01_09_images/
+        subj02/
+            subj02_exp07_2017_02_10.xlsx
+            subj02_exp08_2017_02_11.xlsx
 
     code/
         common.py
@@ -65,14 +65,14 @@
             analyze_imaging.py
 
     results/
-        subj21/
-            subj21_exp01_2017_01_08_behaviour.pdf
-            subj21_exp01_2017_01_08_imaging.pdf
-            subj21_exp02_2017_01_09_behaviour.pdf
-            subj21_exp02_2017_01_09_images/
-        subj23/
-            subj23_exp07_2017_02_10_behaviour.pdf
-            subj23_exp08_2017_02_11_behaviour.pdf
+        subj01/
+            subj01_exp01_2017_01_08_behaviour.pdf
+            subj01_exp01_2017_01_08_imaging.pdf
+            subj01_exp02_2017_01_09_behaviour.pdf
+            subj01_exp02_2017_01_09_images/
+        subj02/
+            subj02_exp07_2017_02_10_behaviour.pdf
+            subj02_exp08_2017_02_11_behaviour.pdf
         all_subjects_behaviour.pdf
         all_subjects_imaging.pdf
         ...
