@@ -152,7 +152,7 @@
     - `git add <filename>` tells git to start noticing that file by "staging" it, i.e. marking it as ready to be committed
 
 - `git diff`
-    - if there are any "tracked" files that have been modified, `git diff` will show you how they've changed
+    - if there are any "tracked" files that have been modified, `git diff` will show you how they've changed, on a line-by-line basis
     - diff and long lines don't get along, motivation to keep lines below 100 chars max
 
 - `git commit`
