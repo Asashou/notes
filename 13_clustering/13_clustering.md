@@ -32,15 +32,41 @@
         - that's what the 'k' in k-means refers to
     - because it uses only distance to assign points to clusters, it performs poorly for elongated clusters
 
-- k-means demo and exercise
+- *k-means demo and exercises*
 
 #### DBSCAN algorithm:
 
+- DBSCAN = "Density-based spatial clustering of applications with noise"
 - density-based instead of just distance based
-- does much better than k-means with clusters of different sizes and shapes
-- it figures out the number of clusters automatically!
+- does better than k-means for elongated clusters
+- figures out the number of clusters automatically!
+- doesn't require that every point be assigned to a cluster - allows for outliers
 
+- *DBSCAN demo and exercises*
+
+- lots of other clustering algorithms in `sklearn.cluster`, see:
+    - http://scikit-learn.org/stable/modules/clustering.html
+    - http://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html
+
+- an even better, simpler density-based algorithm:
+    Clustering by fast search and find of density peaks
+    Rodriguez and Laio, Science, 2014
+    - unfortunately, no good Python library for it (yet)
 
 ### dimension reduction
 
-datasets.make_classification for generating high-D data with low-D embedded structure
+- say you're recording activity from 20 neurons simultaneously
+- your whole dataset is 20 dimensional, and can be described by an nsamples x 20 array:
+    - one sample timepoint per row, one column per neuron, activity level at each entry
+- the activity of some of those neurons might be correlated, and therefore somewhat redundant
+- no one can visualize data in 20D space, but we can if it's 2D or 3D
+- dimension reduction algorithm can look for redundancy in the data and project it into a new smaller dimensional space that still captures the original data fairly well, without throwing away too much information
+- most common kind is PCA: principal components analysis
+    - PCA looks for directions of maximum variance in the data, and rotates the axes in such a way that makes them best explain the variance
+
+- *PCA demo*
+
+- lots of other kinds of dimension reduction, or "decompositions" in `sklearn.decomposition`:
+    - http://scikit-learn.org/stable/modules/decomposition.html
+    - very nice description of PCA, by former neuroscientist Jonathan Shlens:
+        - A Tutorial on Principal Component Analysis: https://arxiv.org/abs/1404.1100
