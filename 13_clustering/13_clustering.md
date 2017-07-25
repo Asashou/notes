@@ -5,8 +5,8 @@
     - in that case, the question is "are my treatment data significantly different from control", and you use a stats test to answer that
     - there's no clustering required, because your data already come with built-in labels!
 
-- sometimes you have a bunch of data, with no specific hypothesis that you're testing, no treatment vs. control
-    - your data points come without labels, i.e. they're unclustered, all coloured the same
+- you might collect a bunch of data, with no specific hypothesis that you're testing, no treatment vs. control
+    - your data points come without labels, i.e. they're unclustered, all have the same colour
     - you might wonder if your data naturally fall into various clusters/categories, or if they're just one big continuous cloud of smoothly varying data points
     - if they **do** form clusters, then you should probably analyze each cluster separately instead of lumping all your data together
     - clustering is a type of exploratory data analysis
@@ -28,8 +28,7 @@
 
 - After enough iterations, cluster centers will stop moving, and cluster membership of each point will become stable.
 - Simple, fast, but it has some limitations:
-    - need to specify how many clusters you want it to find
-        - that's what the 'k' in k-means refers to
+    - need to specify how many clusters you want it to find (hence the 'k' in k-means)
     - because it uses only distance to assign points to clusters, it performs poorly for elongated clusters
 
 - *k-means demo and exercises*
@@ -39,7 +38,7 @@
 - DBSCAN = "Density-based spatial clustering of applications with noise"
 - density-based instead of just distance based
 - does better than k-means for elongated clusters
-- figures out the number of clusters automatically!
+- figures out the number of clusters automatically, but it has two other parameters that have to be tweaked
 - doesn't require that every point be assigned to a cluster - allows for outliers
 
 - *DBSCAN demo and exercises*
@@ -49,8 +48,8 @@
     - http://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html
 
 - an even better, simpler density-based algorithm:
-    Clustering by fast search and find of density peaks
-    Rodriguez and Laio, Science, 2014
+    - "Clustering by fast search and find of density peaks", Rodriguez and Laio, Science, 2014
+    - http://science.sciencemag.org/content/344/6191/1492
     - unfortunately, no good Python library for it (yet)
 
 ### dimension reduction
@@ -59,14 +58,14 @@
 - your whole dataset is 20 dimensional, and can be described by an nsamples x 20 array:
     - one sample timepoint per row, one column per neuron, activity level at each entry
 - the activity of some of those neurons might be correlated, and therefore somewhat redundant
-- no one can visualize data in 20D space, but we can if it's 2D or 3D
+- you can't visualize data in 20D space, but you can if it's 2D or 3D
 - dimension reduction algorithm can look for redundancy in the data and project it into a new smaller dimensional space that still captures the original data fairly well, without throwing away too much information
 - most common kind is PCA: principal components analysis
     - PCA looks for directions of maximum variance in the data, and rotates the axes in such a way that makes them best explain the variance
 
 - *PCA demo*
 
-- lots of other kinds of dimension reduction, or "decompositions" in `sklearn.decomposition`:
+- lots of other kinds of dimension reduction, or "decompositions", in `sklearn.decomposition`:
     - http://scikit-learn.org/stable/modules/decomposition.html
     - very nice description of PCA, by former neuroscientist Jonathan Shlens:
-        - A Tutorial on Principal Component Analysis: https://arxiv.org/abs/1404.1100
+        - "A Tutorial on Principal Component Analysis": https://arxiv.org/abs/1404.1100
