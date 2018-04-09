@@ -1,5 +1,9 @@
-### Python basics
+### Command line and Python basics
 
+## Command line/Terminal/Console
+
+- command line is powerful - can be dangerous and intimidating, but it's worth it
+- power law distribution (probably): most people need only a handful of basic commands
 - bash command line basics, assume git bash installed on windows
     - bash = "Bourne-Again SHell"
     - critical commands:
@@ -22,12 +26,24 @@
         - `-` - last used directory, i.e. `cd -` changes to last directory
     - up/down arrow keys to access recently used commands
     - quickly view file contents using `cat filename`
-    - save text output of a command to file using redirection:
+    - save text output of a command to a file using redirection:
         - `ls -al > file_list.txt` - save detailed directory info to file
         - `cat > shopping_list.txt`
             - start typing, Ctrl+D on a blank line to finish writing to file
         - redirection `>` overwrites any existing file!
         - append to a file with `cat >>`, e.g. `cat >> shopping_list.txt`
+
+# Exercises
+1. Launch a terminal, `cd` to your home `~` or `~\Desktop` and list its contents.
+2. Make a directory called `tempdir`. Check that it shows up when you re-list the contents of the current directory.
+3. `cd` to your new `tempdir`. Use `pwd` to ensure you're in the right folder
+4. Make an empty file called `test.txt`. Check that it shows up when re-list the contents of the current directory.
+5.
+5. Save a detailed listing of the current directory to a file called `tempdir_list.txt`
+6. `cd` back to the parent directory, and remove your `tempdir`
+
+## Python basics
+
 - python interpreter
     - interpreted vs compiled languages
     - type `python` at the command line, type `exit()` or hit `Ctrl+D` to exit
@@ -37,7 +53,8 @@
 - functions: take some kind of input, generate some kind of output
     - `print('hello world!')`
     - `s = input('hello? ')`
-- make hello world script, run from command line
+- commands can be saved into a `.py` (plain text) file, then run from the command line
+    - make hello world script, run from command line
     - `python hello.py`
     - `#` is the comment character
 - variable assignment
