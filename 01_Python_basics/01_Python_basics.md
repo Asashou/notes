@@ -1,29 +1,31 @@
 ### Command line and Python basics
 
-## Command line/Terminal/Console
+#### Command line/Terminal/Console
 
-- command line is powerful - can be dangerous and intimidating, but it's worth it
-- power law distribution (probably): most people need only a handful of basic commands
+- command line is powerful - can be dangerous and intimidating, but worth it!
+- power law distribution (probably): most people use only a handful of basic commands
 - bash command line basics, assume git bash installed on windows
     - bash = "Bourne-Again SHell"
     - critical commands:
         - `pwd` - print working directory
         - `cd` - change directories
-        - `ls` - list directory info
-    - others commonly used:
-        - `mv` - move files/folders
-        - `cp` - copy files/folders
-        - `rm` - remove files/folders
-        - `mkdir` - make directory
-        - `touch` - create an empty file, or update last access time of existing file
-        - `cat` - concatenate file(s)
-    - `man COMMAND` and `COMMAND --help` for help
+        - `ls` - list directory contents, defaults to current dir
+            - `ls /some/path` - list contents of some other dir
     - specifying paths:
         - `/` - filesystem root
         - `.` - current directory
         - `..` - parent directory
         - `~` - home folder
         - `-` - last used directory, i.e. `cd -` changes to last directory
+    - others commonly used:
+        - `mv` - move files/folders - a rename is just a move from old name to new name
+        - `cp` - copy files/folders
+        - `rm` - remove files/folders
+        - all three accept `-v` (verbose) flag: prints out confirmation of what was done
+        - `mkdir` - make directory
+        - `touch` - create an empty file, or update last access time of existing file
+        - `cat` - concatenate file(s)
+    - `man COMMAND` and `COMMAND --help` for help
     - up/down arrow keys to access recently used commands
     - quickly view file contents using `cat filename`
     - save text output of a command to a file using redirection:
@@ -33,16 +35,23 @@
         - redirection `>` overwrites any existing file!
         - append to a file with `cat >>`, e.g. `cat >> shopping_list.txt`
 
-# Exercises
-1. Launch a terminal, `cd` to your home `~` or `~\Desktop` and list its contents.
-2. Make a directory called `tempdir`. Check that it shows up when you re-list the contents of the current directory.
-3. `cd` to your new `tempdir`. Use `pwd` to ensure you're in the right folder
-4. Make an empty file called `test.txt`. Check that it shows up when re-list the contents of the current directory.
-5.
-5. Save a detailed listing of the current directory to a file called `tempdir_list.txt`
-6. `cd` back to the parent directory, and remove your `tempdir`
+#### Exercises
 
-## Python basics
+1. Launch a terminal, `cd` to your home `~` or `~/Desktop` and list its contents with `ls`
+2. Make a new directory called `tmp`. Check that it shows up when you re-list the contents of the current directory.
+3. `cd` to your new `tmp`. Use `pwd` to ensure you're in the right folder
+4. Use `touch` to make an empty file called `test.txt`. Now re-list the contents of the current directory. Can you see the new file?
+5. Rename `test.txt` to `empty.txt`
+6. Make another file called `test2.txt` using `cat >`
+7. Display the contents of `test2.txt` with `cat`
+8. Copy `test2.txt` to `test3.txt`, and remove `test2.txt`
+9. Save a **detailed** listing of the current directory to a file called `tmp_list.txt`
+10. `cd` back to the parent directory, list the contents of your `tmp`
+11. Copy `tmp` to `tmp2`. Need `--help`?
+12. Remove both `tmp` and `tmp2`. Make it verbose
+
+
+#### Python basics
 
 - python interpreter
     - interpreted vs compiled languages
@@ -54,7 +63,8 @@
     - `print('hello world!')`
     - `s = input('hello? ')`
 - commands can be saved into a `.py` (plain text) file, then run from the command line
-    - make hello world script, run from command line
+    - need to use a plain text editor - [http://geany.org] is my favourite, but notepad in windows or TextEdit on mac (in plain text mode) is fine
+    - make a hello world script, run from command line
     - `python hello.py`
     - `#` is the comment character
 - variable assignment
@@ -84,7 +94,7 @@
     - special value: `None`
     - division always gives float, unless `//` (div)
         - find remainder using mod operator `%`
-    - using `type()`
+    - use `type()` to determine the type of something
 - flow control:
     - comparison operators: `==`, `!=`, `>`, `<`, `>=`, `<=`
         - compare multiple values at once: `a < b < c...`
@@ -117,3 +127,15 @@
         - indent with tabs or spaces, but spaces are better
         - 4 spaces per indentation level, check editor settings
     - paste multiline code from editor directly into python interpreter
+
+#### Exercises
+
+1. In a script called `basics.py`, use a `for` loop to print out integers 0 to 9. Run it using `python basics.py` at the command line
+2. Modify the script to print out the square of those integers. Test it!
+3. Modify the script to also print out the sum of the integers
+4. Modify the script to print out the square root of those integers
+5. Restore the script as it was in 1. Modify it to print the word `seven` after printing out the integer `7`
+6. Modify it to **also** print out the word `three` after printing out the integer `3`
+7. Rewrite the script so that it prints the messages `1 is odd`, `2 is even`, `3 is odd` all the way up to `10 is even`
+8. Modify it so that it **doesn't** print the message `7 is odd`
+9. Reverse the order of the messages
