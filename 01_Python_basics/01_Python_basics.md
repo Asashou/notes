@@ -42,7 +42,7 @@
 3. `cd` to your new `tmp`. Use `pwd` to ensure you're in the right folder
 4. Use `touch` to make an empty file called `test.txt`. Now re-list the contents of the current directory. Can you see the new file?
 5. Rename `test.txt` to `empty.txt`
-6. Make another file called `test2.txt` using `cat >`
+6. Make another file called `test2.txt` using `cat >`. Punch in a few lines of text, then exit
 7. Display the contents of `test2.txt` with `cat`
 8. Copy `test2.txt` to `test3.txt`, and remove `test2.txt`
 9. Save a **detailed** listing of the current directory to a file called `tmp_list.txt`
@@ -63,7 +63,7 @@
     - `print('hello world!')`
     - `s = input('hello? ')`
 - commands can be saved into a `.py` (plain text) file, then run from the command line
-    - need to use a plain text editor - [http://geany.org] is my favourite, but notepad in windows or TextEdit on mac (in plain text mode) is fine
+    - need to use a plain text editor - http://geany.org is my favourite, but notepad in windows or TextEdit on mac (in plain text mode) are OK
     - make a hello world script, run from command line
     - `python hello.py`
     - `#` is the comment character
@@ -108,7 +108,7 @@
         - `a = val1 or val2`
             - assign `val1` if `bool(val1)` evaluates to True, otherwise assign `val2`
     - `for` loops
-        - `for i in range(10):`
+        - `for i in range(10):` - always ends with a colon, indentation below denotes the block
         - `range(n)` generates values 0 to n-1
             - "give me the first 10 integers"
             - better interpretation: "give me the integer values between fenceposts 0 to n"
@@ -130,12 +130,14 @@
 
 #### Exercises
 
-1. In a script called `basics.py`, use a `for` loop to print out integers 0 to 9. Run it using `python basics.py` at the command line
-2. Modify the script to print out the square of those integers. Test it!
-3. Modify the script to also print out the sum of the integers
-4. Modify the script to print out the square root of those integers
-5. Restore the script as it was in 1. Modify it to print the word `seven` after printing out the integer `7`
-6. Modify it to **also** print out the word `three` after printing out the integer `3`
-7. Rewrite the script so that it prints the messages `1 is odd`, `2 is even`, `3 is odd` all the way up to `10 is even`
-8. Modify it so that it **doesn't** print the message `7 is odd`
-9. Reverse the order of the messages
+1. Launch `python`. Do some math. Calulate `2 + 2` and save it to a variable called `genius`. Now print out the result in `genius`.
+2. use a `for` loop to print out integers 0 to 9.
+3. Exit `python`. Use a text editor to save your code in 2. to a script called `basics.py`. Run it by typing `python basics.py` at the command line. Does it work?
+4. Modify the script to print out the square of those integers. Test it!
+5. Modify the script to also print out the sum of the integers
+6. Modify the script to print out the square root of those integers
+7. Restore the script as it was in 1. Modify it to print the word `seven` after printing out the integer `7`
+8. Modify it to **also** print out the word `three` after printing out the integer `3`
+9. Rewrite the script so that it prints the messages `1 is odd`, `2 is even`, `3 is odd` all the way up to `10 is even`
+10. Modify it so that it **doesn't** print the message `7 is odd`
+11. Reverse the order of the messages
