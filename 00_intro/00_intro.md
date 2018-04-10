@@ -1,4 +1,4 @@
-## Intro
+### Intro
 
 - visual neuroscience and electrophysiology
 - joined Laura Busse's lab, work on mouse vision and behaviour, while recording neurophysiology and doing optogenetic manipulation
@@ -54,7 +54,21 @@
         - code needs to run successfully
         - can work on it for part of last ~2 classes
 
-## Outline
+### Outline
 
-- see website
-
+1. Python basics
+2. Python basics 2
+3. collections
+4. [numpy](http://numpy.org) 1D arrays
+5. more numpy, plotting with [matplotlib](http://matplotlib.org)
+6. more matplotlib, matrices
+7. statistics
+8. data analysis with [Pandas](http://pandas.pydata.org)
+9. review
+10. image analysis
+11. organizing code, data, results; [version
+control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) with
+[Git](https://git-scm.com/); work on project
+12. options:
+    - hierarchical indexing in pandas; work on project
+    - dimension reduction & clustering; work on project
