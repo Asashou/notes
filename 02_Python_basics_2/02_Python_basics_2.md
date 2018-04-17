@@ -13,18 +13,19 @@
     - attribute exploration via dot notation:
         `s.` + `<TAB>` gives a popup menu of attributes/methods
     - view all local variables with `whos`
-        - btw, you can delete a variable `v` with `del v`
+        - you can delete a variable `v` with `del v`
+        - clear all variables with `reset`
     - paste multiline code from editor directly into IPython
+    - can call some bash command-line commands for folder navigation: `pwd`, `ls`, `cd`
     - run a script using `run`, e.g. `run hellos.py`
         - if you want your script to be able to access variables in your workspace, run "interactively" with `run -i hellos.py`
-    - can call bash command-line commands for folder navigation: `pwd`, `ls`, `cd`
     - exiting **plain Python** in Linux/Mac: `Ctrl+D`; in Windows: `Ctrl+Z`, then ENTER
     - exiting **IPython** in all OSes: `CTRL+D`, or type `exit` or `quit`
 
 - more **flow control** from last class:
     - `range(start, stop, step)` counts forwards from start (inclusive) to stop (exclusive) in units of step
     - `range()` can also count backwards if step is negative and start > stop
-    - `range(10, n, -1)` generates values 10 (start, inclusive) to n+1 (stop, exclusive) in steps of -1
+        - `range(10, n, -1)` generates values 10 (start, inclusive) to n+1 (stop, exclusive) in steps of -1
     - `continue`
         - stop whatever the loop is doing and skip to the next iteration
     - `break`
@@ -73,24 +74,24 @@
         - what else does `%` do in Python?
             - how does Python know whether to use it as a string replacement operator or as mod operator?
                 - it looks at the type of its inputs
-    - check if a string exists within another using `in`: `'h' in s` gives `False`
+
+- example string: `s = 'abcdefg'`
+    - get length by calling the `len()` function: `len(s)` gives `7`
+    - check if a string exists within another using `in`: `'h' in s` gives `False`, `'cde' in s` gives `True`
         - where have we seen the `in` operator before?
     - can iterate over the characters in a string, also using `in`:
     ```
     for c in s:
         print(c)
     ````
-
-- example string: `s = 'abcdefg'`
-    - get length by calling the `len()` function: `len(s)` gives `7`
-    - indexing lets you extract a single entry:
+    - **indexing** lets you extract a single entry:
         - `s[0]` gives `'a'`, `s[1]` gives `'b'`, etc.
         - this is called "0-based" indexing, similar in behaviour to `range()`
-        - see later that 0-based indexing is used throughout, compare with Matlab
+        - see later that 0-based indexing is used throughout (Matlab is 1-based)
         - negative index counts from the end: `s[-1]` gives `'g'`, `s[-2]` gives `'f'`, etc.
-    - slicing lets you extract multiple entries at one:
+    - **slicing** lets you extract multiple entries at once:
         - `s[0:1]` gives `'a'`, `s[0:2]` gives `'ab'`, `s[1:3]` gives `'bc'`, etc.
-        - slice indices are like fenceposts, they retrieve fence segments that fall in between
+        - slice indices are like fenceposts, they retrieve fence segments that fall in between them
         - normal (non-slice) indices used for normal indexing give you the fence segments directly
         - you can also skip over entries when slicing
         - `s[0:7:2]` -> `aceg` - give me all the entries from fencepost 0 to 7 in steps of 2
@@ -100,6 +101,7 @@
             - leave out the 2nd slice index: go to end of string - `s[0::2]`
             - leave out the 3rd slice index: go in steps of 1 - `s[0:7]` or `s[0:7:]`
             - leave out multiple slice indices: `s[::2]` - start to end, steps of 2
+            - reverse a string using a negative slice index: `s[::-1]` - end to start, steps of 1
 
 - string methods
     - everything in Python is an "object", `type()` tells you what kind of object it is
