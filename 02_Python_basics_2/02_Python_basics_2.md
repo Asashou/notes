@@ -60,7 +60,7 @@
     - append to an existing string with `+=`: `s += '!'`
     - duplicate strings with `*`: `ss = s * 2`
     - whitespace characters: `\n` (new line) and `\t` (tab)
-    - `%` string replacement operator
+    - `%` string formatting operator
         - format strings act as placeholders:
             - `%s` - replace with a string
             - `%d` - replace with an integer
@@ -72,7 +72,7 @@
         - can replace multiple placeholders in a string
         - `'The date is %s %d, %d' % ('April', 17, 2018)`
         - what else does `%` do in Python?
-            - how does Python know whether to use it as a string replacement operator or as mod operator?
+            - how does Python know whether to use it as a string formatting operator or as mod operator?
                 - it looks at the type of its inputs
 
 - example string: `s = 'abcdefg'`
