@@ -58,7 +58,7 @@
     - initialize a blank string: `s = ''`
     - combine strings with `+`: `s = 'hello' + ' ' + 'world'`
     - append to an existing string with `+=`: `s += '!'`
-    - duplicate strings with `*`: `ss = s * s`
+    - duplicate strings with `*`: `ss = s * 2`
     - whitespace characters: `\n` (new line) and `\t` (tab)
     - `%` string replacement operator
         - format strings act as placeholders:
