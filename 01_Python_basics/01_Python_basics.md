@@ -136,7 +136,7 @@
 4. Modify the script to print out the square of those integers. Test it!
 5. Modify the script to also print out the sum of the integers
 6. Modify the script to print out the square root of those integers
-7. Restore the script as it was in 1. Modify it to print the word `seven` after printing out the integer `7`
+7. Restore the script as it was in 2. Modify it to print the word `seven` after printing out the integer `7`
 8. Modify it to **also** print out the word `three` after printing out the integer `3`
 9. Rewrite the script so that it prints the messages `1 is odd`, `2 is even`, `3 is odd` all the way up to `10 is even`
 10. Modify it so that it **doesn't** print the message `7 is odd`
