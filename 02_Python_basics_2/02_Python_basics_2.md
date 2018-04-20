@@ -80,7 +80,7 @@
     - check if a string exists within another using `in`: `'h' in s` gives `False`, `'cde' in s` gives `True`
         - where have we seen the `in` operator before?
     - can iterate over the characters in a string, also using `in`:
-    ```
+    ```python
     for c in s:
         print(c)
     ````
@@ -115,6 +115,7 @@
     - `s.count(a)` - find number of occurences of `a` in `s`
     - `s.index(a)` - find 0-based index (position) of first instance of string `a` in `s`
     - `s.split(a)` - split `s` everywhere that string `a` is found
+    - `s.join(a, b, c)` - join strings a, b, c... separating them by the string in `s`
     - `s.replace(old, new)` - find all instances of string `old`, replace with `new`
     - `s.strip(a)` - strip characters in `a` from start and end of `s`, defaults to stripping spaces
         - what might `s.lstrip()` and `s.rstrip()` do?
@@ -136,7 +137,7 @@
 
 - function: takes inputs, returns output(s)
 - function inputs are called "arguments"
-```
+```python
 def add(x, y):
      """Return x + y"""
      result = x + y
@@ -147,7 +148,7 @@ def add(x, y):
 - if you forget what your function does, `add?` prints out your docstring!
 - `return` a value, or multiple values separated by comma
 - arguments can be purely positional, swapping `x` and `y` in `add()` does nothing, but...
-```
+```python
 def subtract(x, y):
      """Return x - y"""
      result = x - y
@@ -155,7 +156,7 @@ def subtract(x, y):
 ````
 - `subtract(x, y) != subtract(y, x)`
 - can also have keyword arguments with default values:
-```
+```python
 def add3(x, y, z=0):
      """Return x + y + z"""
      result = x + y + z
