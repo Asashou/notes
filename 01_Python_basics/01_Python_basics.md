@@ -61,7 +61,7 @@
     - up/down arrow keys to access recently used commands
 - functions: take some kind of input, generate some kind of output
     - `print('hello world!')`
-    - `s = input('hello? ')`
+    - `input('hello? ')` - queries for user input
 - commands can be saved into a `.py` (plain text) file, then run from the command line
     - need to use a plain text editor - http://geany.org is my favourite, but notepad in windows or TextEdit on mac (in plain text mode) are OK
     - make a hello world script, run from command line
@@ -89,8 +89,8 @@
     - online: search, StackExchange, or official `http://docs.python.org`
 - basic Python data types
     - `int, float, str, bool`
-        - types also are functions that convert input to that type
         - literals: `1, 1.0, '1', True`
+        - types are also functions that convert input to that type, e.g. `float(1)` gives `1.0`
     - special value: `None`
     - division always gives float, unless `//` (div)
         - find remainder using mod operator `%`
