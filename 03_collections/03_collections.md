@@ -79,7 +79,7 @@
 - sequences - integer indices only
     - tuples
     - lists
-    - numpy arrays (next classsequences)
+    - numpy arrays (next class)
 - mapping - allows non-integer indices, or "key", e.g. strings
     - dictionary
 - hybrid of sequence and mapping
@@ -95,7 +95,7 @@
     - by design, once declared, **cannot** be modified: "immutable"
     - e.g. `t = (1, 2, 3)` or `t = ('a', True, 3.14)`
         - parentheses are often optional: `t = 1, 2, 3`
-        - tuple expansion/unpacking allows for multiple assignment:
+        - tuple expansion/unpacking allows for multiple simultaneous assignment:
             - `a, b, c = (1, 2, 3)` or simply `a, b, c = 1, 2, 3`
         - tuples are often used to `return` multiple values from a function
         ```python
@@ -104,7 +104,7 @@
 
         a, b, c = mult123(2)
         ````
-        - note that `return (x, 2*x, 3*x)` works just as well, but takes extra typing, so less common
+        - `return (x, 2*x, 3*x)` works just as well, but is more cluttered, takes extra typing, so less common
     - as with strings, get length of a tuple (or any other sequence) with the `len()` function
         - `len(t)` gives 3
     - indexing and slicing of tuples works as it does with strings:
@@ -190,10 +190,11 @@
     ```python
     ages2names = {25:'Alice', 20.5:'Bob', 32:'Carol'}
     ````
-    - add new key:value pairs with `d[key] = value`, e.g. `d['a'] = 1`
-        - what happens if a key already exists? Its value is overwritten!
+    - as with lists and tuples, use square brackets `[]` to access an entry
     - access existing key:value pairs with `d[key]`
         - what happens if key doesn't exist in d? `KeyError`
+    - add new key:value pairs with `d[key] = value`, e.g. `d['a'] = 1`
+        - what happens if a key already exists? Its value is overwritten!
     - remove an existing key:value pair with `del d[key]`
         - what happens if key doesn't exist in d? `KeyError`
     - dictionary methods
