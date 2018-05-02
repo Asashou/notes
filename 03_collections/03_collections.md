@@ -157,6 +157,17 @@
         - when iterating over a sequence using `enumerate()`, you also get the index of
         each value, which can be useful inside the loop
             - `for index, val in enumerate(sequence):`
+        - use `zip()` to iterate over multiple sequences simultaneously:
+        ```python
+        for a, b in zip([1, 3, 5], [2, 4, 6]):
+            print(a, b)
+        ````
+        gives:
+        ```python
+        1 2
+        3 4
+        5 6
+        ````
     - list comprehension: handy for doing something simple but repetitive, build up a list in a
     single line of code
         - `doubledlist = [ 2*val for val in sequence ]`
@@ -183,13 +194,9 @@
     - denoted by **curly brackets** `{}`, contain comma separated list of key:value pairs
     - init an empty dictionary with `d = {}` or `d = dict()`
     - init a dict with some predefined key:value pairs:
-    ```python
-    names2ages = {'Alice':25, 'Bob':20, 'Carol':32}
-    ````
+    - `names2ages = {'Alice':25, 'Bob':20, 'Carol':32}`
     - keys don't have to be strings, they can be int, float, bool, etc. Same goes for values:
-    ```python
-    ages2names = {25:'Alice', 20.5:'Bob', 32:'Carol'}
-    ````
+    - `ages2names = {25:'Alice', 20.5:'Bob', 32:'Carol'}`
     - as with lists and tuples, use square brackets `[]` to access an entry
     - access existing key:value pairs with `d[key]`
         - what happens if key doesn't exist in d? `KeyError`
