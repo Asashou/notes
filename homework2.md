@@ -34,7 +34,7 @@ Hint: the solutions to all of these are no more than a few lines each. If your s
 
     - what happens with `zip()` if the lists aren't the same length?
 
-4. The groups in your experiment in question 1. now have exciting names, e.g. `'a'`, `'b'`, `'c'`, `'d'`. Write a function called `normd()` that takes a dictionary with an arbitrary number of key:value pairs, and returns a dictionary with the same keys, but with normalized values. Example:
+4. The measurements in your experiment in question 1. now have exciting names, e.g. `'a'`, `'b'`, `'c'`, `'d'`. Write a function called `normd()` that takes a dictionary with an arbitrary number of key:value pairs, and returns a dictionary with the same keys, but with normalized values. Example:
 
     `normd({'a':1, 'b':6, 'c':0, 'd':3})` returns `{'a':0.1, 'b':0.6, 'c':0.0, 'd':0.3]`
 
