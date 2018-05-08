@@ -107,87 +107,8 @@
 
 1. Use a for loop to build a list of 3 arrays, each array of length 5, initialized to zeros
 2. Find the average difference between the following two arrays:
-    `a = np.array([10, 20, 30, 40, 50])`, `b = np.array([5, 10, 15, 20, 25])`
-3. Write a function called `rms()` that calculates the RMS (root mean square) of an input sequence (array, list, tuple). RMS is the the square root of the mean of the square of a signal.
+    `a = np.array([10, 20, 30, 40, 50])`, `b = np.array([5, 10, 15, 20, 25])`. Use the function/method called `np.mean()` or `a.mean()`
+3. Write a function called `rms()` that calculates the RMS (root mean square) of an input sequence (array, list, tuple). RMS is the the square root of the mean of the square of a signal. Use the function/method called `np.sqrt()` or `a.sqrt()`
 4. Use your `rms()` function to calculate the RMS of the difference between the two arrays
 
 <*go over solutions*>
-
-5. Create an array `c` of 10 random numbers between 0 and 10.
-6. Create an array `d` that consists of the values in `c` greater than 7.
-7. Create an array `e` of 10 random numbers between -5 and 5.
-8. Create an array `f` that consists of values in `e` greater than 1 and less than -1.
-9. Create an array `g` that has all the values of both `d` and `f`. How long is it?
-10. Create an array `h` that has only the 3rd, 8th and 11th entries in `g`
-
-- memory
-    - what's system memory (RAM)? computer's working memory
-    - what's a byte? 8 bits
-    - what's a bit? a binary digit, can be a 0 or 1
-    - different numeric values are expressed using different combinations of bits
-        - 1 byte, 8 bits allow for 2**8 = 256 different numeric values to be expressed
-        - `00000000, 00000001, 00000010, 00000011 ... == 0, 1, 2, 3, ...`
-    - how much memory does my array use?
-        - `a.nbytes`
-        - memory use depends on the number of elements in the array, times the size of each element
-        - element size depends on the data type (dtype) of the array - `a.dtype`
-        - `a.nbytes == len(a) * a.dtype.itemsize` for 1D arrays
-
-- array data type (dtype)
-    - a common set of numeric data types are used across programming languages, super important!
-
-    - integers: signed and unsigned
-        - signed integers are symmetric around 0, unsigned integers are always >= 0
-            - if `n` is the number of unique integers that can be represented by an integer data type:
-            - signed integers range from `-n/2` to `n/2-1`
-            - unsigned integers range from `0` to `n-1`
-            - `n = 2**nbits`
-            - so, the bigger the integer data type (in bits or bytes), the more integer numbers it can represent
-        - `np.int8`, `np.int16`, `np.int32`, `np.int64` - 1, 2, 4 and 8 byte signed
-        - `np.uint8`, `np.uint16`, `np.uint32`, `np.uint64` - 1, 2, 4 and 8 byte **un**signed
-        - can easily calculate max/min values of each int dtype, or use `np.iinfo()`, e.g. `np.iinfo(np.int8).max`
-        - init arrays to the desired data type by using the `dtype` kwarg:
-            - `a = np.zeros(10, dtype=np.uint8)`
-            - `b = np.zeros(10, dtype=np.int64)`
-        - integer overflow:
-            - `a[:] = 255` is fine, but `a[:] = 256` and `a[:] = -1` both wrap overflow (wrap around)
-            - `b[:] = 127` is fine, but `a[:] = -128` isn't
-            - `b[:] = -128` is fine, but `b[:] = -129` isn't
-        - when to use signed or unsigned? if in doubt, use signed!
-
-    - floats - always signed, and made of "mantissa + 10^exponent"
-        - e.g., `5.423520918e01`
-        - bigger float data types have greater precision (mantissa) and greater range (exponent)
-        - `np.float16`, `np.float32`, `np.float64` - 2, 4 and 8 bytes floats
-    - by default, arrays init to the biggest dtypes, either `np.float64` or `np.int64`:
-        - `a = np.array([1, 2, 3])`, `a.dtype` -> int64
-        - `b = np.array([1.1, 2.2, 3.3])`, `b.dtype` -> float64
-    - init arrays to the desired data type by using the `dtype` kwarg:
-        - `a = np.zeros(10, dtype=np.int8)`
-        - `b = np.zeros(10, dtype=np.int64)`
-        - `c = np.zeros(10, dtype=np.float64)`
-        - calculate how much memory do `a`, `b` and `c` take, then check it using `.nbytes`
-    - how much memory would `a = np.zeros(20000000000, dtype=np.uint8)` use? what would happen if I tried this on my 16 GB laptop? `MemoryError`
-    - can convert from one dtype to another by using the dtype as a function:
-        - `a = np.array([1, 2, 3])`
-        - `np.float64(a)` converts `a` to float64 dtype
-            - similar to basic Python: `float(val)`
-        - `a = np.array([1.1, 2.2, 3.3])`
-        - `np.int64(a)` converts `a` to int64 dtype, but it truncates!
-            - this is similar to basic Python: `int(val)`
-            - use `np.int64(np.round(a))` to round to the nearest integer instead
-        - check array data type with `a.dtype`
-    - usually only need to worry about int vs float dtype, stick to the defaults `int64` and `float64`
-        - only consider going down to smaller dtypes if you have lots of data and not enough memory on your machine
-
-    - take care converting between dtypes!
-        - especially from larger ones to smaller ones, and from floats to ints
-        - a number that can be represented in one data type might not be possible to represent in another
-        - dramatic example: Ariane 5 1996 failure
-            - code adapted from Ariane 4 tried to convert a large float64 to int16, resulted in integer overflow, caused computer to think it was suddenly way off course, tried to correct by rapidly changing direction, high G-forces caused it to start to disintegrate, which triggered self-destruct. Cost: $370M
-
-
-#### quickie numeric data type exercises:
-
-1. Create a tuple or a list with the following entries: `3, 5, 1.7, -2.7, 1e2, -50`. Now convert it to an array. What happens?
-2. You have integer data whose values span -100 to 100. Normally, you would use an int64 array to store this data, except the dataset is huge (1 billion entries) and your laptop has a measly 4 GB of RAM. How much memory would you need to store your data using the default int64 dtype? What would be the optimal dtype to use to minimize memory use by your dataset? Will it fit into your 4 GB of RAM?
