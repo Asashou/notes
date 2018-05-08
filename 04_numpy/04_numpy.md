@@ -10,6 +10,7 @@
     - arrays are sequences, like lists and tuples, but faster and much more memory efficient
         - ideal for large datasets!
     - unlike lists, can explicitly be multidimensional - useful for e.g. images and movies
+    - only deal with 1D for now
     - tradeoff: not as flexible as lists - for efficiency, each entry in an array has to be of the same data type
         - you can have an array of ints, or floats, or strings or booleans, but not a mixture
         - so far, we've seen that there are two main numeric data types: int and float
