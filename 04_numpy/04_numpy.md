@@ -72,12 +72,12 @@
         - benefit over slicing is that you can specify any sequence of indices, not just evenly spaced ones
         - you can even specify the same index multiple times
     - integer fancy indexing
-        - ```python
-          a = np.random.random(10) # init an array of random data
-          i = [3, 7, 5, 2, 7] # create a list of indices
-          vals = a[i] # index into array using integer fancy indexing
-          a[i] = -1 # assign -1 at multiple locations using integer fancy indexing
-          ````
+        ```python
+        a = np.random.random(10) # init an array of random data
+        i = [3, 7, 5, 2, 7] # create a list of indices
+        vals = a[i] # index into array using integer fancy indexing
+        a[i] = -1 # assign -1 at multiple locations with int fancy indexing
+        ````
         - can ask for array values in arbitrary order
         - can ask for the same value repeatedly
         - can't do this with lists: try `list(range(10))[i]`
@@ -156,7 +156,8 @@
         - when to use signed or unsigned? if in doubt, use signed!
 
     - floats - always signed, and made of "mantissa + 10^exponent"
-        - bigger floats have greater precision
+        - e.g., `5.423520918e01`
+        - bigger float data types have greater precision (mantissa) and greater range (exponent)
         - `np.float16`, `np.float32`, `np.float64` - 2, 4 and 8 bytes floats
     - by default, arrays init to the biggest dtypes, either `np.float64` or `np.int64`:
         - `a = np.array([1, 2, 3])`, `a.dtype` -> int64
