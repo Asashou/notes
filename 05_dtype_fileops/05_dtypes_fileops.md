@@ -39,15 +39,15 @@
 #### more array exercises from last class:
 
 5. Create an array `c` of 10 random numbers between 0 and 10
-6. Create an array `d` that has only the 2nd, 5th and 8th entries in `c`
+6. Create an array `d` that has only the 2nd, 5th and 8th entries in `c` (one line of code!)
 7. Create an array `e` that has only the values in `c` greater than 5
 8. Use `np.where()` to get the integer indices of where `c` is greater than 5.
-9. Check that all the values in `e` really are > 5 (single line of code!)
+9. Check that all the values in `e` really are > 5 (one line of code!)
 10. Create an array `f` of 10 random numbers between -1 and 1
 11. Create an array `g` that only has the values in `f` that fall between -0.5 and 0.5
-12. Check that all the values in `g` really are between -0.5 and 0.5 (single line of code!)
-13. Create an array `h` that has all the values of both `c` and `f`. How long do you expect it to be? Check its length
-14. Sort the values in `h` in-place. Use `np.diff()` in a single line to check that `h` really is sorted.
+12. Check that all the values in `g` really are between -0.5 and 0.5 (one line of code!)
+13. Create an array `h` that has all the values of both `c` and `f`. How long do you expect it to be? Check its length.
+14. Sort the values in `h` in-place. Use `np.diff()` in one line of code to check that `h` really is sorted.
 
 #### deciding between lists and arrays:
 - use a list when:
