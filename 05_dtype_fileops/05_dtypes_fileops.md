@@ -28,22 +28,22 @@
     - are any values in `a` True? `a.any()` or `np.any(a)`
 - common array math methods: `a.max()`, `a.min()`, `a.ptp()`, `a.sum()`, `a.mean()`, `a.std()`
 - how can we shift all these values to have zero mean and a standard deviation of 1?
-      ```python
-      a -= a.mean() # now mean is very close to 0
-      a /= a.std() # now std is also very close to 0
-      ````
+    ```python
+    a -= a.mean() # now mean is very close to 0
+    a /= a.std() # now std is also very close to 0
+    ````
 - `a.sort()` sorts in place, `b = np.sort(a)` creates a sorted copy of `a`
 - `np.diff()` finds the difference between consecutive values in `a`
     - e.g., `np.diff([1, 4, 2, -3])` gives `np.array([3, -2, -5])`
 
 #### more array exercises from last class:
 
-5. Create an array `c` of 10 random numbers between 0 and 10
+5. Create an array `c` of 10 random numbers that range from 0 to 10 at most
 6. Create an array `d` that has only the 2nd, 5th and 8th entries in `c` (one line of code!)
 7. Create an array `e` that has only the values in `c` greater than 5
 8. Use `np.where()` to get the integer indices of where `c` is greater than 5.
 9. Check that all the values in `e` really are > 5 (one line of code!)
-10. Create an array `f` of 10 random numbers between -1 and 1
+10. Create an array `f` of 10 random numbers that range from -1 to 1 at most
 11. Create an array `g` that only has the values in `f` that fall between -0.5 and 0.5
 12. Check that all the values in `g` really are between -0.5 and 0.5 (one line of code!)
 13. Create an array `h` that has all the values of both `c` and `f`. How long do you expect it to be? Check its length.
@@ -165,8 +165,8 @@
     1. How much memory would your data take up if you used the default int64 dtype in numpy?
     2. Should you use an int or float dtype? Signed or unsigned?
     3. What would be the optimal dtype to minimize the amount of memory used by your dataset? Will it fit into your 4 GB of RAM?
-3. Repeat question 2. for values that span 0 to 10000.
-4. Repeat question 2. for values that span -1 to 50000.
+3. Repeat question 2. for integer values that span 0 to 10000.
+4. Repeat question 2. for integer values that span -1 to 50000.
 
 #### numpy file operations
 
