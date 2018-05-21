@@ -108,7 +108,7 @@
 1. Use a for loop to build a list of 3 arrays, each array of length 5, initialized to zeros
 2. Find the average difference between the following two arrays:
     `a = np.array([10, 20, 30, 40, 50])`, `b = np.array([5, 10, 15, 20, 25])`. Use the function/method called `np.mean()` or `a.mean()`
-3. Write a function called `rms()` that calculates the RMS (root mean square) of an input sequence (array, list, tuple). RMS is the the square root of the mean of the square of a signal. Use the function/method called `np.sqrt()` or `a.sqrt()`
+3. Write a function called `rms()` that calculates the RMS (root mean square) of an input sequence (array, list, tuple). RMS is the the square root of the mean of the square of a signal. To calculate square root, use the function `np.sqrt()`
 4. Use your `rms()` function to calculate the RMS of the difference between the two arrays
 
 <*go over solutions*>
