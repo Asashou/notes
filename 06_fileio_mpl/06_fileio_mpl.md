@@ -46,7 +46,7 @@
         - `V = np.load('V.npy')` - load some fake voltage data
         - `t = np.load('t.npy')` - load corresponding timepoints
         - also loads `.npz` files, which are just `.zip` files containing multiple `.npy` files
-    - `np.save('V2', V*2)` - to a binary `.npy` file
+    - `np.save('V2', 2*V)` - to a binary `.npy` file
     - `np.savez()` & `np.savez_compressed()` - save multiple arrays to an uncompressed or compressed `.npz` file (just a `.zip` file)
     ```python
     np.savez('Vt', V=V, t=t) # save both arrays to .npz, pass as kwargs
@@ -58,13 +58,14 @@
         - read and writes using a dictionary, where each key:value pair is the variable_name:variable_value. Variable values are typically arrays
         ```python
         import scipy.io
-        d = scipy.io.loadmat('Vt.mat')
+        d = scipy.io.loadmat('Vt.mat', squeeze_me=True)
         V, t = d['V'], d['t'] # extract voltage and time from dict
         d2 = {}
-        d2['V'] = V*2 # modify voltage
+        d2['V'] = 2*V # modify voltage
         d2['t'] = t
         scipy.io.savemat('Vt2.mat', d2) # save new voltage data to new file
         ````
+        - MATLAB likes to treat everything as a 2D array, even when it's only 1D. The `squeeze_me=True` "squeezes out" redundant dimensions that are of length 1. Without it, even if you stored a 1D array in the .mat file, you'd still get a 2D array out when reading it
     - for loading/saving from/to **any** binary file (not just `.npy` or `.mat`):
         - `a = np.fromfile()`
         - `a.tofile()`
@@ -83,6 +84,9 @@
 #### plotting with matplotlib (MPL)
 
 - main plotting library for python, others exist, but often based on MPL
+- can plot just about anything
+    - some examples: https://matplotlib.org/tutorials/introductory/sample_plots.html
+
 - typical usage: `import matplotlib.pyplot as plt`
     - now all the common plotting functions are available as `plt.something`
 
@@ -170,10 +174,15 @@
     plt.plot() # should pop up a figure window with axes
     ````
     - figures not popping up in **ipython**?
-        - turn on interactive mode by calling `plt.ion()`
+        - turn on interactive mode by calling `%matplotlib` (or failing that, `plt.ion()`)
         - permanently enable interactive mode in matplotlib settings file:
-            - linux: `~/.config/matplotlib/matplotlibrc`
-            - mac + windows: `~/.matplotlib/matplotlibrc`
+            - this is the normal location for `matplotlibrc`:
+                - linux: `~/.config/matplotlib/matplotlibrc`
+                - mac + windows: `~/.matplotlib/matplotlibrc`
+            - however, Anaconda seems to use a different version of the file in a weird path
+                - to find out what that path is, type `plt.__file__`. Navigate to that folder, then go one folder deeper into the `mpl-data` folder, where you should find the `matplotlibrc` file
+                - the path will probably look something like: `...something.../Anaconda3/site-packges/matplotlib/mpl-data/`
+            - open the `matplotlibrc` file with a plain text editor (e.g. notepad in windows, textedit in mac)
             - uncomment `#interactive: False` line and set to `True` instead
     - figures in **jupyter** not automatically displaying inline?
         - type `%matplotlib inline` in a cell, all cells that follow will do inline plots
@@ -202,70 +211,3 @@
 7. Initialize a second figure in your script with `plt.figure()` after your code for the first figure.
 8. Plot a histogram of `s` with 20 bins, and give it a label during the `plt.hist()` call. Now do the same for `c`. Label the x and y axes and add a legend.
 9. Add two `plt.savefig()` calls in the appropriate places in your script to automatically save your two figures to file every time the script is run. Give the files the names `plot_example.png` and `hist_example.png` respectively. What folder will these files be saved to by default? What happens when you run the script multiple times?
-
-
-#### more matplotlib
-
-- MATLAB style vs. OOP style:
-    - we've learned the MATLAB "procedural" style of plotting:
-    ```python
-    import matplotlib.pyplot as plt
-    t = np.linspace(0, 4*np.pi, 100) # 100 evenly spaced timepoints, 2 cycles
-    s = np.sin(t) # calculate sine as a function of t
-    c = np.cos(t) # calculate cosine as a function of t
-    plt.plot(t, s) # plot points in t on x-axis vs. points in s on y-axis
-    plt.plot(t, c) # plot cosine as well
-    ````
-    - MPL also has an alternative, more Pythonic, object-oriented programming (OOP) style, with very similar commands
-    - first, you explicitly create a figure and an axes
-    - `f, ax = plt.subplots()` - by default creates a new figure with one set of x-y axes, and returns objects representing them
-        - notice the `s` in `plt.subplots()`, `plt.subplot()` is a slightly different MATLAB-style procedural command which you shouldn't need to use
-    - now, we can do most of our plot commands as methods of this particular axes `ax`:
-        - `ax.plot(t, s)`
-        - common formatting commands in OOP style:
-            - `ax.set_xlim()`, `ax.set_ylim()`, `ax.set_xlabel()`, `ax.set_ylabel()`, `ax.set_title()`, `ax.legend()`
-        - compare with MATLAB style:
-            - `plt.xlim()`, `plt.ylim()`, `plt.xlabel()`, `plt.ylabel`, `plt.title()`, `plt.legend()`
-        - OOP style is slightly more wordy, but much more explicit, gives better control over multiple figures
-        - `spines` are more easily accessible through the OOP interface:
-            - `ax.spines['top'].set_visible(False)`
-            - `ax.spines['right'].set_visible(False)`
-    - with multiple figures and axes open, we can refer to them directly by name, no longer have to worry about which is the "current" figure:
-    - `f2, ax2 = plt.subplots()`
-    - `ax2.hist(s)` - plot a histogram of sin(t) this time
-    - to clear a particular axes: `ax.clear()`
-    - if you created your figures/axes with the MATLAB style commands:
-        - use `f = plt.gcf()` to get a reference to the current figure
-        - use `ax = plt.gca()` to get a reference to the current axes
-
-- subplots: create multiple axes in a single figure
-    - `f, axs = plt.subplots(nrows=2, ncols=2)`
-    - `axs` is now a 2D array, choose your axes by indexing into `axs` with row and col indices:
-        - `axs[0, 1].plot(t, s) # plot s vs. t in axes in 1st row 2nd column`
-        - `axs[1, 0].plot(t, c, color='r') # plot c vs. t in red in axes in 2nd row 1st column`
-    - optional kwargs `sharex`, `sharey`
-        ```python
-        plt.close('all')
-        f1, ax1 = plt.subplots(2, 1, sharex=True, sharey=False) # ax1 is 1D array
-        ax1[0].plot(t, s) # plot s vs. t
-        ax1[1].plot(t, c, color='r') # plot c vs. t in red, shared x axis with sin plot
-        f2, ax2 = plt.subplots(2, 1, sharex=True, sharey=False) # ax2 is 1D array
-        ax2[0].hist(s) # plot hist of s
-        ax2[1].hist(c, color='r') # plot hist of c in red, shared x axis with sin hist
-        ````
-    - change the name of a figure, i.e. its window title bar and its default filename in the save dialog box:
-        ```python
-        f1.canvas.set_window_title('time series')
-        f2.canvas.set_window_title('histograms')
-        ````
-
-- some other kinds of plots:
-    - scatterplots:
-        - `ax.scatter(x, y)` - very similar to `ax.plot()`
-            - allows each point to be formatted differently (colour, marker, size)
-            - defaults to not drawing a line between points
-    - errorbar plot
-        - `ax.errorbar(x, y, yerr=5, xerr=2)` - again similar to `a.plot()`, but with errorbars
-    - bar charts
-        - `ax.bar(left, height)` - vertical bars, left and height are sequences
-        - `ax.bar(bottom, width)` - horizontal bars
