@@ -57,7 +57,7 @@
         - `scipy.io.loadmat()` and `scipy.io.savemat()` functions in the scipy package
         - read and writes using a dictionary, where each key:value pair is the variable_name:variable_value. Variable values are typically arrays
         ```python
-        import scipy
+        import scipy.io
         d = scipy.io.loadmat('Vt.mat')
         V, t = d['V'], d['t'] # extract voltage and time from dict
         d2 = {}
@@ -73,7 +73,7 @@
 #### numpy file input/output exercises:
 
 1. Create an array `a = np.arange(10)`, and save it to a text file named `exercise.txt` using `np.savetxt()`. What folder will it be saved to? How can you check in IPython?
-2. Open the file in your text editor. Does it look the way you'd expect? Resave it using the `fmt` kwarg, e.g. try `fmt='%g'` to format it as a general number that should look OK for both int and floats.
+2. Open the file in your text editor. Does it look the way you'd expect? Resave it using the `fmt` kwarg (keyword argument), e.g. try `fmt='%g'` to format it as a general number that should look OK for both int and floats.
 3. In your text editor, change the `9` to a `99`. Save it.
 4. Create an array named `b` by loading in the data from `exercise.txt` using `np.loadtxt()`. Compare the contents of arrays `a` and `b`. Is `b` an integer array as you'd expect? Find a way to force `np.loadtxt()` to give you an integer array.
 5. Save `a` again, but this time to a binary file named `exercise.npy` using `np.save()`
@@ -131,7 +131,7 @@
     - to specify color, marker type and line style with kwargs:
         - `color: 'red', 'green', 'blue'` etc.
         - `marker: '.', 'o', 'x', '+', '*'`, or `''` to turn off markers
-        - `linestyle: `'solid', 'dashed', 'dotted', 'None'`
+        - `linestyle: `'solid', 'dashed', 'dotted'`, or `''` to turn off the line
         - e.g. ```plt.plot(t, c, color='red', marker='.', linestyle='solid')```
                ```plt.plot(t, c, 'r.-')``` is shorthand for the above
         - check ```plt.plot?``` docstring for more options, including color, marker and line abbreviations
