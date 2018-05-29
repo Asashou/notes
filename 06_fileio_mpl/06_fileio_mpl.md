@@ -207,7 +207,7 @@
 3. Give the figure a title, and label the x axis `time (s)` and the y axis `position`, and save it to disk as either a PNG or a PDF. If you're missing the save button on the toolbar, try the  `plt.savefig()` function
 4. Create a new figure with `plt.figure()` and repeat 2., but now give each line a label by specifying the `label` kwarg when calling `plt.plot()`. Then call `plt.legend()` to add a legend to the figure. Now label it and save it as in 3.
 5. Put all of your plot commands for 4. in a script named `plot_exercise.py` so you don't have to keep re-typing them. Make sure it runs when you type `run plot_exercises.py` in IPython.
-6. By default, your above plots (should) have markers (dots) at each data point. Repeat 4 (use your script) but now turn off the markers by specifying the `marker` kwarg (hint: give it an empty string).
+6. By default, your above plots (might) have markers (dots) at each data point. Repeat 4 (use your script) but now turn off/on the markers by specifying the `marker` kwarg (hint: give it an empty string to turn them off).
 7. Initialize a second figure in your script with `plt.figure()` after your code for the first figure.
 8. Plot a histogram of `s` with 20 bins, and give it a label during the `plt.hist()` call. Now do the same for `c`. Label the x and y axes and add a legend.
 9. Add two `plt.savefig()` calls in the appropriate places in your script to automatically save your two figures to file every time the script is run. Give the files the names `plot_example.png` and `hist_example.png` respectively. What folder will these files be saved to by default? What happens when you run the script multiple times?
