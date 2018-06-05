@@ -146,8 +146,12 @@ ax[1].hist(moon.ravel(), bins=np.arange(256+1)) # +1 adds right bin edge
 3. Plot a histogram of the pixel values.
 
 4. The image is a bit dark, and the contrast could be better.
-    1. Do something to the pixel data to increase the brightness of the image. Try not to saturate the image too much. Plot the new image and its histogram, and compare to the original.
-    2. Do the same for contrast.
+    1. Do something to the pixel data to increase the brightness of the image. Name this new array `ohki2`. Try not to saturate the image too much. Plot the new image and its histogram, and compare to the original.
+    2. Do the same for contrast, and name this new array `ohki3`. To make this easier, you can use:
+    ```python
+    from skimage import exposure
+    ohki3 = exposure.rescale_intensity(ohki, (newminval, newmaxval))
+    ````
 
 5. Let's say we want to focus on the middle section of the image. Slice out the middle third of the image (vertically and horizontally), so you end up with an array with about 1/9th as many pixels as the original. Name this subset array `subset`. Display it in a figure.
 
