@@ -147,7 +147,7 @@ ax[1].hist(moon.ravel(), bins=np.arange(256+1)) # +1 adds right bin edge
 
 4. The image is a bit dark, and the contrast could be better.
     1. Do something to the pixel data to increase the brightness of the image. Name this new array `ohki2`. Try not to saturate the image too much. Plot the new image and its histogram, and compare to the original.
-    2. Do the same for contrast, and name this new array `ohki3`. To make this easier, you can use:
+    2. Increase the contrast of the image, and name this new array `ohki3`. To make this easier, you can use:
     ```python
     from skimage import exposure
     ohki3 = exposure.rescale_intensity(ohki, (newminval, newmaxval))
