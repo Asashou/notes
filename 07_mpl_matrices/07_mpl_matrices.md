@@ -125,7 +125,7 @@
         - `im = ax.imshow(a, cmap='jet')` - set during `imshow` call, doesn't update exisiting colorbar (if any)
         - `im.set_cmap('viridis')` - modify existing image object, update colorbar
 
-    - images covered in class 10
+    - images covered in class 08
     - `scipy.ndimage` and `skimage` are great for all kinds of image manipulation
         - loading different image types as arrays
         - change contrast of an image
