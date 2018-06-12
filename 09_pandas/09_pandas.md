@@ -132,7 +132,7 @@
     - as for Series, DataFrame indices are really like labels, can be ints, floats, strings
     - e.g., short segment of (fake) neural EEG voltage data on 3 channels
         ```python
-        eeg = np.array(np.random.random((20, 3))) # 2D array of voltages
+        eeg = np.random.random((20, 3)) # 2D array of voltages
         t = np.arange(0, 20*50, 50) # timestamps, in ms
         chans = ['Fz', 'Cz', 'Pz'] # scalp electrode labels
         df = pd.DataFrame(data=eeg, index=t, columns=chans) # label rows with t, columns with chans
@@ -261,7 +261,7 @@ Every row of the csv file Galton.csv represents a single child, and the columns 
 
 1. Load the data in `Galton.csv` into a DataFrame (maybe call it `gdf`). Is there redundant data in this data set?
 
-2. How many children are in this dataset? What variables (columns) are there in this dataset?
+2. How many children are in this dataset? What variables (columns) are there in this dataset? Are the number of children in the dataset equal to the number of children across all of the families?
 
 3. The column named `Height` describes each child's height. What is the mean child height?
 
