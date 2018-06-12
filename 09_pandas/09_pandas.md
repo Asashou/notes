@@ -24,31 +24,32 @@
 
 - customary name for pandas import is `pd`, i.e. `import pandas as pd`
 
-- **`pd.Series`**
-    - like a 1D numpy array, but more flexible in that indices don't have to be integers
+#### `pd.Series`
+
+- like a 1D numpy array, but more flexible in that indices don't have to be integers
     - indices are more like labels, can be ints, floats, strings...
     - e.g. time series data of fluorescence intensity of some ROI vs. time
-        - with numpy, you'd need two arrays of the same length to properly describe this data: one for fluorescence, and another to store the corresponding timestamps of each measurement
+    - with numpy, you'd need two arrays of the same length to properly describe this data: one for fluorescence, and another to store the corresponding timestamps of each measurement
+    ```python
+    fl = np.random.random(20) # fake fluorescence data
+    t = np.arange(0, 400, 20) # fake timestamps, in ms
+    ````
+    - a bit awkward: one data set represented by two separate arrays, with two different names
+    - if you want to manipulate this data set, you have to remember to do the manipulation on both arrays, not just one of them!
+    - e.g. grab a subset of data, just the first 5 data points:
         ```python
-        fl = np.random.random(20) # fake fluorescence data
-        t = np.arange(0, 400, 20) # fake timestamps, in ms
+        flsub = fl[:5]
+        tsub = t[:5]
         ````
-        - a bit awkward: one data set represented by two separate arrays, with two different names
-        - if you want to manipulate this data set, you have to remember to do the manipulation on both arrays, not just one of them!
-        - e.g. grab a subset of data, just the first 5 data points:
-            ```python
-            flsub = fl[:5]
-            tsub = t[:5]
-            ````
-        - another annoyance: say you want to extract a single fluorescence value at a specific timepoint, like t=60 ms
-        - 2 step process:
-        ```python
-        idx = t == 60 # find where t is 60, save boolean array to idx
-        v = fl[idx] # use idx as index into fl, get a float array with one entry
-        # or in one line:
-        v = fl[t == 60] # also a float array with one entry
-        v[0] # in either case, to extract the actual float value out - tedious!
-        ````
+    - another annoyance: say you want to extract a single fluorescence value at a specific timepoint, like t=60 ms
+    - 2 step process:
+    ```python
+    idx = t == 60 # find where t is 60, save boolean array to idx
+    v = fl[idx] # use idx as index into fl, get a float array with one entry
+    # or in one line:
+    v = fl[t == 60] # also a float array with one entry
+    v[0] # in either case, to extract the actual float value out - tedious!
+    ````
     - pandas lets you combine fluorescence data and timestamps into a single pandas data series:
     - `s = pd.Series(data=fl, index=t)` - the `index` keyword arg indicates row labels
     - select by integer position
@@ -90,7 +91,8 @@
         - `s.plot()` - line plot to current MPL axes, or creates new one if none exist
         - use `f, ax = plt.subplots` to prevent overwriting existing figures
             - don't forget to `import matplotlib.pyplot as plt`
-        - `s[:0.5].plot()`
+        - `s[:0.5].plot()`, returns an axes, which you can capture with `ax = s[:0.5].plot()`
+            - then you can do the usual axes stuff, like labelling: `a.set_xlabel()`, etc.
         - besides calling `s.plot()` for a line plot, `s.plot` is also a way to access some other kinds of plots:
             - `s.plot.hist()`, `s.plot.bar()`, `s.plot.area()`, and others
     - simple stats as Series methods:
@@ -109,33 +111,43 @@
 
 #### Series exercise:
 
-1. Load data from two separate numpy arrays from before: `t.npy` and `V.npy`.
+1. Load data from two separate numpy arrays : `t.npy` and `V.npy`. `t` is time in sec, and `V` is voltage in mV.
 
 2. Combine them into a pandas Series. Use `t` as the index and `V` as the data.
 
-3.
+3. Plot the series as a function of time. Label the x and y axes.
 
-- **`pd.DataFrame`**
-    - like a 2D numpy array, but both row and column indices can be non-integers
+4. Spikes! Choose a voltage threshold that separates the spikes from the rest of the data. Apply the threshold to the series to get a printout of only the subset of the data which falls above your threshold.
+
+5. Extract the spike times from the series, and save the array to a file named `spike_times.npy`. Now load them back into an array (call it `st`), just to make sure it worked.
+
+6. Highlight the spike peaks in your existing figure by plotting over top of them (remember, adding a plot to an existing figure automatically uses a different colour). Highlight just the points, i.e. don't connect them with a line. Hint: use `.plot(linestyle='')` or `.plot(ls='')` to turn off the line.
+
+#### `pd.DataFrame`
+
+- like a 2D numpy array, but both row and column indices, which can be non-integers
+- other big difference from a 2D array: each column can have its own data type
     - looks and feels a lot like a spreadsheet
-    - again, indices are really like labels, can be ints, floats, strings
-    - e.g., short segment of neural EEG voltage data on 3 channels
+    - as for Series, DataFrame indices are really like labels, can be ints, floats, strings
+    - e.g., short segment of (fake) neural EEG voltage data on 3 channels
         ```python
-        v = np.array(np.random.random((20, 3))) # 2D array of voltages
+        eeg = np.array(np.random.random((20, 3))) # 2D array of voltages
         t = np.arange(0, 20*50, 50) # timestamps, in ms
         chans = ['Fz', 'Cz', 'Pz'] # scalp electrode labels
-        df = pd.DataFrame(data=v, index=t, columns=chans) # 'index' is rows
+        df = pd.DataFrame(data=eeg, index=t, columns=chans) # label rows with t, columns with chans
         ````
     - compare `v` and `df` - having row and column labels, like a spreadsheet, is nice!
     - `df.iloc[:5]` - returns another dataframe of first five rows, same as `df.head()`
     - `df.iloc[0, 0]` - returns entry in 1st row and 1st column, just like 2D array
     - `df.iloc[-1, -1]` - returns entry in last row and last column
     - `df['Fz']` returns a single column, this time as a series, because it's only 1D
-    - `df.Fz` can also be used as a shortcut
+    - `df.Fz` can also be used as a shortcut, but discouraged
     - `df.loc[50]` returns a single row at t=50 ms, also a series
-    - if we want a specific voltage value at a specific channel and timestamp:
-        - `df['Fz'][50]` - specify column, then row, opposite of numpy, but same as spreadsheet indexing (i.e., cell A2, C7, etc.)
-        - or if you prefer (row, column) indexing: `df.loc[50]['Fz']` gives same result
+        - in this case, what were column labels in the DataFrame become row labels in the Series
+        - now to get a single value, index again using the chan name: `df.loc[50]['Fz']`
+            - `.loc` in a DataFrame allows (row, column) indexing similar to numpy
+        - direct DataFrame indexing without `.loc`:
+            - `df['Fz'][50]` - specify column, then row, opposite of numpy, but same as spreadsheet indexing (i.e., cell A2, C7, etc.)
         - think of a row as an observation, and a column as a variable
 
 - DataFrames can handle more heterogenous data than the above EEG example
@@ -229,9 +241,11 @@ https://pandas.pydata.org/pandas-docs/stable/groupby.html
         - `pd.DataFrame(missd)` and `pd.DataFrame(nand)`
         - any stats exclude missing data
 
-- see course website for two different pandas cheat sheets
+- see [course website](http:/scipycourse2018.github.io) for two different pandas cheat sheets
 
-- NOTE: don't use the deprecated 3D pandas type called **`pd.Panel`**, use a DataFrame with a multiindex instead
+- [10 min video tour](http://pandas.pydata.org/) by pandas author Wes McKinney
+
+- NOTE: don't use the deprecated 3D pandas type called **`pd.Panel`**, use a DataFrame with a multiindex instead (advanced)
     - https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Panel.html
     - https://pandas.pydata.org/pandas-docs/stable/advanced.html
 
@@ -242,7 +256,7 @@ This dataset is taken from Francis Galton's 1885 study and explores the relation
 
 Every row of the csv file Galton.csv represents a single child, and each column describes their parents and family.
 
-1. Load the data from `Galton.csv`.
+1. Load the data in `Galton.csv` into a DataFrame.
 
 2. How many children are in this dataset? What variables (columns) are there in this dataset?
 
