@@ -68,7 +68,7 @@
         - `s.loc[:60]` returns all values from start to t=60
         - NOTE: slicing by label is end **inclusive**, while slicing by integer position is end **exclusive** (like for lists, tuples and arrays)
         - `s.loc[30:70]` does what you'd expect
-        - Series slices always return another Series. To get the actual data values out, use `.values`
+        - Series slices always return another Series. To get the actual underlying numpy data values out, use `.values`
             - `s.loc[30:70].values` - returns a normal array of just fluorescence values
         - NOTE: indexing directly into a series, e.g. `s[60]` works the same as `s.loc[60]`, i.e, doing so indexes by label
             - strangely, `s[30:70]` doesn't work the same as `s.loc[30:70]` :(
@@ -87,6 +87,7 @@
     - can do vectorized math operations on Series, just like on arrays:
         - `s - 5`
         - `s < 0.5`
+        - math operations work on the data, not on the indices
     - you can plot immediately using Series methods, without having to specify x and y args!
         - `s.plot()` - line plot to current MPL axes, or creates new one if none exist
         - use `f, ax = plt.subplots` to prevent overwriting existing figures
@@ -117,11 +118,11 @@
 
 3. Plot the series as a function of time. Label the x and y axes.
 
-4. Spikes! Choose a voltage threshold that separates the spikes from the rest of the data. Apply the threshold to the series to get a printout of only the subset of the data which falls above your threshold.
+4. Spikes! Choose a voltage threshold (in mV) that separates the spikes from the noise. Apply the threshold to the series to get a printout of only the subset of the data which falls above your threshold.
 
-5. Extract the spike times from the series, and save the array to a file named `spike_times.npy`. Now load them back into an array (call it `st`), just to make sure it worked.
+5. Extract the spike times from the series, same them to an array called `st`. Save the array to a file named `spike_times.npy`. Now load that file back in, just to make sure it worked.
 
-6. Highlight the spike peaks in your existing figure by plotting over top of them (remember, adding a plot to an existing figure automatically uses a different colour). Highlight just the points, i.e. don't connect them with a line. Hint: use `.plot(linestyle='')` or `.plot(ls='')` to turn off the line.
+6. Highlight the spike peaks in your existing figure by plotting over top of them (remember, adding a plot to an existing figure automatically uses a different colour). Highlight just the points, i.e. don't connect them with a line. Hint: use `.plot(ls='', marker='.')` to turn off the line and turn on dot markers (ls = linestyle). Save the figure to a file named `spikes.png`. If you don't have a save button on your figure, use `ax.get_figure().savefig()`
 
 #### `pd.DataFrame`
 
@@ -153,21 +154,23 @@
 - DataFrames can handle more heterogenous data than the above EEG example
     - load some behavioural trial data from a .csv text file into a DataFrame
     - csv = comma separated values
+    - open `exp1.csv` in a plain text editor, and then in a spreadsheet progam (LibreOffice Calc, Excel, etc.)
     - each line of text is a row, commas separate the columns
     - first line can be treated as a "header" of column labels
     - `exp1 = pd.read_csv('exp1.csv')`
-    - pandas automatically uses the file header to label each column in the DataFrame
+    - pandas automatically uses the first line as a header to label each column in the DataFrame
     - notice the data types differ across columns, but are consistent within column
+    - notice that the rows don't have any particular, just integers starting from 0
     - what might happen if we try `exp1.plot()`?
-        - plots numerical columns as a function of trials
+        - plots numerical columns as a function of (default) row labels
         - `exp1.plot.hist()` - plots all histograms on top of each other
         - `exp1.hist()` - plots separate histograms
     - let's load a 2nd experiment:
     - `exp2 = pd.read_csv('exp2.csv')`
     - concatenating DataFrames: collect all your data into a single DataFrame
-        - very similar to `np.concatenate` in numpy, but called `pd.concat()` instead
+        - very similar to `np.concatenate()` in numpy, but called `pd.concat()` instead
         - vertically (default): `exps = pd.concat([exp1, exp2])`
-        - horizontally by using the kwarg `axis=1` ("across columns")
+        - horizontally by using the kwarg `exps = pd.concat([exp1, exp2], axis=1)` ("across columns")
     - now that we have more data, scatter plot trial start and end times:
         - `exps.plot.scatter('start_time', 'end_time')`
         - compute correlations between all numeric columns: `exps.corr()`
@@ -179,20 +182,18 @@
     - `exp1 = pd.read_excel('exp.xlsx', sheetname='exp1')`
     - `exp2 = pd.read_excel('exp.xlsx', sheetname='exp2')`
 
-- can also save a DataFrame to .csv and .xslx files using `.to_csv()` and `.to_excel()`
+- can also save a DataFrame to .csv and .xslx files using methods `.to_csv()` and `.to_excel()`
 
 - DataFrame has same simple stats methods as Series, but now calculated separately for each numerical column:
     - `exps.min()`, `exps.max()`, `exps.sum()`, `exps.mean()`, `exps.median()`, `exps.std()`
     - `exps.describe()` returns separate stats summary for each column
     - `.nunique()` counts number of unique values of a column or Series:
-        - `exps.subject.nunique()`
+        - `exps['subject'].nunique()`
 
-
-Split-Apply-Combine
-Many statistical summaries are in the form of split along some property, then apply a function to each subgroup and finally combine the results into some object. This is known as the ‘split-apply-combine’ pattern and implemnented in Pandas via groupby() and a function that can be applied to each subgroup.
-http://people.duke.edu/~ccc14/sta-663/UsingPandas.html
-https://pandas.pydata.org/pandas-docs/stable/groupby.html
-
+- Split-Apply-Combine
+    - Many statistical summaries are in the form of split along some property, then apply a function to each subgroup and finally combine the results into some object. This is known as the ‘split-apply-combine’ pattern and implemnented in Pandas via groupby() and a function that can be applied to each subgroup.
+    - http://people.duke.edu/~ccc14/sta-663/UsingPandas.html
+    - https://pandas.pydata.org/pandas-docs/stable/groupby.html
 
 - `.groupby()` is amazing!
     - give it column name to "group by", and it finds all the unique values in that column
@@ -210,7 +211,7 @@ https://pandas.pydata.org/pandas-docs/stable/groupby.html
     - if you simply leave it out, like this:
     ```python
     missd = [[1, 2, 3],
-             [4, 6],
+             [4, 5],
              [7, 8, 9]]
     ````
     - what kind of object is this? try `type(missd)`
@@ -220,16 +221,16 @@ https://pandas.pydata.org/pandas-docs/stable/groupby.html
         - the hint that something is wrong is that `dtype=object` instead of say `dtype=int`
         - `a.shape` is `(3,)` and `a.ndim` is `1`, i.e. this is just a 1D array
         - `a[:, 0]` gives an IndexError, again because it isn't 2D
-        - this is no different from a list of lists, i.e. can't index into columns, even though it looks almost like a 2D array
+        - `a` is no better than a list of lists, i.e. can't index into columns, even though `missd`almost looks like a 2D array
     - so, missing data can't simply be left out when creating numpy arrays
     - to represent missing data in numpy, can use a placeholder called `np.nan`
     - nan = "not a number"
     ```python
     nand = [[1, 2, 3],
-            [4, np.nan, 6],
+            [4, 5, np.nan],
             [7, 8, 9]]
     ````
-    - now converting to an array is useful again:
+    - now converting to an array is useful:
         - `a = np.array(nand)`
         - `a.shape` is `(3, 3)` and `a.ndim` is `2`
         - can index into columns: `a[:, 0]` works
@@ -239,7 +240,8 @@ https://pandas.pydata.org/pandas-docs/stable/groupby.html
             - a single `np.nan` forces the whole array to become float, even though all the real values it was given were integers
     - pandas DataFrame deals better with missing data
         - `pd.DataFrame(missd)` and `pd.DataFrame(nand)`
-        - any stats exclude missing data
+        - now only the one column with the NaN is of type float, the rest remain int
+        - any stats exclude missing data, e.g. `pd.DataFrame(missd).mean()`
 
 - see [course website](http:/scipycourse2018.github.io) for two different pandas cheat sheets
 
@@ -254,20 +256,22 @@ https://pandas.pydata.org/pandas-docs/stable/groupby.html
 
 This dataset is taken from Francis Galton's 1885 study and explores the relationship between the heights of adult children and the heights of their parents. Found at http://www.math.uah.edu/stat/data/Galton.html
 
-Every row of the csv file Galton.csv represents a single child, and each column describes their parents and family.
+Every row of the csv file Galton.csv represents a single child, and the columns describe their parents and family.
 
-1. Load the data in `Galton.csv` into a DataFrame.
+1. Load the data in `Galton.csv` into a DataFrame (maybe call it `gdf`). Is there redundant data in this data set?
 
 2. How many children are in this dataset? What variables (columns) are there in this dataset?
 
-3. What is the mean child height?
+3. The column named `Height` describes each child's height. What is the mean child height?
 
 4. Plot a distribution of child heights.
 
 5. How many families are there in this data?
 
-6. What is the mean Father height? The mean Mother height? (Note: because parents are repeated in this data, it makes sense to first group the data by family, otherwise parents with more children will be weighed more heavily than parents with fewer children.)
+6. Notice there's a weird family named `136A`. Extract the subset of the DataFrame that *excludes* this family. Hint: Use what you know about boolean fancy indexing in numpy and apply it to the DataFrame.
 
-7. Is there a relationship between Father and Mother height? Plot them against each other in a scatter plot, and check for a correlation.
+7. What is the mean Father height? The mean Mother height? Note: because parents are repeated in this data, it makes sense to first group the data by family, otherwise parents with more children will be weighed more heavily than parents with fewer children. Hint: I think you have to ask for two means: once within each family, and once more across all families.
 
-8. Is there a relationship between parent height (Father or Mother) and the average height of their children?
+8. Is there a relationship between Father and Mother height? Plot them against each other in a scatter plot, and check for a correlation.
+
+9. Is there a relationship between parent height (Father or Mother) and the average height of their children?
