@@ -198,7 +198,8 @@
 - `.groupby()` is amazing!
     - give it column name to "group by", and it finds all the unique values in that column
     - returns a groupby object, with all the same simple stats methods, including `.describe()`, but now tabulated according to the unique values of the chosen column
-    - `exps.groupby('outcome').mean()`
+    - `exps.groupby('outcome').mean()` - returns a DataFrame, which means you can index into its columns or rows like any other
+        - e.g. `exps.groupby('outcome').mean()['start_time']`
     - `exps.groupby('outcome').describe()`
     - how can you calculate the duration of each trial?
         - `exps.end_time - exps.start_time`
