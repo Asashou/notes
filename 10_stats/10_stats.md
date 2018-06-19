@@ -84,6 +84,8 @@
         rv.mean() # returns exactly 5
         rv.std() # returns exactly 0.5
         s = rv.rvs(1000) # sample 1000 random values from rv
+        s.mean() # approx 5
+        s.std() # approx 0.5
         f, ax = plt.subplots()
         ax.hist(s, bins=30) # similar to what we got before from np.random.normal()
         ````
@@ -186,6 +188,6 @@
 
 3. Plot the distributions of both the control and treatment in the same figure. Give them labels. Do they both look normal? Do they look significantly different? Are their means and standard deviations different? Save the figure to a `stats.png` file.
 
-4. Choose an appropriate stats test to see if the two distributions are significantly different. What happens if you choose an inappropriate test?
+4. Choose an appropriate stats test to see if the two distributions are significantly different. Do the results differ if you choose an inappropriate test?
 
 5. Use the KS test separately on each of the two distributions to check for normality.
