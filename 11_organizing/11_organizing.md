@@ -25,15 +25,15 @@
         subj01/
             subj01_exp01_2017_01_08_behaviour.xlsx
             subj01_exp01_2017_01_08_images/
-            subj01_exp01_2017_01_08_analysis.py
+            subj01_exp01_2017_01_08_analysis.ipynb
             subj01_exp02_2017_01_09_behaviour.xlsx
             subj01_exp02_2017_01_09_images/
-            subj01_exp02_2017_01_09_analysis.py
+            subj01_exp02_2017_01_09_analysis.ipynb
         subj02/
             subj02_exp07_2017_02_10_behaviour.xlsx
-            subj02_exp07_2017_02_10_analysis.py
+            subj02_exp07_2017_02_10_analysis.ipynb
             subj02_exp08_2017_02_11_behaviour.xlsx
-            subj02_exp08_2017_02_11_analysis.py
+            subj02_exp08_2017_02_11_analysis.ipynb
         ...
     ````
     - over time, as you collect new data, you probably want to run the same code on the new data
@@ -42,9 +42,10 @@
 - but...
     - what if you want to collect analysis results **across** all your experiments?
     - or, what if you find a bug in your code, or what if you want to add an extra analysis step, or format your figures differently, and then re-run your code on **all** or your data, and regenerate **all** of your results?
-    - or, what if your data is really huge, and has to be stored in a shared location, like on a server, so that multiple users can access it? If so, it might be inappropriate, even messy, to mix code and results in with your centralized data
+    - or, what if your data is really huge, and has to be stored in a shared location, like on a server, so that multiple users can access it?
     - your lab might also require centralized data storage to ensure all data is regularly backed up and protected against data loss
-    - in any of these cases, it might be better to store your data, code and results in separate locations, and write python scripts/modules (`.py` files) instead of Jupyter notebooks (`.ipynb` files):
+    - in any of these cases, it might be inappropriate, even messy, to mix code and results in with your centralized data
+    - better to store your data, code and results in separate locations, and write python scripts/modules (`.py` files) or Jupyter notebooks (`.ipynb` files) that work on all of your data, instead of just single experiments at a time:
     ```
     data/
         subj01/
@@ -84,8 +85,8 @@
         - modules are great because you don't need to write the same function multiple times, just once, then import it into each script where you need it
         - this encourages you to not repeat code
         - less code repetition is very very desirable:
-            - less code to read, less code to understand and debug
-            - bugs are detected faster, because all your scripts rely on the same common functions in your module(s) - one error will likely affect all of your scripts, instead of just one or two
+            - less code to read, understand and debug
+            - bugs are detected faster, because all your scripts rely on the same common functions in your module(s) - one error will likely affect all of your scripts, instead of just one or two scripts
 
 - script and module file names are typically lowercase, no spaces, underscores if need-be
 
@@ -100,7 +101,6 @@
     - this says "if I'm being run as a script, do the following:"
     - if the `.py` file is being imported then the `__name__ == '__main__'` is `False`, and the code that follows isn't executed
     - if the `.py` file is being run as a script, then the `__name__ == '__main__'` is `True`, and the code that follows is executed
-
 
 - from Wilson2014 - best practices for scientific computing
 
